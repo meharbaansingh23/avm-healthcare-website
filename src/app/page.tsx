@@ -1,11 +1,16 @@
 import Link from "next/link";
-import HeroSlideshow from "@/components/HeroSlideshow";
 
 const heroStats = [
   { value: "3,400+", label: "Products" },
   { value: "6", label: "Specialties" },
   { value: "36+", label: "Hospitals" },
   { value: "30+", label: "Years" },
+];
+
+const heroGallery = [
+  "Operating theatre image",
+  "Surgical instruments close-up",
+  "Hospital setting",
 ];
 
 const trustedBy = [
@@ -53,6 +58,13 @@ const whyAvm = [
   },
 ];
 
+const specialtyGallery = [
+  "Neurosurgical instruments",
+  "Cardiovascular devices",
+  "General surgery tools",
+  "Gynaecology instruments",
+];
+
 const groupCompanies = [
   {
     name: "AVM Healthcare Products",
@@ -71,22 +83,22 @@ const groupCompanies = [
 const downloads = [
   {
     title: "Care & Maintenance Guide",
-    desc: "Proper care and maintenance of surgical instruments",
+    desc: "Proper care and maintenance of surgical instruments.",
     href: "/downloads/Care and Maintenance of Surgical Instruments.pdf",
   },
   {
     title: "Certificate of Authenticity",
-    desc: "Official certificate of authenticity for AVM products",
+    desc: "Official certificate of authenticity for AVM products.",
     href: "/downloads/Certificate of Authenticity.pdf",
   },
   {
     title: "Warranty Certificate",
-    desc: "Standard warranty certificate for AVM instruments",
+    desc: "Standard warranty certificate for AVM instruments.",
     href: "/downloads/Warranty Certificate.pdf",
   },
   {
     title: "Warranty by AVM",
-    desc: "Complete warranty terms offered by AVM Healthcare",
+    desc: "Complete warranty terms offered by AVM Healthcare.",
     href: "/downloads/Warranty offered by AVM.pdf",
   },
 ];
@@ -94,228 +106,230 @@ const downloads = [
 export default function Home() {
   return (
     <>
-      {/* Section 1 — Hero */}
-      <section className="min-h-[90vh] flex items-center">
-        <div className="max-w-7xl mx-auto px-6 w-full grid lg:grid-cols-[55fr_45fr] gap-16 lg:gap-20 items-center py-20">
-          <div>
-            <p className="section-label">
-              Surgical Instruments · Made in India
-            </p>
-            <h1
-              className="font-serif text-5xl lg:text-7xl font-bold text-[#0A1628] mt-6 leading-[1.05]"
-              style={{ letterSpacing: "-0.03em" }}
-            >
+      {/* HERO — dark, full viewport */}
+      <section className="bg-[#0A1628]">
+        <div className="min-h-screen flex flex-col justify-center">
+          <div className="max-w-4xl mx-auto text-center px-6 pt-32 pb-20">
+            <span className="inline-flex items-center gap-2 bg-white/10 rounded-full px-4 py-1.5 text-xs text-white/70 border border-white/10">
+              <span className="block h-1.5 w-1.5 rounded-full bg-blue-400" aria-hidden />
+              Surgical Instruments · Made in India · Since 1996
+            </span>
+
+            <h1 className="display-heading text-6xl md:text-7xl lg:text-8xl text-white font-bold mt-8">
               Precision instruments for modern surgical care
             </h1>
-            <p className="text-[#64748B] text-lg leading-relaxed max-w-md mt-5">
+
+            <p className="text-white/55 text-xl leading-relaxed max-w-2xl mx-auto mt-6">
               AVM Healthcare Products supplies advanced surgical instruments
               to premier hospitals across India — from neurosurgery to
               cardiovascular care.
             </p>
 
-            <div className="flex flex-wrap items-center gap-2 mt-8">
-              <Link href="/request-catalogue" className="btn-primary">
+            <div className="flex flex-wrap items-center justify-center gap-4 mt-10">
+              <Link
+                href="/request-catalogue"
+                className="bg-white text-[#0A1628] px-8 py-4 rounded-lg text-sm font-semibold hover:bg-white/90 transition-colors"
+              >
                 Request catalogue
               </Link>
-              <a href="#video" className="btn-secondary">
+              <a
+                href="#story"
+                className="text-white/60 px-8 py-4 text-sm hover:text-white transition-colors"
+              >
                 Watch our story →
               </a>
             </div>
+          </div>
+        </div>
 
-            <div className="mt-14 pt-8 border-t border-[#E2E8F0] flex flex-wrap gap-10">
-              {heroStats.map((s) => (
-                <div key={s.label}>
-                  <div
-                    className="font-serif text-3xl text-[#0A1628] font-bold"
-                    style={{ letterSpacing: "-0.03em" }}
-                  >
-                    {s.value}
-                  </div>
-                  <div className="text-[10px] uppercase tracking-[0.15em] text-[#64748B] mt-1">
-                    {s.label}
-                  </div>
+        {/* Full-bleed image gallery */}
+        {/* TODO: Replace with real full-bleed photography */}
+        <div className="grid grid-cols-3 gap-1">
+          {heroGallery.map((label) => (
+            <div
+              key={label}
+              className="img-placeholder h-64 rounded-none"
+            >
+              {label}
+            </div>
+          ))}
+        </div>
+
+        {/* Stats row */}
+        <div className="border-t border-white/10 mt-1 py-8 px-6">
+          <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
+            {heroStats.map((s) => (
+              <div key={s.label} className="text-center">
+                <div className="display-heading text-4xl text-white font-bold tabular-nums">
+                  {s.value}
                 </div>
-              ))}
-            </div>
-          </div>
-
-          <div>
-            <HeroSlideshow />
-          </div>
-        </div>
-      </section>
-
-      {/* Trusted by strip */}
-      <div className="border-t border-b border-[#E2E8F0] bg-[#FAFAFA]">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex flex-wrap items-center gap-x-10 gap-y-2">
-          <span className="text-[10px] uppercase tracking-[0.15em] text-[#64748B]">
-            Trusted by
-          </span>
-          <div className="flex flex-wrap items-center gap-x-6 gap-y-1">
-            {trustedBy.map((name, i) => (
-              <span key={name} className="flex items-center gap-6">
-                <span className="text-sm text-[#64748B]">{name}</span>
-                {i < trustedBy.length - 1 && (
-                  <span className="text-[#CBD5E1]" aria-hidden>
-                    ·
-                  </span>
-                )}
-              </span>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Section 2 — Who We Are */}
-      <section id="video" className="bg-[#F5F5F3] py-28">
-        <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center">
-          <div>
-            <p className="section-label">Who we are</p>
-            <h2 className="section-heading mt-6">
-              Supplying surgical excellence since 1996
-            </h2>
-            <p className="text-[#64748B] text-base leading-relaxed mt-6">
-              AVM Healthcare Products Pvt. Ltd. is a New Delhi–based
-              manufacturer and supplier of advanced quality surgical
-              instruments and medical devices. We design, develop, and supply
-              instruments across neurosurgery, general surgery, cardiovascular,
-              gynaecology, plastic surgery, and more — serving premier
-              institutions including AIIMS, Medanta, Fortis, Apollo, and KEM
-              Hospital.
-            </p>
-            <blockquote className="border-l-4 border-blue-600 pl-5 mt-6 font-serif italic text-xl text-[#0A1628]">
-              “Our motto is to provide world-class instruments for the benefit
-              of mankind.”
-            </blockquote>
-          </div>
-
-          <div className="rounded-2xl overflow-hidden aspect-[16/9] bg-black">
-            <iframe
-              src="https://www.youtube.com/embed/_QNRNKJiNuA"
-              title="AVM Healthcare — Our story"
-              className="w-full h-full"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* Section 3 — Why Choose AVM */}
-      <section className="bg-white py-28">
-        <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-[40fr_60fr] gap-16 lg:gap-20">
-          <div>
-            <p className="section-label">Why AVM</p>
-            <h2 className="section-heading mt-6 mb-10">
-              Built for the demands of modern surgery
-            </h2>
-            {/* TODO: Replace with real image */}
-            <div className="img-placeholder h-72 w-full mb-8">
-              Why AVM image
-            </div>
-            <p className="font-serif italic text-xl text-[#0A1628] leading-relaxed">
-              “Every instrument we supply is chosen with one question in mind —
-              will it perform when it matters most?”
-            </p>
-          </div>
-
-          <div>
-            {whyAvm.map((row) => (
-              <div
-                key={row.n}
-                className="flex items-start gap-6 py-5 border-b border-[#F1F5F9]"
-              >
-                <span className="font-serif text-sm text-[#CBD5E1] w-10 shrink-0">
-                  {row.n}
-                </span>
-                <span className="text-sm font-semibold text-[#0A1628] w-48 shrink-0">
-                  {row.title}
-                </span>
-                <span className="text-sm text-[#64748B] flex-1">
-                  {row.desc}
-                </span>
+                <div className="text-xs text-white/40 uppercase tracking-widest mt-2">
+                  {s.label}
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Section 4 — Request Catalogue CTA */}
-      <section className="bg-[#0A1628] py-28 px-6 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto relative">
-          <div className="max-w-xl relative z-10">
-            <p className="text-xs uppercase tracking-[0.15em] font-semibold text-blue-400">
-              Get started
-            </p>
-            <h2
-              className="font-serif text-5xl text-white mt-6 leading-[1.1]"
-              style={{ letterSpacing: "-0.03em" }}
-            >
-              Request our detailed product catalogue
+      {/* CLIENT STRIP */}
+      <div className="bg-white py-6 px-6 border-b border-[#E2E8F0]">
+        <div className="max-w-7xl mx-auto flex items-center gap-12 overflow-x-auto whitespace-nowrap">
+          <span className="text-[10px] uppercase tracking-widest text-[#94A3B8] shrink-0">
+            Trusted by
+          </span>
+          <span className="text-sm text-[#94A3B8]">
+            {trustedBy.join(" · ")}
+          </span>
+        </div>
+      </div>
+
+      {/* WHO WE ARE */}
+      <section id="story" className="bg-white py-40 px-6">
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-24 items-start">
+          <div className="lg:sticky lg:top-32">
+            <p className="section-label">Who we are</p>
+            <h2 className="display-heading text-5xl text-[#0A1628] font-bold mt-6 max-w-sm">
+              Supplying surgical excellence since 1996
             </h2>
-            <p className="text-white/55 text-lg mt-4 max-w-md leading-relaxed">
-              Over 3,400 surgical instruments across 6 specialties. Our team
-              will send the full catalogue to your inbox within one business
-              day.
-            </p>
-            <Link
-              href="/request-catalogue"
-              className="inline-block mt-8 bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-md text-sm font-medium transition-colors"
-            >
-              Request full catalogue →
-            </Link>
+            <blockquote className="mt-8 border-l-4 border-blue-500 pl-6 font-serif italic text-xl text-[#0A1628] leading-relaxed">
+              &ldquo;Our motto is to provide world-class instruments for the
+              benefit of mankind.&rdquo;
+            </blockquote>
           </div>
-          <div
-            aria-hidden
-            className="absolute right-12 bottom-0 font-serif text-[200px] text-white/[0.03] leading-none select-none pointer-events-none"
-            style={{ letterSpacing: "-0.03em" }}
-          >
-            3,400
+
+          <div className="flex flex-col gap-4">
+            <div className="rounded-2xl overflow-hidden aspect-video shadow-2xl bg-black">
+              <iframe
+                src="https://www.youtube.com/embed/_QNRNKJiNuA"
+                title="AVM Healthcare — Our story"
+                className="w-full h-full"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              />
+            </div>
+            {/* TODO: Replace with real image */}
+            <div className="img-placeholder h-64 w-full rounded-2xl mt-4">
+              AVM facility / products
+            </div>
+            {/* TODO: Replace with real image */}
+            <div className="img-placeholder h-48 w-full rounded-2xl">
+              Team / manufacturing image
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Section 5 — Group of Companies */}
-      <section className="bg-white py-28">
-        <div className="max-w-7xl mx-auto px-6">
-          <p className="section-label">Our group</p>
-          <h2 className="section-heading mt-6">Part of a larger family</h2>
-          <p className="text-[#64748B] text-base leading-relaxed mt-4 max-w-2xl">
-            AVM Healthcare is part of a group of companies committed to
-            advancing surgical and medical care.
+      {/* WHY CHOOSE AVM — dark with bordered grid */}
+      <section className="bg-[#0A1628] py-40 px-6">
+        <div className="max-w-3xl mx-auto text-center">
+          <p className="text-xs uppercase font-semibold text-blue-400" style={{ letterSpacing: "0.15em" }}>
+            Why AVM
           </p>
+          <h2 className="display-heading text-5xl md:text-6xl text-white font-bold mt-4">
+            Built for the demands of modern surgery
+          </h2>
+          <p className="text-white/50 text-lg mt-4 max-w-xl mx-auto leading-relaxed">
+            Six commitments behind every instrument we put in a surgeon&rsquo;s hand.
+          </p>
+        </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-12">
+        <div className="max-w-7xl mx-auto mt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-white/10 border border-white/10 rounded-2xl overflow-hidden">
+          {whyAvm.map((row) => (
+            <div
+              key={row.n}
+              className="bg-[#0A1628] p-10 hover:bg-[#0d2240] transition-colors"
+            >
+              <div className="text-blue-500 font-serif text-sm font-bold mb-6 tracking-widest">
+                {row.n}
+              </div>
+              <h3 className="text-white text-base font-semibold mb-3">
+                {row.title}
+              </h3>
+              <p className="text-white/50 text-sm leading-relaxed">
+                {row.desc}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* FULL BLEED IMAGE STRIP */}
+      {/* TODO: Replace with real specialty product photography */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-1">
+        {specialtyGallery.map((label) => (
+          <div
+            key={label}
+            className="img-placeholder h-80 rounded-none"
+          >
+            {label}
+          </div>
+        ))}
+      </div>
+
+      {/* CTA — light, centered */}
+      <section className="bg-white py-40 px-6">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="display-heading text-5xl md:text-6xl text-[#0A1628] font-bold">
+            Request our detailed product catalogue
+          </h2>
+          <p className="text-[#64748B] text-xl mt-6 max-w-2xl mx-auto leading-relaxed">
+            Over 3,400 surgical instruments across 6 specialties. Our team
+            will send the full catalogue to your inbox within one business
+            day.
+          </p>
+          <Link
+            href="/request-catalogue"
+            className="inline-block mt-10 bg-[#0A1628] text-white px-10 py-5 rounded-lg text-base font-semibold hover:bg-[#0d1f38] transition-colors"
+          >
+            Request full catalogue →
+          </Link>
+        </div>
+      </section>
+
+      {/* GROUP OF COMPANIES */}
+      <section className="bg-[#F5F5F3] py-32 px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center max-w-2xl mx-auto">
+            <p className="section-label">Our group</p>
+            <h2 className="display-heading text-5xl text-[#0A1628] font-bold mt-4">
+              Part of a larger family
+            </h2>
+            <p className="text-[#64748B] text-lg mt-4 leading-relaxed">
+              AVM Healthcare is part of a group of companies committed to
+              advancing surgical and medical care.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16">
             {groupCompanies.map((c) => {
-              const Inner = (
+              const inner = (
                 <>
-                  {/* TODO: Replace with real image */}
-                  <div className="w-[120px] h-12 bg-[#F1F5F9] rounded-md flex items-center justify-center text-[#CBD5E1] text-[10px] uppercase tracking-[0.15em]">
+                  {/* TODO: Replace with real logo */}
+                  <div className="w-full h-16 bg-[#F8FAFC] rounded-xl flex items-center justify-center text-[#CBD5E1] text-xs uppercase tracking-widest">
                     Logo
                   </div>
-                  <div className="text-sm font-semibold text-[#0A1628] mt-4">
+                  <div className="text-sm font-semibold text-[#0A1628] mt-5">
                     {c.name}
                   </div>
-                  <div className="text-xs text-[#64748B] mt-1">{c.sub}</div>
+                  <div className="text-xs text-[#94A3B8] mt-1">{c.sub}</div>
                 </>
               );
-
+              const cardClass =
+                "bg-white rounded-2xl p-8 border border-[#E2E8F0] hover:border-blue-200 hover:shadow-md transition-all";
               return c.href ? (
                 <a
                   key={c.name}
                   href={c.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="border-t-2 border-[#E2E8F0] pt-6 hover:border-blue-600 transition-colors"
+                  className={cardClass}
                 >
-                  {Inner}
+                  {inner}
                 </a>
               ) : (
-                <div
-                  key={c.name}
-                  className="border-t-2 border-[#E2E8F0] pt-6"
-                >
-                  {Inner}
+                <div key={c.name} className={cardClass}>
+                  {inner}
                 </div>
               );
             })}
@@ -323,33 +337,42 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Section 6 — Downloads */}
-      <section className="bg-[#F5F5F3] py-28">
-        <div className="max-w-7xl mx-auto px-6">
-          <p className="section-label">Resources</p>
-          <h2 className="section-heading mt-6">Product support documents</h2>
-          <p className="text-[#64748B] text-base leading-relaxed mt-4 max-w-2xl">
-            Download our warranty and care documentation for AVM surgical
-            instruments.
-          </p>
+      {/* DOWNLOADS */}
+      <section className="bg-white py-32 px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center max-w-2xl mx-auto">
+            <p className="section-label">Resources</p>
+            <h2 className="display-heading text-5xl text-[#0A1628] font-bold mt-4">
+              Product support documents
+            </h2>
+            <p className="text-[#64748B] text-lg mt-4 leading-relaxed">
+              Download our warranty and care documentation for AVM surgical
+              instruments.
+            </p>
+          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
             {downloads.map((d) => (
               <div
                 key={d.title}
-                className="bg-white rounded-xl border border-[#E2E8F0] p-6 flex flex-col"
+                className="bg-white rounded-2xl border border-[#E2E8F0] p-7 hover:shadow-md hover:border-blue-200 transition-all flex flex-col"
               >
-                <div className="w-10 h-10 rounded-lg bg-red-50 text-red-400 flex items-center justify-center text-xs font-bold">
+                <div
+                  className="w-10 h-10 bg-red-50 rounded-lg flex items-center justify-center text-red-500 text-xs font-bold"
+                  aria-hidden
+                >
                   PDF
                 </div>
-                <div className="text-sm font-semibold text-[#0A1628] mt-4">
+                <h3 className="text-sm font-semibold text-[#0A1628] mt-5 leading-snug">
                   {d.title}
-                </div>
-                <p className="text-xs text-[#64748B] mt-1 flex-1">{d.desc}</p>
+                </h3>
+                <p className="text-xs text-[#94A3B8] mt-2 leading-relaxed flex-1">
+                  {d.desc}
+                </p>
                 <a
                   href={d.href}
                   download
-                  className="mt-4 text-blue-600 text-xs font-semibold hover:text-blue-700 inline-flex items-center gap-1 self-start"
+                  className="mt-6 text-blue-600 text-xs font-semibold hover:text-blue-700 inline-flex items-center gap-1 self-start"
                 >
                   Download ↓
                 </a>

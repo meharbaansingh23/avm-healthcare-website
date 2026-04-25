@@ -5,6 +5,10 @@
   --font-serif: var(--font-dm-serif), ui-serif, Georgia, serif;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 html,
 body {
   background: #ffffff;
@@ -12,6 +16,17 @@ body {
   font-family: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+.display-heading {
+  font-family: var(--font-dm-serif), ui-serif, Georgia, serif;
+  letter-spacing: -0.035em;
+  line-height: 1.02;
 }
 
 *:focus {
