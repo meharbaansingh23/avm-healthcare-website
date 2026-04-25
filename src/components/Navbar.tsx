@@ -25,6 +25,7 @@ export default function Navbar() {
             alt="AVM Healthcare"
             width={120}
             height={40}
+            unoptimized
             preload
           />
         </Link>

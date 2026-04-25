@@ -44,4 +44,20 @@ body {
     @apply bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl border border-blue-100 flex items-center justify-center text-blue-300 text-xs uppercase;
     letter-spacing: 0.15em;
   }
+
+  .form-label {
+    @apply block text-xs uppercase font-semibold text-[#64748B] mb-2;
+    letter-spacing: 0.15em;
+  }
+
+  .form-input {
+    @apply w-full border border-[#E2E8F0] rounded-lg px-4 py-3 text-sm text-[#0A1628] bg-white transition-colors;
+  }
+  .form-input::placeholder {
+    color: #94a3b8;
+  }
+  .form-input:focus {
+    outline: none;
+    border-color: #60a5fa;
+  }
 }

@@ -22,6 +22,7 @@ export default function Footer() {
             alt="AVM Healthcare"
             width={100}
             height={32}
+            unoptimized
           />
           <p className="text-xs text-white/40 mt-1">
             Precision surgical instruments · Made in India

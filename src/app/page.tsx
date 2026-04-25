@@ -207,7 +207,7 @@ export default function Home() {
           <div>
             <p className="section-label">Why AVM</p>
             <h2 className="section-heading mt-6 mb-10">
-              Quality you can put your name on
+              Built for the demands of modern surgery
             </h2>
             {/* TODO: Replace with real image */}
             <div className="img-placeholder h-72 w-full mb-8">
