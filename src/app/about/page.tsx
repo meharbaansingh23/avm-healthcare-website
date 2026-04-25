@@ -84,9 +84,18 @@ export default function AboutPage() {
       {/* German callout banner */}
       <div className="bg-blue-50 border-y border-blue-100 py-4 px-6">
         <div className="max-w-7xl mx-auto flex flex-wrap items-center gap-4">
-          <span className="text-2xl" aria-hidden>
-            🇩🇪
-          </span>
+          <svg
+            width="32"
+            height="20"
+            viewBox="0 0 5 3"
+            aria-label="Flag of Germany"
+            role="img"
+            className="rounded-sm overflow-hidden shrink-0 ring-1 ring-blue-100"
+          >
+            <rect width="5" height="1" y="0" fill="#000000" />
+            <rect width="5" height="1" y="1" fill="#DD0000" />
+            <rect width="5" height="1" y="2" fill="#FFCE00" />
+          </svg>
           <p className="text-sm text-[#0A1628] flex-1 min-w-[240px]">
             Based in Germany? Our products are also available through ANI
             Instruments — our German precision partner.
@@ -202,7 +211,20 @@ export default function AboutPage() {
                 key={name}
                 className="border border-[#E2E8F0] rounded-xl p-6 text-center bg-white"
               >
-                <div className="text-blue-600 text-xl font-bold">✓</div>
+                <svg
+                  className="mx-auto text-blue-600"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M5 12.5 10 17.5 19 7.5" />
+                </svg>
                 <div className="text-sm font-semibold text-[#0A1628] mt-2">
                   {name}
                 </div>

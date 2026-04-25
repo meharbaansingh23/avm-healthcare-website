@@ -131,7 +131,7 @@ export default function Home() {
                   >
                     {s.value}
                   </div>
-                  <div className="text-[10px] uppercase tracking-[0.15em] text-[#94A3B8] mt-1">
+                  <div className="text-[10px] uppercase tracking-[0.15em] text-[#64748B] mt-1">
                     {s.label}
                   </div>
                 </div>
@@ -148,7 +148,7 @@ export default function Home() {
       {/* Trusted by strip */}
       <div className="border-t border-b border-[#E2E8F0] bg-[#FAFAFA]">
         <div className="max-w-7xl mx-auto px-6 py-4 flex flex-wrap items-center gap-x-10 gap-y-2">
-          <span className="text-[10px] uppercase tracking-[0.15em] text-[#94A3B8]">
+          <span className="text-[10px] uppercase tracking-[0.15em] text-[#64748B]">
             Trusted by
           </span>
           <div className="flex flex-wrap items-center gap-x-6 gap-y-1">
@@ -296,7 +296,7 @@ export default function Home() {
                   <div className="text-sm font-semibold text-[#0A1628] mt-4">
                     {c.name}
                   </div>
-                  <div className="text-xs text-[#94A3B8] mt-1">{c.sub}</div>
+                  <div className="text-xs text-[#64748B] mt-1">{c.sub}</div>
                 </>
               );
 

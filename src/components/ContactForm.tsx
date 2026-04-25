@@ -40,18 +40,29 @@ export default function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+    <form
+      onSubmit={handleSubmit}
+      className="flex flex-col gap-6"
+      aria-busy={status === "submitting"}
+    >
       <h2 className="font-serif text-2xl text-[#0A1628] font-bold mb-2">
         Send us a message
       </h2>
 
       {status === "success" && (
-        <div className="rounded-lg border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-800">
+        <div
+          role="status"
+          aria-live="polite"
+          className="rounded-lg border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-800"
+        >
           Thank you! We&rsquo;ll be in touch within one business day.
         </div>
       )}
       {status === "error" && (
-        <div className="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800">
+        <div
+          role="alert"
+          className="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800"
+        >
           {errorMessage || "Something went wrong. Please try again."}
         </div>
       )}

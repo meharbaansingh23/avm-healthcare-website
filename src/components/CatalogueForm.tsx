@@ -64,15 +64,26 @@ export default function CatalogueForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+    <form
+      onSubmit={handleSubmit}
+      className="flex flex-col gap-6"
+      aria-busy={status === "submitting"}
+    >
       {status === "success" && (
-        <div className="rounded-lg border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-800">
+        <div
+          role="status"
+          aria-live="polite"
+          className="rounded-lg border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-800"
+        >
           Thank you! We&rsquo;ll send the catalogue to your inbox within one
           business day.
         </div>
       )}
       {status === "error" && (
-        <div className="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800">
+        <div
+          role="alert"
+          className="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800"
+        >
           {errorMessage || "Something went wrong. Please try again."}
         </div>
       )}
@@ -166,7 +177,7 @@ export default function CatalogueForm() {
 
       <div>
         <label htmlFor="rc-req" className="form-label">
-          Specific requirements <span className="normal-case tracking-normal text-[#94A3B8] font-normal">(optional)</span>
+          Specific requirements <span className="normal-case tracking-normal text-[#64748B] font-normal">(optional)</span>
         </label>
         <textarea
           id="rc-req"

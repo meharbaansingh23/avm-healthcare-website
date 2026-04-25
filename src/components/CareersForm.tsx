@@ -61,15 +61,26 @@ export default function CareersForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+    <form
+      onSubmit={handleSubmit}
+      className="flex flex-col gap-6"
+      aria-busy={status === "submitting"}
+    >
       {status === "success" && (
-        <div className="rounded-lg border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-800">
+        <div
+          role="status"
+          aria-live="polite"
+          className="rounded-lg border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-800"
+        >
           Thank you for your interest. We&rsquo;ll review your profile and be in
           touch.
         </div>
       )}
       {status === "error" && (
-        <div className="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800">
+        <div
+          role="alert"
+          className="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800"
+        >
           {errorMessage || "Something went wrong. Please try again."}
         </div>
       )}
@@ -149,12 +160,21 @@ export default function CareersForm() {
       </div>
 
       <div>
-        <label htmlFor="c-cv" className="form-label">
+        <span id="c-cv-label" className="form-label block">
           Attach your CV (PDF or Word)
-        </label>
+        </span>
+        <input
+          id="c-cv"
+          ref={fileRef}
+          type="file"
+          accept=".pdf,.doc,.docx"
+          aria-labelledby="c-cv-label"
+          className="sr-only peer"
+          onChange={(e) => setCvName(e.target.files?.[0]?.name ?? "")}
+        />
         <label
           htmlFor="c-cv"
-          className="form-input flex items-center justify-between gap-3 cursor-pointer hover:border-blue-300"
+          className="form-input flex items-center justify-between gap-3 cursor-pointer hover:border-blue-300 peer-focus-visible:border-blue-600 peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-blue-600"
         >
           <span className="text-[#64748B] truncate">
             {cvName || "Choose file…"}
@@ -163,14 +183,6 @@ export default function CareersForm() {
             Browse
           </span>
         </label>
-        <input
-          id="c-cv"
-          ref={fileRef}
-          type="file"
-          accept=".pdf,.doc,.docx"
-          className="sr-only"
-          onChange={(e) => setCvName(e.target.files?.[0]?.name ?? "")}
-        />
         <p className="text-xs text-[#64748B] italic mt-2">
           Maximum file size 5MB. If upload fails, please email your CV directly
           to{" "}
