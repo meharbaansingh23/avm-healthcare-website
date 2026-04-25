@@ -10,6 +10,7 @@ const links = [
   { href: "/contact", label: "Contact" },
   { href: "/careers", label: "Careers" },
   { href: "/innovation", label: "Innovation" },
+  { href: "/blog", label: "Blog" },
 ];
 
 export default function Navbar() {
@@ -40,7 +41,10 @@ export default function Navbar() {
               {l.label}
             </Link>
           ))}
-          <Link href="/request-catalogue" className="btn-primary">
+          <Link
+            href="/request-catalogue"
+            className="bg-[#0A1628] text-white rounded-lg px-5 py-2.5 text-sm font-semibold hover:bg-[#0d1f38] transition-colors"
+          >
             Request Catalogue
           </Link>
         </nav>
@@ -84,7 +88,7 @@ export default function Navbar() {
             ))}
             <Link
               href="/request-catalogue"
-              className="btn-primary mt-3 text-center"
+              className="bg-[#0A1628] text-white rounded-lg px-5 py-2.5 text-sm font-semibold hover:bg-[#0d1f38] transition-colors text-center mt-3"
               onClick={() => setOpen(false)}
             >
               Request Catalogue

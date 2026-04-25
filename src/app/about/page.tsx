@@ -250,13 +250,11 @@ export default function AboutPage() {
       </section>
 
       {/* Clients */}
-      <section className="bg-[#0A1628] py-28 px-6">
+      <section className="bg-[#F5F5F3] py-28 px-6">
         <div className="max-w-7xl mx-auto">
-          <p className="text-xs uppercase tracking-[0.15em] font-semibold text-blue-400">
-            Our clients
-          </p>
+          <p className="section-label">Our clients</p>
           <h2
-            className="font-serif text-4xl text-white font-bold mt-2 leading-tight"
+            className="text-4xl text-[#0A1628] font-bold mt-3 tracking-tight leading-tight"
             style={{ letterSpacing: "-0.03em" }}
           >
             Trusted by India&rsquo;s leading hospitals
@@ -265,7 +263,7 @@ export default function AboutPage() {
             {clientHospitals.map((h) => (
               <span
                 key={h}
-                className="border border-white/20 rounded-full px-4 py-2 text-sm text-white/75"
+                className="border border-[#E2E8F0] bg-white rounded-full px-4 py-2 text-sm text-[#64748B]"
               >
                 {h}
               </span>
@@ -275,23 +273,23 @@ export default function AboutPage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-[#0A1628] pb-28 px-6">
-        <div className="bg-[#0C447C] rounded-2xl p-12 max-w-7xl mx-auto flex flex-col md:flex-row md:justify-between md:items-center gap-8">
+      <section className="bg-white pb-28 px-6">
+        <div className="bg-[#F5F5F3] border border-[#E2E8F0] rounded-2xl p-12 max-w-7xl mx-auto flex flex-col md:flex-row md:justify-between md:items-center gap-8">
           <div>
             <h3
-              className="font-serif text-3xl text-white font-bold leading-tight"
+              className="text-3xl text-[#0A1628] font-bold tracking-tight leading-tight"
               style={{ letterSpacing: "-0.03em" }}
             >
               Get our detailed product catalogue
             </h3>
-            <p className="text-white/60 text-sm mt-2 max-w-md leading-relaxed">
+            <p className="text-[#64748B] text-sm mt-2 max-w-md leading-relaxed">
               3,400+ instruments across 6 specialties — delivered within one
               business day.
             </p>
           </div>
           <Link
             href="/request-catalogue"
-            className="bg-blue-500 hover:bg-blue-600 text-white px-8 py-4 rounded-md text-sm font-semibold transition-colors whitespace-nowrap self-start md:self-auto"
+            className="bg-[#0A1628] hover:bg-[#0d1f38] text-white px-8 py-4 rounded-lg text-sm font-semibold transition-colors whitespace-nowrap self-start md:self-auto"
           >
             Request full catalogue →
           </Link>
