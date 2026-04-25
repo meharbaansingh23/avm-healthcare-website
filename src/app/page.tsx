@@ -1,16 +1,11 @@
 import Link from "next/link";
+import HeroSlideshow from "@/components/HeroSlideshow";
 
 const heroStats = [
   { value: "3,400+", label: "Products" },
   { value: "6", label: "Specialties" },
   { value: "36+", label: "Hospitals" },
   { value: "30+", label: "Years" },
-];
-
-const heroGallery = [
-  "Operating theatre image",
-  "Surgical instruments close-up",
-  "Hospital setting",
 ];
 
 const trustedBy = [
@@ -142,18 +137,8 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Full-bleed image gallery */}
-        {/* TODO: Replace with real full-bleed photography */}
-        <div className="grid grid-cols-3 gap-1">
-          {heroGallery.map((label) => (
-            <div
-              key={label}
-              className="img-placeholder h-64 rounded-none"
-            >
-              {label}
-            </div>
-          ))}
-        </div>
+        {/* Full-width hero slideshow */}
+        <HeroSlideshow />
 
         {/* Stats row */}
         <div className="border-t border-white/10 mt-1 py-8 px-6">
@@ -198,24 +183,14 @@ export default function Home() {
             </blockquote>
           </div>
 
-          <div className="flex flex-col gap-4">
-            <div className="rounded-2xl overflow-hidden aspect-video shadow-2xl bg-black">
-              <iframe
-                src="https://www.youtube.com/embed/_QNRNKJiNuA"
-                title="AVM Healthcare — Our story"
-                className="w-full h-full"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-              />
-            </div>
-            {/* TODO: Replace with real image */}
-            <div className="img-placeholder h-64 w-full rounded-2xl mt-4">
-              AVM facility / products
-            </div>
-            {/* TODO: Replace with real image */}
-            <div className="img-placeholder h-48 w-full rounded-2xl">
-              Team / manufacturing image
-            </div>
+          <div className="rounded-2xl overflow-hidden aspect-video shadow-2xl bg-black">
+            <iframe
+              src="https://www.youtube.com/embed/_QNRNKJiNuA"
+              title="AVM Healthcare — Our story"
+              className="w-full h-full"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            />
           </div>
         </div>
       </section>
