@@ -101,54 +101,57 @@ const downloads = [
 export default function Home() {
   return (
     <>
-      {/* HERO — dark, full viewport */}
-      <section className="bg-[#0A1628]">
-        <div className="min-h-screen flex flex-col justify-center">
-          <div className="max-w-4xl mx-auto text-center px-6 pt-32 pb-20">
-            <span className="inline-flex items-center gap-2 bg-white/10 rounded-full px-4 py-1.5 text-xs text-white/70 border border-white/10">
-              <span className="block h-1.5 w-1.5 rounded-full bg-blue-400" aria-hidden />
-              Surgical Instruments · Made in India · Since 1996
-            </span>
+      {/* HERO — light, two-column */}
+      <section className="bg-white">
+        <div className="max-w-7xl mx-auto px-6 pt-32 pb-20">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <div>
+              <span className="inline-flex items-center gap-2 bg-[#F1F5F9] rounded-full px-4 py-1.5 text-xs text-[#2563EB] border border-[#E2E8F0]">
+                <span className="block h-1.5 w-1.5 rounded-full bg-blue-500" aria-hidden />
+                Surgical Instruments · Made in India · Since 1996
+              </span>
 
-            <h1 className="display-heading text-6xl md:text-7xl lg:text-8xl text-white font-bold mt-8">
-              Precision instruments for modern surgical care
-            </h1>
+              <h1 className="display-heading text-6xl md:text-7xl lg:text-8xl text-[#0A1628] font-bold mt-8">
+                Precision instruments for modern surgical care
+              </h1>
 
-            <p className="text-white/55 text-xl leading-relaxed max-w-2xl mx-auto mt-6">
-              AVM Healthcare Products supplies advanced surgical instruments
-              to premier hospitals across India — from neurosurgery to
-              cardiovascular care.
-            </p>
+              <p className="text-[#64748B] text-xl leading-relaxed max-w-2xl mt-6">
+                AVM Healthcare Products supplies advanced surgical instruments
+                to premier hospitals across India — from neurosurgery to
+                cardiovascular care.
+              </p>
 
-            <div className="flex flex-wrap items-center justify-center gap-4 mt-10">
-              <Link
-                href="/request-catalogue"
-                className="bg-white text-[#0A1628] px-8 py-4 rounded-lg text-sm font-semibold hover:bg-white/90 transition-colors"
-              >
-                Request catalogue
-              </Link>
-              <a
-                href="#story"
-                className="text-white/60 px-8 py-4 text-sm hover:text-white transition-colors"
-              >
-                Watch our story →
-              </a>
+              <div className="flex flex-wrap items-center gap-4 mt-10">
+                <Link
+                  href="/request-catalogue"
+                  className="bg-[#0A1628] text-white px-8 py-4 rounded-lg text-sm font-semibold hover:bg-[#0d1f38] transition-colors"
+                >
+                  Request catalogue
+                </Link>
+                <a
+                  href="#story"
+                  className="text-[#64748B] px-8 py-4 text-sm hover:text-[#0A1628] transition-colors"
+                >
+                  Watch our story →
+                </a>
+              </div>
+            </div>
+
+            <div className="aspect-[4/3] rounded-2xl overflow-hidden">
+              <HeroSlideshow />
             </div>
           </div>
         </div>
 
-        {/* Full-width hero slideshow */}
-        <HeroSlideshow />
-
         {/* Stats row */}
-        <div className="border-t border-white/10 mt-1 py-8 px-6">
+        <div className="border-t border-[#E2E8F0] mt-1 py-8 px-6">
           <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
             {heroStats.map((s) => (
               <div key={s.label} className="text-center">
-                <div className="display-heading text-4xl text-white font-bold tabular-nums">
+                <div className="display-heading text-4xl text-[#0A1628] font-bold tabular-nums">
                   {s.value}
                 </div>
-                <div className="text-xs text-white/40 uppercase tracking-widest mt-2">
+                <div className="text-xs text-[#94A3B8] uppercase tracking-widest mt-2">
                   {s.label}
                 </div>
               </div>
