@@ -18,17 +18,14 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-[#E2E8F0]">
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        <Link href="/" className="flex items-center" onClick={() => setOpen(false)}>
-          {/* TODO: Replace with real image */}
-          {/* eslint-disable-next-line @next/next/no-img-element */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <a href="/">
           <img
             src="/images/logo-dark.png"
-            alt="AVM Healthcare"
-            width="120"
-            height="40"
-            style={{ height: "40px", width: "auto" }}
+            alt="AVM Healthcare Products"
+            style={{ height: '36px', width: 'auto', display: 'block' }}
           />
-        </Link>
+        </a>
 
         <nav className="hidden md:flex items-center gap-8">
           {links.map((l) => (

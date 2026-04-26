@@ -33,17 +33,14 @@ export default function Footer() {
     <footer className="bg-white border-t border-[#E2E8F0] pt-16 pb-10 px-6">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-12">
-          <Link href="/" className="flex items-center shrink-0">
-            {/* TODO: Replace with real image */}
-            {/* eslint-disable-next-line @next/next/no-img-element */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <a href="/">
             <img
               src="/images/logo-dark.png"
-              alt="AVM Healthcare"
-              width="120"
-              height="40"
-              style={{ height: "32px", width: "auto" }}
+              alt="AVM Healthcare Products"
+              style={{ height: '32px', width: 'auto', display: 'block' }}
             />
-          </Link>
+          </a>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-10 md:gap-16">
             {footerColumns.map((col) => (
