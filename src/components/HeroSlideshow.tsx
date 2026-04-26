@@ -36,7 +36,7 @@ export default function HeroSlideshow() {
         <img
           src={slides[0].src}
           alt={slides[0].alt}
-          style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top", display: "block" }}
+          style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
         />
       </div>
     );
@@ -64,7 +64,7 @@ export default function HeroSlideshow() {
           <img
             src={slide.src}
             alt={slide.alt}
-            style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top", display: "block" }}
+            style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
           />
         </div>
       ))}
@@ -76,7 +76,7 @@ export default function HeroSlideshow() {
       />
 
       {/* Dot indicators */}
-      <div className="absolute bottom-6 left-0 right-0 flex justify-center gap-2">
+      <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2">
         {slides.map((_, i) => (
           <button
             key={i}
@@ -84,7 +84,7 @@ export default function HeroSlideshow() {
             aria-label={`Go to slide ${i + 1}`}
             aria-current={i === active}
             onClick={() => setActive(i)}
-            className={`w-2.5 h-2.5 rounded-full transition-colors cursor-pointer ${
+            className={`w-2 h-2 rounded-full transition-colors cursor-pointer ${
               i === active ? "bg-white" : "bg-white/40 hover:bg-white/60"
             }`}
           />

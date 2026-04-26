@@ -148,10 +148,7 @@ export default function Home() {
   return (
     <>
       {/* SECTION 1 — HERO */}
-      <section
-        className="min-h-[88vh] grid lg:grid-cols-2 gap-16 items-stretch"
-        style={{ background: "linear-gradient(135deg, #ffffff 0%, #EFF6FF 40%, #DBEAFE 100%)" }}
-      >
+      <section className="bg-gradient-to-br from-white via-white to-blue-50 min-h-[88vh] grid lg:grid-cols-2 gap-16 items-stretch">
         <div className="flex flex-col justify-center pl-6 md:pl-16 lg:pl-24 pr-6 py-16">
           <span className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 border border-blue-100 rounded-full px-4 py-1.5 text-xs font-semibold w-fit">
             <span className="block h-1.5 w-1.5 rounded-full bg-blue-500" aria-hidden />
@@ -200,8 +197,10 @@ export default function Home() {
           </div>
         </div>
 
-        <div>
-          <HeroSlideshow />
+        <div className="flex items-center pr-6 md:pr-12">
+          <div className="rounded-2xl overflow-hidden aspect-[4/3] w-full shadow-sm border border-[#E2E8F0]">
+            <HeroSlideshow />
+          </div>
         </div>
       </section>
 
