@@ -1,6 +1,5 @@
 import Link from "next/link";
-import PageHero from "@/components/PageHero";
-import GroupOfCompanies from "@/components/GroupOfCompanies";
+import AboutFaq from "@/components/AboutFaq";
 
 export const metadata = {
   title: "About Us — AVM Healthcare Products Pvt. Ltd.",
@@ -9,10 +8,10 @@ export const metadata = {
 };
 
 const aboutStats = [
-  { value: "3,400+", label: "Products in catalogue" },
+  { value: "3,400+", label: "Products" },
   { value: "36+", label: "Client hospitals" },
-  { value: "30+", label: "Years of excellence" },
-  { value: "Global", label: "Exports worldwide" },
+  { value: "30+", label: "Years active" },
+  { value: "Global", label: "Exports" },
 ];
 
 const missionCards = [
@@ -61,47 +60,154 @@ const detailRows: Array<[string, React.ReactNode]> = [
   ["Trade Mark No.", "4621659"],
 ];
 
-const clientHospitals = [
-  "AIIMS Delhi",
-  "Medanta Hospital",
-  "Fortis Hospital",
-  "Apollo Hospitals",
-  "KEM Hospital Mumbai",
-  "PGI Chandigarh",
-  "GB Pant Hospital",
-  "Lilavati Hospital",
-  "Sir Ganga Ram Hospital",
-  "AIIMS Rishikesh",
-  "KIMS Hyderabad",
-  "Madras Medical College",
-  "Safdarjung Hospital",
-  "RML Hospital Delhi",
-];
-
 export default function AboutPage() {
   return (
     <>
-      <PageHero
-        label="About us"
-        title="An innovative company, made in India"
-        subtitle="Indigenous surgical products developed in German collaboration — supplying premier institutions since 1996."
-      />
+      {/* SECTION 1 — Page intro */}
+      <section className="bg-white pt-20 pb-16 px-6">
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+          <div>
+            <p className="text-xs text-[#94A3B8] tracking-widest uppercase mb-4">
+              Est. 1996 · New Delhi, India
+            </p>
+            <h1
+              className="font-semibold text-5xl text-[#0A1628] tracking-[-0.03em] leading-tight"
+              style={{ letterSpacing: "-0.03em" }}
+            >
+              An innovative company, made in India
+            </h1>
+            <p className="text-[#64748B] text-lg leading-relaxed mt-5 max-w-md">
+              Indigenous surgical products developed in German collaboration —
+              supplying premier institutions across India and worldwide since
+              1996.
+            </p>
+          </div>
+          <div>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/images/hero/Hero-1.png"
+              alt="AVM Healthcare facility"
+              style={{
+                width: "100%",
+                height: "480px",
+                objectFit: "cover",
+                borderRadius: "20px",
+                display: "block",
+              }}
+            />
+          </div>
+        </div>
+      </section>
 
-      {/* German callout banner */}
-      <div className="bg-blue-50 border-y border-blue-100 py-4 px-6">
-        <div className="max-w-7xl mx-auto flex flex-wrap items-center gap-4">
-          <svg
-            width="32"
-            height="20"
-            viewBox="0 0 5 3"
-            aria-label="Flag of Germany"
-            role="img"
-            className="rounded-sm overflow-hidden shrink-0 ring-1 ring-blue-100"
+      {/* SECTION 2 — Stats row */}
+      <section className="bg-white pb-20 px-6">
+        <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-0 border-t border-b border-[#E2E8F0]">
+          {aboutStats.map((s, i) => (
+            <div
+              key={s.label}
+              className={`py-10 px-8 text-center ${
+                i >= 2 ? "border-t border-[#E2E8F0] md:border-t-0" : ""
+              } ${i > 0 ? "md:border-l md:border-[#E2E8F0]" : ""}`}
+            >
+              <div
+                className="font-semibold text-5xl text-[#0A1628] tracking-[-0.04em] tabular-nums"
+                style={{ letterSpacing: "-0.04em" }}
+              >
+                {s.value}
+              </div>
+              <div className="text-sm text-[#64748B] mt-2">{s.label}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* SECTION 3 — Our story */}
+      <section className="bg-[#F5F5F3] py-24 px-6">
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center">
+          <div>
+            <p
+              className="text-xs uppercase font-medium text-blue-600"
+              style={{ letterSpacing: "0.12em" }}
+            >
+              Who we are
+            </p>
+            <h2
+              className="font-semibold text-4xl text-[#0A1628] tracking-[-0.03em] mt-3 leading-tight"
+              style={{ letterSpacing: "-0.03em" }}
+            >
+              The leading manufacturer of advanced surgical instruments
+            </h2>
+            <p className="text-[#64748B] text-base leading-relaxed mt-6">
+              AVM Healthcare Products Pvt. Ltd. is a New Delhi–based
+              manufacturer and supplier of surgical instruments and medical
+              devices, engaged in the design, development, innovation,
+              production and sales across neurosurgery, cranio surgery, plastic
+              surgery, implants, spinal surgery, cardiovascular, gynaecology,
+              ENT, orthopaedics, and more.
+            </p>
+            <p className="text-[#64748B] text-base leading-relaxed mt-4">
+              We produce AVM indigenous products in German collaboration and
+              ANI products made in Germany, supplying to premier institutes of
+              India and exporting to overseas markets.
+            </p>
+          </div>
+          <div>
+            {/* TODO: Replace with facility/team image */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/images/hero/Hero-2.png"
+              alt="AVM Healthcare facility"
+              style={{
+                width: "100%",
+                height: "380px",
+                objectFit: "cover",
+                borderRadius: "16px",
+                display: "block",
+              }}
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 4 — Mission cards */}
+      <section className="bg-white py-24 px-6">
+        <div className="max-w-7xl mx-auto">
+          <p
+            className="text-xs uppercase font-medium text-blue-600"
+            style={{ letterSpacing: "0.12em" }}
           >
-            <rect width="5" height="1" y="0" fill="#000000" />
-            <rect width="5" height="1" y="1" fill="#DD0000" />
-            <rect width="5" height="1" y="2" fill="#FFCE00" />
-          </svg>
+            Purpose
+          </p>
+          <h2
+            className="font-semibold text-4xl text-[#0A1628] tracking-[-0.03em] mt-3 leading-tight"
+            style={{ letterSpacing: "-0.03em" }}
+          >
+            Mission, motive & collaboration
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+            {missionCards.map((c) => (
+              <div
+                key={c.title}
+                className="bg-white border border-[#E2E8F0] rounded-2xl p-8 border-t-4 border-t-blue-500 shadow-sm"
+              >
+                <h3 className="text-sm font-semibold text-[#0A1628] mb-3">
+                  {c.title}
+                </h3>
+                <p className="text-sm text-[#64748B] leading-relaxed">
+                  {c.body}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 5 — German callout */}
+      <div className="bg-blue-50 border-y border-blue-100 py-5 px-6">
+        <div className="max-w-7xl mx-auto flex items-center gap-4 flex-wrap">
+          <span className="text-2xl" role="img" aria-label="Flag of Germany">
+            🇩🇪
+          </span>
           <p className="text-sm text-[#0A1628] flex-1 min-w-[240px]">
             Based in Germany? Our products are also available through ANI
             Instruments — our German precision partner.
@@ -117,97 +223,19 @@ export default function AboutPage() {
         </div>
       </div>
 
-      {/* Company intro */}
-      <section className="bg-white py-28 px-6">
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16">
-          <div>
-            <p className="section-label">Who we are</p>
-            <h2
-              className="font-serif text-4xl text-[#0A1628] font-semibold mt-6 leading-tight tracking-[-0.03em]"
-              style={{ letterSpacing: "-0.03em" }}
-            >
-              The leading manufacturer of advanced surgical instruments
-            </h2>
-            <p className="text-[#64748B] text-base leading-relaxed mt-6">
-              AVM Healthcare Products Pvt. Ltd. is a New Delhi–based
-              manufacturer and supplier of surgical instruments and medical
-              devices, engaged in the design, development, innovation,
-              production and sales of all kinds of surgical instruments —
-              spanning neurosurgery, cranio surgery, plastic surgery, implants,
-              spinal surgery, cardiovascular, gynaecology, ENT, orthopaedics,
-              and more.
-            </p>
-            <p className="text-[#64748B] text-base leading-relaxed mt-4">
-              We produce AVM indigenous products in German collaboration and
-              ANI products made in Germany, supplying to premier institutes of
-              India and exporting to overseas markets.
-            </p>
-            {/* TODO: Replace with real image */}
-            <div className="img-placeholder h-64 w-full mt-8">
-              Company / facility image
-            </div>
-          </div>
-
-          <div>
-            {aboutStats.map((s, i) => (
-              <div
-                key={s.label}
-                className={`py-6 flex items-baseline gap-3 ${
-                  i < aboutStats.length ? "border-b border-[#E2E8F0]" : ""
-                }`}
-              >
-                <span
-                  className="font-serif text-4xl font-semibold text-[#0A1628] tracking-[-0.03em]"
-                  style={{ letterSpacing: "-0.03em" }}
-                >
-                  {s.value}
-                </span>
-                <span className="text-sm text-[#64748B]">{s.label}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Mission section */}
-      <section className="bg-[#F5F5F3] py-28 px-6">
+      {/* SECTION 6 — Certifications */}
+      <section className="bg-[#F5F5F3] py-24 px-6">
         <div className="max-w-7xl mx-auto">
-          <p className="section-label">Purpose</p>
-          <h2 className="section-heading mt-6">
-            Mission, motive & collaboration
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-            {missionCards.map((c) => (
-              <div
-                key={c.title}
-                className="bg-white rounded-xl border-t-4 border-blue-500 p-8 shadow-sm"
-              >
-                <h3 className="text-sm font-semibold text-[#0A1628] mb-3">
-                  {c.title}
-                </h3>
-                <p className="text-sm text-[#64748B] leading-relaxed">
-                  {c.body}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Image placeholder section */}
-      <section className="bg-white py-20 px-6">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
-          {/* TODO: Replace with real facility or team photos */}
-          <div className="img-placeholder h-72">Facility / team image</div>
-          <div className="img-placeholder h-72">Facility / team image</div>
-        </div>
-      </section>
-
-      {/* Certifications */}
-      <section className="bg-white py-28 px-6">
-        <div className="max-w-7xl mx-auto">
-          <p className="section-label">Certifications & compliance</p>
-          <h2 className="section-heading mt-6">
+          <p
+            className="text-xs uppercase font-medium text-blue-600"
+            style={{ letterSpacing: "0.12em" }}
+          >
+            Certifications & compliance
+          </p>
+          <h2
+            className="font-semibold text-4xl text-[#0A1628] tracking-[-0.03em] mt-3 leading-tight"
+            style={{ letterSpacing: "-0.03em" }}
+          >
             Built to the highest standards
           </h2>
 
@@ -215,13 +243,18 @@ export default function AboutPage() {
             {certs.map((c) => (
               <div
                 key={c.name}
-                className="border border-[#E2E8F0] rounded-2xl p-8 text-center bg-white hover:shadow-sm transition-all flex flex-col items-center justify-center gap-4"
+                className="bg-white border border-[#E2E8F0] rounded-2xl p-6 text-center flex flex-col items-center gap-3"
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={c.img}
                   alt={c.name}
-                  style={{ height: '60px', width: 'auto', objectFit: 'contain', display: 'block' }}
+                  style={{
+                    height: "56px",
+                    width: "auto",
+                    objectFit: "contain",
+                    display: "block",
+                  }}
                 />
                 <div className="text-sm font-semibold text-[#0A1628]">
                   {c.name}
@@ -230,7 +263,7 @@ export default function AboutPage() {
             ))}
           </div>
 
-          <table className="w-full mt-12 border-collapse">
+          <table className="w-full max-w-2xl mt-12 border-collapse">
             <tbody>
               {detailRows.map(([k, v]) => (
                 <tr key={k} className="border-b border-[#E2E8F0]">
@@ -247,37 +280,38 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Clients */}
-      <section className="bg-[#F5F5F3] py-28 px-6">
-        <div className="max-w-7xl mx-auto">
-          <p className="section-label">Our clients</p>
-          <h2
-            className="text-4xl text-[#0A1628] font-semibold mt-3 tracking-[-0.03em] leading-tight"
-            style={{ letterSpacing: "-0.03em" }}
-          >
-            Trusted by India&rsquo;s leading hospitals
-          </h2>
-          <div className="flex flex-wrap gap-3 mt-10">
-            {clientHospitals.map((h) => (
-              <span
-                key={h}
-                className="border border-[#E2E8F0] bg-white rounded-full px-4 py-2 text-sm text-[#64748B]"
-              >
-                {h}
-              </span>
-            ))}
+      {/* SECTION 7 — FAQ */}
+      <section className="bg-white py-24 px-6">
+        <div className="max-w-3xl mx-auto">
+          <div className="text-center">
+            <p
+              className="text-xs uppercase font-medium text-blue-600"
+              style={{ letterSpacing: "0.12em" }}
+            >
+              FAQ
+            </p>
+            <h2
+              className="font-semibold text-4xl text-[#0A1628] tracking-[-0.03em] mt-3 leading-tight"
+              style={{ letterSpacing: "-0.03em" }}
+            >
+              Frequently asked questions
+            </h2>
+            <p className="text-[#64748B] mt-4 leading-relaxed">
+              Everything you need to know about AVM Healthcare Products.
+            </p>
+          </div>
+          <div className="mt-12">
+            <AboutFaq />
           </div>
         </div>
       </section>
 
-      <GroupOfCompanies />
-
-      {/* CTA */}
-      <section className="bg-white pb-28 px-6">
-        <div className="bg-[#F5F5F3] border border-[#E2E8F0] rounded-2xl p-12 max-w-7xl mx-auto flex flex-col md:flex-row md:justify-between md:items-center gap-8">
+      {/* SECTION 8 — CTA */}
+      <section className="bg-[#F5F5F3] py-20 px-6">
+        <div className="bg-white rounded-2xl border border-[#E2E8F0] p-12 max-w-7xl mx-auto flex flex-col md:flex-row md:justify-between md:items-center gap-8">
           <div>
             <h3
-              className="text-3xl text-[#0A1628] font-semibold tracking-[-0.03em] leading-tight"
+              className="font-semibold text-2xl text-[#0A1628] tracking-[-0.03em] leading-tight"
               style={{ letterSpacing: "-0.03em" }}
             >
               Get our detailed product catalogue
