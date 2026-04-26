@@ -291,39 +291,43 @@ export default function Home() {
       {/* SECTION 4 — WHY CHOOSE AVM */}
       <section className="bg-[#F5F5F3] py-28">
         {/* Header row */}
-        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row md:justify-between md:items-start gap-16">
+        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row md:justify-between md:items-end gap-12">
           <div>
             <p className="text-xs uppercase font-medium text-blue-600" style={{ letterSpacing: "0.12em" }}>
               Why choose AVM
             </p>
-            <h2 className="text-4xl font-semibold text-[#0A1628] mt-3 max-w-sm leading-tight tracking-[-0.03em]">
+            <h2 className="text-4xl md:text-5xl font-semibold text-[#0A1628] mt-4 max-w-md leading-[1.05] tracking-[-0.03em]">
               Built for the demands of modern surgery
             </h2>
           </div>
-          <p className="text-[#64748B] text-base leading-relaxed max-w-lg mt-1">
+          <p className="text-[#64748B] text-base leading-relaxed max-w-md">
             Every instrument we supply meets the highest standards of material
             quality, precision engineering, and surgical performance — because
             in the operating theatre, there is no margin for error.
           </p>
         </div>
 
-        {/* Stats row */}
-        <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-0 border-t border-b border-[#E2E8F0]">
-          {whyStats.map((s) => (
-            <div
-              key={s.label}
-              className="py-10 px-8 border-r border-[#E2E8F0] last:border-r-0"
-            >
-              <div className="font-semibold text-5xl text-[#0A1628] tracking-[-0.04em]">
-                {s.value}
+        {/* Stats card */}
+        <div className="mt-16 max-w-7xl mx-auto px-6">
+          <div className="bg-white rounded-2xl border border-[#E2E8F0] grid grid-cols-2 md:grid-cols-4 overflow-hidden">
+            {whyStats.map((s, i) => (
+              <div
+                key={s.label}
+                className={`py-10 px-8 ${
+                  i >= 2 ? "border-t border-[#E2E8F0] md:border-t-0" : ""
+                } ${i > 0 ? "md:border-l md:border-[#E2E8F0]" : ""}`}
+              >
+                <div className="font-semibold text-4xl text-[#0A1628] tracking-[-0.04em] tabular-nums">
+                  {s.value}
+                </div>
+                <div className="text-sm text-[#64748B] mt-2">{s.label}</div>
               </div>
-              <div className="text-sm text-[#64748B] mt-2">{s.label}</div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
 
         {/* Accordion */}
-        <div className="mt-16 max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-24 items-start">
+        <div className="mt-20 max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-start">
           <div className="lg:sticky lg:top-32">
             {/* TODO: Replace with real product photography */}
             <div className="img-placeholder h-96 w-full rounded-2xl">
@@ -337,7 +341,7 @@ export default function Home() {
               return (
                 <div
                   key={row.title}
-                  className="border-b border-[#E2E8F0] py-5 cursor-pointer group"
+                  className="border-b border-[#E2E8F0] py-6 cursor-pointer group"
                   onClick={() => setOpenIndex(isOpen ? null : i)}
                   role="button"
                   tabIndex={0}
@@ -349,22 +353,42 @@ export default function Home() {
                     }
                   }}
                 >
-                  <div className="flex justify-between items-start gap-4">
-                    <h3 className="text-sm font-semibold text-[#0A1628] group-hover:text-blue-600 transition-colors">
+                  <div className="flex justify-between items-center gap-6">
+                    <h3
+                      className={`text-base font-semibold transition-colors ${
+                        isOpen
+                          ? "text-blue-600"
+                          : "text-[#0A1628] group-hover:text-blue-600"
+                      }`}
+                    >
                       {row.title}
                     </h3>
                     <span
-                      className="text-[#94A3B8] text-lg leading-none mt-0.5 shrink-0"
+                      className={`shrink-0 transition-all duration-300 ${
+                        isOpen
+                          ? "rotate-45 text-blue-600"
+                          : "text-[#94A3B8] group-hover:text-blue-600"
+                      }`}
                       aria-hidden
                     >
-                      {isOpen ? "−" : "+"}
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="1.75"
+                        strokeLinecap="round"
+                      >
+                        <path d="M8 2v12M2 8h12" />
+                      </svg>
                     </span>
                   </div>
                   <div
                     className="overflow-hidden transition-[max-height] duration-300 ease-in-out"
-                    style={{ maxHeight: isOpen ? "200px" : "0px" }}
+                    style={{ maxHeight: isOpen ? "240px" : "0px" }}
                   >
-                    <p className="text-sm text-[#64748B] leading-relaxed mt-3">
+                    <p className="text-sm text-[#64748B] leading-relaxed mt-3 max-w-prose">
                       {row.desc}
                     </p>
                   </div>
