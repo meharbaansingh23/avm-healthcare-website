@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { useState } from "react";
 import HeroSlideshow from "@/components/HeroSlideshow";
 import { blogPosts } from "@/lib/blog";
 
@@ -60,36 +63,37 @@ const specialties = [
   },
 ];
 
+const whyStats = [
+  { value: "10,000+", label: "Healthcare SKUs" },
+  { value: "250+", label: "Institutions served" },
+  { value: "98%", label: "On-time fulfilment" },
+  { value: "30+", label: "Years active" },
+];
+
 const whyAvm = [
   {
-    n: "01",
     title: "Premium grade materials",
-    desc: "Hardened non-rusting steel meeting the toughest requirements for elasticity, tenacity and corrosion resistance.",
+    desc: "Hardened non-rusting steel meeting the toughest requirements for elasticity, tenacity and corrosion resistance — instruments built to last.",
   },
   {
-    n: "02",
     title: "Surgeon-driven innovation",
-    desc: "New products developed directly from surgeons' concepts, ensuring instruments meet real operating theatre needs.",
+    desc: "New products developed directly from surgeons' concepts and ideas, ensuring every instrument meets real operating theatre needs.",
   },
   {
-    n: "03",
     title: "Customisation on request",
-    desc: "Products tailored to the specific requirements of individual users and institutions worldwide.",
+    desc: "Products tailored to the specific requirements of individual users and institutions — from dimensions to materials.",
   },
   {
-    n: "04",
     title: "Global quality standards",
-    desc: "CE, ISO and FDA certified. Quality monitored at every stage of manufacturing.",
+    desc: "CE, ISO and FDA certified. Quality monitored at every stage of manufacturing, from raw material to final product.",
   },
   {
-    n: "05",
     title: "24×7 service support",
-    desc: "Round-the-clock service facility ensuring your instruments are always in optimal condition.",
+    desc: "Round-the-clock service facility ensuring your instruments are always in optimal condition when you need them most.",
   },
   {
-    n: "06",
     title: "Continuously evolving range",
-    desc: "Catalogue constantly updated to meet the dynamic and changing requirements of surgical users globally.",
+    desc: "Our catalogue is constantly updated to meet the dynamic and changing requirements of surgical users worldwide.",
   },
 ];
 
@@ -153,6 +157,8 @@ function CheckIcon({ className = "" }: { className?: string }) {
 }
 
 export default function Home() {
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
+
   return (
     <>
       {/* SECTION 1 — HERO */}
@@ -297,53 +303,88 @@ export default function Home() {
       </section>
 
       {/* SECTION 4 — WHY CHOOSE AVM */}
-      <section className="bg-[#F5F5F3] py-28 px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center max-w-2xl mx-auto">
-            <p className="section-label">Why choose AVM</p>
-            <h2 className="text-5xl font-semibold text-[#0A1628] mt-3 tracking-[-0.03em]" style={{ letterSpacing: "-0.03em" }}>
+      <section className="bg-[#F5F5F3] py-28">
+        {/* Header row */}
+        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row md:justify-between md:items-start gap-16">
+          <div>
+            <p className="text-xs uppercase font-medium text-blue-600" style={{ letterSpacing: "0.12em" }}>
+              Why choose AVM
+            </p>
+            <h2 className="text-4xl font-semibold text-[#0A1628] mt-3 max-w-sm leading-tight tracking-[-0.03em]">
               Built for the demands of modern surgery
             </h2>
-            <p className="text-[#64748B] mt-4 leading-relaxed">
-              Six commitments behind every instrument we put in a
-              surgeon&rsquo;s hand.
-            </p>
+          </div>
+          <p className="text-[#64748B] text-base leading-relaxed max-w-lg mt-1">
+            Every instrument we supply meets the highest standards of material
+            quality, precision engineering, and surgical performance — because
+            in the operating theatre, there is no margin for error.
+          </p>
+        </div>
+
+        {/* Stats row */}
+        <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-0 border-t border-b border-[#E2E8F0]">
+          {whyStats.map((s) => (
+            <div
+              key={s.label}
+              className="py-10 px-8 border-r border-[#E2E8F0] last:border-r-0"
+            >
+              <div className="font-semibold text-5xl text-[#0A1628] tracking-[-0.04em]">
+                {s.value}
+              </div>
+              <div className="text-sm text-[#64748B] mt-2">{s.label}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* Accordion */}
+        <div className="mt-16 max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-24 items-start">
+          <div className="lg:sticky lg:top-32">
+            {/* TODO: Replace with real product photography */}
+            <div className="img-placeholder h-96 w-full rounded-2xl">
+              Product / instruments image
+            </div>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-16 mt-16 items-start">
-            <div className="flex flex-col gap-6">
-              {/* TODO: Replace with real product image */}
-              <div className="img-placeholder h-80 w-full rounded-2xl">
-                Product / instruments image
-              </div>
-              <p className="font-medium italic text-xl text-[#0A1628] leading-relaxed mt-4">
-                &ldquo;Every instrument we supply is chosen with one question
-                in mind — will it perform when it matters most?&rdquo;
-              </p>
-            </div>
-
-            <div>
-              {whyAvm.map((row, i) => (
+          <div>
+            {whyAvm.map((row, i) => {
+              const isOpen = openIndex === i;
+              return (
                 <div
-                  key={row.n}
-                  className={`flex items-start gap-5 py-6 ${
-                    i < whyAvm.length - 1 ? "border-b border-[#F1F5F9]" : ""
-                  }`}
+                  key={row.title}
+                  className="border-b border-[#E2E8F0] py-5 cursor-pointer group"
+                  onClick={() => setOpenIndex(isOpen ? null : i)}
+                  role="button"
+                  tabIndex={0}
+                  aria-expanded={isOpen}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      setOpenIndex(isOpen ? null : i);
+                    }
+                  }}
                 >
-                  <span className="text-xs font-bold text-blue-400 w-8 shrink-0 mt-0.5" style={{ letterSpacing: "0.15em" }}>
-                    {row.n}
-                  </span>
-                  <div>
-                    <h3 className="text-sm font-semibold text-[#0A1628]">
+                  <div className="flex justify-between items-start gap-4">
+                    <h3 className="text-sm font-semibold text-[#0A1628] group-hover:text-blue-600 transition-colors">
                       {row.title}
                     </h3>
-                    <p className="text-sm text-[#64748B] mt-1 leading-relaxed">
+                    <span
+                      className="text-[#94A3B8] text-lg leading-none mt-0.5 shrink-0"
+                      aria-hidden
+                    >
+                      {isOpen ? "−" : "+"}
+                    </span>
+                  </div>
+                  <div
+                    className="overflow-hidden transition-[max-height] duration-300 ease-in-out"
+                    style={{ maxHeight: isOpen ? "200px" : "0px" }}
+                  >
+                    <p className="text-sm text-[#64748B] leading-relaxed mt-3">
                       {row.desc}
                     </p>
                   </div>
                 </div>
-              ))}
-            </div>
+              );
+            })}
           </div>
         </div>
       </section>
