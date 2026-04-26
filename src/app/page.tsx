@@ -118,22 +118,22 @@ const downloads = [
   {
     title: "Care & Maintenance Guide",
     desc: "Proper care and maintenance of surgical instruments.",
-    href: "/downloads/Care and Maintenance of Surgical Instruments.pdf",
+    href: "/downloads/Care%20and%20Maintenance%20of%20Surgical%20Instruments.pdf",
   },
   {
     title: "Certificate of Authenticity",
     desc: "Official certificate of authenticity for AVM products.",
-    href: "/downloads/Certificate of Authenticity.pdf",
+    href: "/downloads/Certificate%20of%20Authenticity.pdf",
   },
   {
     title: "Warranty Certificate",
     desc: "Standard warranty certificate for AVM instruments.",
-    href: "/downloads/Warranty Certificate.pdf",
+    href: "/downloads/Warranty%20Certificate.pdf",
   },
   {
     title: "Warranty by AVM",
     desc: "Complete warranty terms offered by AVM Healthcare.",
-    href: "/downloads/Warranty offered by AVM.pdf",
+    href: "/downloads/Warranty%20offered%20by%20AVM.pdf",
   },
 ];
 
