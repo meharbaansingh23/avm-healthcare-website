@@ -6,6 +6,7 @@ export type BlogPost = {
   date: string;
   readTime: string;
   content: string;
+  coverImage: string;
 };
 
 export const blogPosts: BlogPost[] = [
@@ -17,6 +18,7 @@ export const blogPosts: BlogPost[] = [
       "In neurosurgery, the margin for error is zero. We explore why premium grade instruments are essential to patient outcomes and surgeon confidence.",
     date: "April 2026",
     readTime: "5 min read",
+    coverImage: "/images/blog/blog-1.webp",
     content: `Few neurosurgical procedures last less than three hours, and many last considerably longer. Across that window, an instrument is asked to perform thousands of micro-movements with absolute consistency — through bone, near vessels barely visible to the naked eye, sometimes within millimetres of structures that govern speech, movement, or cognition. There is no recoverable error. The instrument either holds, or it does not.
 
 This is the lens through which we evaluate every product that carries the AVM name: it must perform when it matters most. In neurosurgery, that bar is uncompromising — and it is the right bar to set, because anything below it transfers risk directly onto the patient.
@@ -43,6 +45,7 @@ In neurosurgery, no instrument is incidental. Every one is asked to do something
       "Our product development process starts in the operating theatre. Learn how practicing surgeons shape every instrument we bring to market.",
     date: "March 2026",
     readTime: "4 min read",
+    coverImage: "/images/blog/blog-2.webp",
     content: `Most surgical instruments fail not because they are badly made, but because they were designed by people who do not use them. This is the structural problem that AVM's product development process is built to solve.
 
 Every new product at AVM begins in an operating theatre. Not in a CAD application, not in a marketing brief — in a procedure, where a surgeon notices something the existing instruments cannot do, or cannot do well. A retractor that slips on a particular angle of approach. A forceps whose tip is too coarse for the tissue plane. A needle holder whose ratchet releases under thumb pressure during a critical suture. These are the small, tactile signals that tell us a product idea exists.
@@ -69,6 +72,7 @@ This is what we mean by surgeon-driven innovation. It is not a slogan. It is an 
       "Proper care extends instrument life and protects patients. A comprehensive guide to cleaning, sterilisation, and storage best practices.",
     date: "February 2026",
     readTime: "6 min read",
+    coverImage: "/images/blog/blog-3.webp",
     content: `A surgical instrument is rarely retired because it has reached the end of its useful life. It is retired because something happened to it — a single missed cleaning step, an aggressive detergent, a poorly drained sterilisation cycle, a careless handover between procedures. Most of these failures are preventable. This is the case for treating instrument care as a clinical discipline, not a logistical chore.
 
 The first principle is contact-time. Bioburden — blood, tissue, bone fragments, irrigation fluid — begins to dry on an instrument within minutes of use. Once dried, it is significantly harder to remove and can compromise the success of subsequent decontamination steps. Instruments leaving the operating theatre should be moistened, covered, and transported quickly to the central sterile services department. The window between use and pre-cleaning matters more than any other single variable.

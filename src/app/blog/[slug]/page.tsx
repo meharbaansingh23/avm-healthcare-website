@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { blogPosts } from "@/lib/blog";
@@ -41,8 +42,19 @@ export default async function BlogPostPage({
           ← Back to insights
         </Link>
 
+        <div className="relative w-full h-[250px] md:h-[400px] mt-8 rounded-xl overflow-hidden">
+          <Image
+            src={post.coverImage}
+            alt={post.title}
+            fill
+            sizes="(min-width: 768px) 768px, 100vw"
+            priority
+            style={{ objectFit: "cover" }}
+          />
+        </div>
+
         <p
-          className="text-xs font-semibold text-blue-600 uppercase mt-10"
+          className="text-xs font-semibold text-blue-600 uppercase mt-12"
           style={{ letterSpacing: "0.15em" }}
         >
           {post.category}
@@ -59,11 +71,6 @@ export default async function BlogPostPage({
           <span>{post.date}</span>
           <span aria-hidden>·</span>
           <span>{post.readTime}</span>
-        </div>
-
-        {/* TODO: Replace with real cover image */}
-        <div className="img-placeholder h-72 w-full rounded-2xl mt-10">
-          Article cover image
         </div>
 
         <div className="mt-10">
