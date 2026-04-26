@@ -9,10 +9,10 @@ export const metadata = {
 };
 
 const aboutStats = [
-  { value: "3,400+", label: "Products" },
-  { value: "36+", label: "Client hospitals" },
+  { value: "10,000+", label: "Healthcare SKUs" },
+  { value: "250+", label: "Institutions served" },
+  { value: "100%", label: "On-time fulfilment" },
   { value: "30+", label: "Years active" },
-  { value: "Global", label: "Exports" },
 ];
 
 const missionCards = [
