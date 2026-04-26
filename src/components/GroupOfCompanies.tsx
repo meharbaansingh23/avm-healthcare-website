@@ -11,7 +11,11 @@ const COMPANIES: Company[] = [
   {
     name: "AVM Healthcare Products",
     sub: "Parent company",
-    logo: { type: "text", value: "AVM" },
+    logo: {
+      type: "img",
+      src: "/images/logo-dark.png",
+      alt: "AVM Healthcare Products",
+    },
   },
   {
     name: "AVM Surgicare",
@@ -86,9 +90,10 @@ export default function GroupOfCompanies() {
                         src={c.logo.src}
                         alt={c.logo.alt}
                         style={{
-                          height: "48px",
+                          height: "64px",
                           width: "auto",
                           objectFit: "contain",
+                          display: "block",
                         }}
                       />
                     </>
