@@ -56,7 +56,7 @@ const FAQ_ITEMS: Array<{ q: string; a: React.ReactNode }> = [
   },
   {
     q: "Do you work with government hospitals?",
-    a: "Yes. We supply to government institutions including AIIMS Delhi, PGI Chandigarh, GB Pant Hospital, Safdarjung Hospital, and others across India.",
+    a: "Yes. We supply to government institutions across India through both direct supply agreements and government procurement programs.",
   },
 ];
 

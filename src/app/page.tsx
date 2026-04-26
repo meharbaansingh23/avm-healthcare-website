@@ -6,18 +6,6 @@ import HeroSlideshow from "@/components/HeroSlideshow";
 import GroupOfCompanies from "@/components/GroupOfCompanies";
 import { blogPosts } from "@/lib/blog";
 
-const trustedBy = [
-  "AIIMS Delhi",
-  "Medanta",
-  "Fortis",
-  "Apollo",
-  "KEM Hospital",
-  "PGI Chandigarh",
-  "GB Pant",
-  "Lilavati",
-  "Sir Ganga Ram",
-];
-
 const specialties = [
   {
     slug: "neurosurgical",
@@ -204,18 +192,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Client strip */}
-      <div className="border-t border-b border-[#E2E8F0] bg-[#FAFAFA]">
-        <div className="max-w-7xl mx-auto px-6 py-5 flex items-center gap-10 overflow-x-auto whitespace-nowrap">
-          <span className="text-[10px] uppercase text-[#94A3B8] shrink-0" style={{ letterSpacing: "0.15em" }}>
-            Trusted by
-          </span>
-          <span className="text-sm text-[#94A3B8]">
-            {trustedBy.join(" · ")}
-          </span>
-        </div>
-      </div>
-
       {/* SECTION 2 — WHO WE ARE */}
       <section id="story" className="bg-[#F5F5F3] py-28 px-6">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center">
@@ -229,9 +205,7 @@ export default function Home() {
               manufacturer and supplier of advanced quality surgical
               instruments and medical devices. We design, develop, and supply
               instruments across neurosurgery, general surgery, cardiovascular,
-              gynaecology, plastic surgery, and more — serving premier
-              institutions including AIIMS, Medanta, Fortis, Apollo, and KEM
-              Hospital.
+              gynaecology, plastic surgery, and more.
             </p>
             <blockquote className="mt-8 border-l-4 border-blue-500 pl-5 italic text-lg text-[#0A1628] font-medium leading-relaxed">
               &ldquo;Our motto is to provide world-class instruments for the
