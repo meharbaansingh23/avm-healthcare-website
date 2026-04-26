@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import AboutFaq from "@/components/AboutFaq";
 
@@ -83,14 +84,18 @@ export default function AboutPage() {
             </p>
           </div>
           <div>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/images/hero/Hero-1.png"
-              alt="AVM Healthcare facility"
+            <Image
+              src="/images/about/hero.png"
+              alt="AVM Healthcare"
+              width={1686}
+              height={1536}
+              priority
+              sizes="(min-width: 1024px) 50vw, 100vw"
               style={{
                 width: "100%",
-                height: "480px",
-                objectFit: "cover",
+                height: "auto",
+                maxHeight: "600px",
+                objectFit: "contain",
                 borderRadius: "20px",
                 display: "block",
               }}
