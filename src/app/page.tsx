@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import HeroSlideshow from "@/components/HeroSlideshow";
 import GroupOfCompanies from "@/components/GroupOfCompanies";
 import { blogPosts } from "@/lib/blog";
@@ -71,10 +71,10 @@ const specialties = [
 ];
 
 const whyStats = [
-  { value: "10,000+", label: "Healthcare SKUs" },
-  { value: "250+", label: "Institutions served" },
-  { value: "98%", label: "On-time fulfilment" },
-  { value: "30+", label: "Years active" },
+  { key: "skus" as const, label: "Healthcare SKUs", target: 10000, suffix: "+", thousands: true },
+  { key: "institutions" as const, label: "Institutions served", target: 250, suffix: "+" },
+  { key: "fulfilment" as const, label: "On-time fulfilment", target: 100, suffix: "%" },
+  { key: "years" as const, label: "Years active", target: 30, suffix: "+" },
 ];
 
 const whyAvm = [
@@ -136,6 +136,43 @@ const downloads = [
 
 export default function Home() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [counts, setCounts] = useState({ skus: 0, institutions: 0, fulfilment: 0, years: 0 });
+  const statsRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        observer.disconnect();
+
+        const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if (reducedMotion) {
+          setCounts({ skus: 10000, institutions: 250, fulfilment: 100, years: 30 });
+          return;
+        }
+
+        const duration = 2000;
+        const steps = 60;
+        const interval = duration / steps;
+        let step = 0;
+        const timer = setInterval(() => {
+          step++;
+          const progress = step / steps;
+          const ease = 1 - Math.pow(1 - progress, 3);
+          setCounts({
+            skus: Math.floor(ease * 10000),
+            institutions: Math.floor(ease * 250),
+            fulfilment: Math.floor(ease * 100),
+            years: Math.floor(ease * 30),
+          });
+          if (step >= steps) clearInterval(timer);
+        }, interval);
+      },
+      { threshold: 0.3 }
+    );
+    if (statsRef.current) observer.observe(statsRef.current);
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <>
@@ -305,20 +342,25 @@ export default function Home() {
 
         {/* Stats card */}
         <div className="mt-16 max-w-7xl mx-auto px-6">
-          <div className="bg-white rounded-2xl border border-[#E2E8F0] grid grid-cols-2 md:grid-cols-4 overflow-hidden">
-            {whyStats.map((s, i) => (
-              <div
-                key={s.label}
-                className={`py-10 px-8 ${
-                  i >= 2 ? "border-t border-[#E2E8F0] md:border-t-0" : ""
-                } ${i > 0 ? "md:border-l md:border-[#E2E8F0]" : ""}`}
-              >
-                <div className="font-semibold text-4xl text-[#0A1628] tracking-[-0.04em] tabular-nums">
-                  {s.value}
+          <div ref={statsRef} className="bg-white rounded-2xl border border-[#E2E8F0] grid grid-cols-2 md:grid-cols-4 overflow-hidden">
+            {whyStats.map((stat, i) => {
+              const value = counts[stat.key];
+              const display = stat.thousands ? value.toLocaleString() : value;
+              return (
+                <div
+                  key={stat.key}
+                  className={`py-10 px-8 flex flex-col justify-center items-center text-center ${
+                    i >= 2 ? "border-t border-[#E2E8F0] md:border-t-0" : ""
+                  } ${i > 0 ? "md:border-l md:border-[#E2E8F0]" : ""}`}
+                >
+                  <div className="font-semibold text-4xl text-[#0A1628] tracking-[-0.04em] tabular-nums">
+                    {display}
+                    {stat.suffix}
+                  </div>
+                  <div className="text-sm text-[#64748B] mt-2">{stat.label}</div>
                 </div>
-                <div className="text-sm text-[#64748B] mt-2">{s.label}</div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
 
