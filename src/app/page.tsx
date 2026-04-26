@@ -165,7 +165,7 @@ export default function Home() {
             </span>
 
             <h1
-              className="text-6xl lg:text-7xl font-bold text-[#0A1628] mt-6 leading-[1.05] tracking-tight"
+              className="text-5xl lg:text-6xl font-semibold text-[#0A1628] mt-6 leading-[1.05] tracking-[-0.04em]"
               style={{ letterSpacing: "-0.03em" }}
             >
               Precision instruments for modern surgical care
@@ -229,7 +229,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center">
           <div>
             <p className="section-label">Who we are</p>
-            <h2 className="text-4xl font-bold text-[#0A1628] mt-3 tracking-tight leading-tight" style={{ letterSpacing: "-0.03em" }}>
+            <h2 className="text-4xl font-semibold text-[#0A1628] mt-3 tracking-[-0.03em] leading-tight" style={{ letterSpacing: "-0.03em" }}>
               Supplying surgical excellence since 1996
             </h2>
             <p className="text-[#64748B] mt-6 leading-relaxed">
@@ -264,7 +264,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center max-w-2xl mx-auto">
             <p className="section-label">Our specialties</p>
-            <h2 className="text-4xl md:text-5xl font-bold text-[#0A1628] mt-3 tracking-tight" style={{ letterSpacing: "-0.03em" }}>
+            <h2 className="text-4xl md:text-5xl font-semibold text-[#0A1628] mt-3 tracking-[-0.03em]" style={{ letterSpacing: "-0.03em" }}>
               Six disciplines, one commitment to quality
             </h2>
             <p className="text-[#64748B] mt-4 leading-relaxed">
@@ -304,7 +304,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center max-w-2xl mx-auto">
             <p className="section-label">Why choose AVM</p>
-            <h2 className="text-5xl font-bold text-[#0A1628] mt-3 tracking-tight" style={{ letterSpacing: "-0.03em" }}>
+            <h2 className="text-5xl font-semibold text-[#0A1628] mt-3 tracking-[-0.03em]" style={{ letterSpacing: "-0.03em" }}>
               Built for the demands of modern surgery
             </h2>
             <p className="text-[#64748B] mt-4 leading-relaxed">
@@ -356,7 +356,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center max-w-2xl mx-auto">
             <p className="section-label">Certifications & compliance</p>
-            <h2 className="text-4xl md:text-5xl font-bold text-[#0A1628] mt-3 tracking-tight" style={{ letterSpacing: "-0.03em" }}>
+            <h2 className="text-4xl md:text-5xl font-semibold text-[#0A1628] mt-3 tracking-[-0.03em]" style={{ letterSpacing: "-0.03em" }}>
               Built to the highest standards
             </h2>
           </div>
@@ -381,7 +381,7 @@ export default function Home() {
       <section className="bg-[#F5F5F3] py-24 px-6">
         <div className="max-w-4xl mx-auto text-center">
           <p className="section-label">Get started</p>
-          <h2 className="text-5xl font-bold text-[#0A1628] mt-3 tracking-tight" style={{ letterSpacing: "-0.03em" }}>
+          <h2 className="text-5xl font-semibold text-[#0A1628] mt-3 tracking-[-0.03em]" style={{ letterSpacing: "-0.03em" }}>
             Request our detailed product catalogue
           </h2>
           <p className="text-[#64748B] text-lg mt-5 max-w-xl mx-auto leading-relaxed">
@@ -404,7 +404,7 @@ export default function Home() {
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div className="max-w-xl">
               <p className="section-label">AVM Insights</p>
-              <h2 className="text-4xl md:text-5xl font-bold text-[#0A1628] mt-3 tracking-tight" style={{ letterSpacing: "-0.03em" }}>
+              <h2 className="text-4xl md:text-5xl font-semibold text-[#0A1628] mt-3 tracking-[-0.03em]" style={{ letterSpacing: "-0.03em" }}>
                 From our knowledge base
               </h2>
               <p className="text-[#64748B] mt-4 leading-relaxed">
@@ -456,7 +456,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center max-w-2xl mx-auto">
             <p className="section-label">Our group</p>
-            <h2 className="text-4xl md:text-5xl font-bold text-[#0A1628] mt-3 tracking-tight" style={{ letterSpacing: "-0.03em" }}>
+            <h2 className="text-4xl md:text-5xl font-semibold text-[#0A1628] mt-3 tracking-[-0.03em]" style={{ letterSpacing: "-0.03em" }}>
               Part of a larger family
             </h2>
             <p className="text-[#64748B] mt-4 leading-relaxed">
@@ -506,7 +506,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center max-w-2xl mx-auto">
             <p className="section-label">Resources</p>
-            <h2 className="text-4xl md:text-5xl font-bold text-[#0A1628] mt-3 tracking-tight" style={{ letterSpacing: "-0.03em" }}>
+            <h2 className="text-4xl md:text-5xl font-semibold text-[#0A1628] mt-3 tracking-[-0.03em]" style={{ letterSpacing: "-0.03em" }}>
               Product support documents
             </h2>
             <p className="text-[#64748B] mt-4 leading-relaxed">

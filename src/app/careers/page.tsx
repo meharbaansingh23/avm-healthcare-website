@@ -30,7 +30,7 @@ export default function CareersPage() {
       <section className="bg-[#F5F5F3] py-28 px-6">
         <div className="max-w-2xl mx-auto">
           <h2
-            className="font-serif text-3xl text-[#0A1628] font-bold leading-tight"
+            className="font-serif text-3xl text-[#0A1628] font-semibold leading-tight tracking-[-0.03em]"
             style={{ letterSpacing: "-0.03em" }}
           >
             Express your interest

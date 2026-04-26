@@ -25,8 +25,8 @@ body {
 
 .display-heading {
   font-family: "Google Sans Flex", sans-serif;
-  font-weight: 700;
-  letter-spacing: -0.03em;
+  font-weight: 600;
+  letter-spacing: -0.04em;
   line-height: 1.02;
 }
 
@@ -51,13 +51,13 @@ body {
 
 @layer components {
   .section-label {
-    @apply text-xs uppercase tracking-widest font-semibold text-blue-600;
-    letter-spacing: 0.15em;
+    @apply text-xs uppercase font-medium text-blue-600;
+    letter-spacing: 0.12em;
   }
 
   .section-heading {
     font-family: "Google Sans Flex", sans-serif;
-    @apply text-4xl font-bold text-[#0A1628] leading-tight;
+    @apply text-4xl font-semibold text-[#0A1628] leading-tight;
     letter-spacing: -0.03em;
   }
 

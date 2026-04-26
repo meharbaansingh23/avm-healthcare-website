@@ -117,7 +117,7 @@ export default function AboutPage() {
           <div>
             <p className="section-label">Who we are</p>
             <h2
-              className="font-serif text-4xl text-[#0A1628] font-bold mt-6 leading-tight"
+              className="font-serif text-4xl text-[#0A1628] font-semibold mt-6 leading-tight tracking-[-0.03em]"
               style={{ letterSpacing: "-0.03em" }}
             >
               The leading manufacturer of advanced surgical instruments
@@ -151,7 +151,7 @@ export default function AboutPage() {
                 }`}
               >
                 <span
-                  className="font-serif text-4xl font-bold text-[#0A1628]"
+                  className="font-serif text-4xl font-semibold text-[#0A1628] tracking-[-0.03em]"
                   style={{ letterSpacing: "-0.03em" }}
                 >
                   {s.value}
@@ -254,7 +254,7 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto">
           <p className="section-label">Our clients</p>
           <h2
-            className="text-4xl text-[#0A1628] font-bold mt-3 tracking-tight leading-tight"
+            className="text-4xl text-[#0A1628] font-semibold mt-3 tracking-[-0.03em] leading-tight"
             style={{ letterSpacing: "-0.03em" }}
           >
             Trusted by India&rsquo;s leading hospitals
@@ -277,7 +277,7 @@ export default function AboutPage() {
         <div className="bg-[#F5F5F3] border border-[#E2E8F0] rounded-2xl p-12 max-w-7xl mx-auto flex flex-col md:flex-row md:justify-between md:items-center gap-8">
           <div>
             <h3
-              className="text-3xl text-[#0A1628] font-bold tracking-tight leading-tight"
+              className="text-3xl text-[#0A1628] font-semibold tracking-[-0.03em] leading-tight"
               style={{ letterSpacing: "-0.03em" }}
             >
               Get our detailed product catalogue

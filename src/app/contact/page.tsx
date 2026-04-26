@@ -21,7 +21,7 @@ export default function ContactPage() {
           <div>
             <p className="section-label">Our office</p>
             <h2
-              className="font-serif text-3xl text-[#0A1628] font-bold mt-6 leading-tight"
+              className="font-serif text-3xl text-[#0A1628] font-semibold mt-6 leading-tight tracking-[-0.03em]"
               style={{ letterSpacing: "-0.03em" }}
             >
               Visit or reach us
