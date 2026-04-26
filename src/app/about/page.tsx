@@ -29,7 +29,12 @@ const missionCards = [
   },
 ];
 
-const certs = ["CE Certified", "ISO Certified", "FDA Compliant", "NSIC Registered"];
+const certs = [
+  { name: "CE Certified", img: "/images/certificate%20logos/CE-certification.png" },
+  { name: "ISO Certified", img: "/images/certificate%20logos/iso-certification.png" },
+  { name: "FDA Compliant", img: "/images/certificate%20logos/FDA-certification.png" },
+  { name: "NSIC Registered", img: "/images/certificate%20logos/NSIC-certification.png" },
+];
 
 const detailRows: Array<[string, React.ReactNode]> = [
   [
@@ -206,27 +211,19 @@ export default function AboutPage() {
           </h2>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-10">
-            {certs.map((name) => (
+            {certs.map((c) => (
               <div
-                key={name}
-                className="border border-[#E2E8F0] rounded-xl p-6 text-center bg-white"
+                key={c.name}
+                className="border border-[#E2E8F0] rounded-2xl p-8 text-center bg-white hover:shadow-sm transition-all flex flex-col items-center justify-center gap-4"
               >
-                <svg
-                  className="mx-auto text-blue-600"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden="true"
-                >
-                  <path d="M5 12.5 10 17.5 19 7.5" />
-                </svg>
-                <div className="text-sm font-semibold text-[#0A1628] mt-2">
-                  {name}
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={c.img}
+                  alt={c.name}
+                  style={{ height: '64px', width: 'auto', objectFit: 'contain' }}
+                />
+                <div className="text-sm font-semibold text-[#0A1628]">
+                  {c.name}
                 </div>
               </div>
             ))}
