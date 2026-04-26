@@ -278,19 +278,19 @@ export default function Home() {
             {specialties.map((s) => (
               <div
                 key={s.n}
-                className="bg-white border border-[#E2E8F0] rounded-2xl p-8 hover:border-blue-200 hover:shadow-md transition-all cursor-pointer"
+                className="bg-white border border-[#E2E8F0] rounded-2xl p-8 hover:border-blue-200 hover:shadow-md transition-all cursor-pointer text-center"
               >
-                <div className="text-xs font-bold text-blue-500" style={{ letterSpacing: "0.15em" }}>
+                <div className="text-blue-500 text-xs font-bold tracking-widest">
                   {s.n}
                 </div>
-                <h3 className="text-base font-semibold text-[#0A1628] mt-3">
+                <h3 className="text-sm font-semibold text-[#0A1628] mt-2">
                   {s.title}
                 </h3>
-                <p className="text-sm text-[#64748B] leading-relaxed mt-2">
+                <p className="text-xs text-[#64748B] leading-relaxed mt-1">
                   {s.desc}
                 </p>
                 {/* TODO: Replace with real specialty image */}
-                <div className="img-placeholder h-40 w-full rounded-xl mt-6">
+                <div className="img-placeholder h-28 w-full rounded-xl mt-6">
                   {s.label}
                 </div>
               </div>
@@ -314,12 +314,12 @@ export default function Home() {
           </div>
 
           <div className="grid lg:grid-cols-2 gap-16 mt-16 items-start">
-            <div>
+            <div className="flex flex-col gap-6">
               {/* TODO: Replace with real product image */}
               <div className="img-placeholder h-80 w-full rounded-2xl">
                 Product / instruments image
               </div>
-              <p className="font-medium italic text-xl text-[#0A1628] leading-relaxed mt-8">
+              <p className="font-medium italic text-xl text-[#0A1628] leading-relaxed mt-4">
                 &ldquo;Every instrument we supply is chosen with one question
                 in mind — will it perform when it matters most?&rdquo;
               </p>
@@ -329,7 +329,7 @@ export default function Home() {
               {whyAvm.map((row, i) => (
                 <div
                   key={row.n}
-                  className={`flex items-start gap-5 py-5 ${
+                  className={`flex items-start gap-5 py-6 ${
                     i < whyAvm.length - 1 ? "border-b border-[#F1F5F9]" : ""
                   }`}
                 >

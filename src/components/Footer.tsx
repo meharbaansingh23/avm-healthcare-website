@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 
 const footerColumns: Array<{
@@ -36,12 +35,13 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-12">
           <Link href="/" className="flex items-center shrink-0">
             {/* TODO: Replace with real image */}
-            <Image
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
               src="/images/logo-dark.png"
               alt="AVM Healthcare"
-              width={120}
-              height={40}
-              unoptimized
+              width="120"
+              height="40"
+              style={{ height: "32px", width: "auto" }}
             />
           </Link>
 

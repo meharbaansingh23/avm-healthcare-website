@@ -174,7 +174,7 @@ export default function AboutPage() {
             {missionCards.map((c) => (
               <div
                 key={c.title}
-                className="bg-white rounded-xl border border-[#E2E8F0] border-t-4 border-t-blue-500 p-8"
+                className="bg-white rounded-xl border-t-4 border-blue-500 p-8 shadow-sm"
               >
                 <h3 className="text-sm font-semibold text-[#0A1628] mb-3">
                   {c.title}

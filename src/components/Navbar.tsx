@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 
 const links = [
@@ -21,13 +20,13 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         <Link href="/" className="flex items-center" onClick={() => setOpen(false)}>
           {/* TODO: Replace with real image */}
-          <Image
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
             src="/images/logo-dark.png"
             alt="AVM Healthcare"
-            width={120}
-            height={40}
-            unoptimized
-            preload
+            width="120"
+            height="40"
+            style={{ height: "40px", width: "auto" }}
           />
         </Link>
 
