@@ -30,10 +30,10 @@ const missionCards = [
 ];
 
 const certs = [
-  { name: "CE Certified", img: "/images/certificate%20logos/CE-certification.png" },
-  { name: "ISO Certified", img: "/images/certificate%20logos/iso-certification.png" },
-  { name: "FDA Compliant", img: "/images/certificate%20logos/FDA-certification.png" },
-  { name: "NSIC Registered", img: "/images/certificate%20logos/NSIC-certification.png" },
+  { name: "CE Certified", img: "/images/certifications/CE-certification.png" },
+  { name: "ISO Certified", img: "/images/certifications/iso-certification.png" },
+  { name: "FDA Compliant", img: "/images/certifications/FDA-certification.png" },
+  { name: "NSIC Registered", img: "/images/certifications/NSIC-certification.png" },
 ];
 
 const detailRows: Array<[string, React.ReactNode]> = [
