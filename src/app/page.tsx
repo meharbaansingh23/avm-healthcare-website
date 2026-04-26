@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { useRef } from "react";
 import HeroSlideshow from "@/components/HeroSlideshow";
 import { blogPosts } from "@/lib/blog";
 
@@ -23,38 +26,38 @@ const trustedBy = [
 
 const specialties = [
   {
-    n: "01",
-    title: "Neurosurgical",
+    slug: "neurosurgical",
+    name: "Neurosurgical",
     desc: "Instruments for cranial, spinal and micro-neurosurgical procedures — forceps, retractors, dissectors and more.",
     label: "Neurosurgical instruments",
   },
   {
-    n: "02",
-    title: "General Surgery",
+    slug: "general-surgery",
+    name: "General Surgery",
     desc: "Core surgical instruments for operating theatres — clamps, scissors, needle holders, and tissue handling tools.",
     label: "General surgery tools",
   },
   {
-    n: "03",
-    title: "Cardiovascular",
-    desc: "Precision devices for cardiac and vascular interventions — purpose-built for demanding cardiovascular procedures.",
+    slug: "cardiovascular",
+    name: "Cardiovascular",
+    desc: "Precision devices for cardiac and vascular interventions — purpose-built for demanding procedures.",
     label: "Cardiovascular devices",
   },
   {
-    n: "04",
-    title: "Gynaecology",
-    desc: "Specialised instruments for women's health — designed for both routine and complex gynaecological procedures.",
+    slug: "gynaecology",
+    name: "Gynaecology",
+    desc: "Specialised instruments for women's health — designed for both routine and complex procedures.",
     label: "Gynaecology instruments",
   },
   {
-    n: "05",
-    title: "Plastic & Oral Surgery",
+    slug: "plastic-oral-surgery",
+    name: "Plastic & Oral Surgery",
     desc: "Precision tools for reconstructive and oral surgical procedures — delicate instruments for exacting work.",
     label: "Plastic & oral instruments",
   },
   {
-    n: "06",
-    title: "Containers & Pads",
+    slug: "containers-pads",
+    name: "Containers & Pads",
     desc: "Sterile storage solutions and procedural support items for the modern operating theatre.",
     label: "Containers & pads",
   },
@@ -153,6 +156,17 @@ function CheckIcon({ className = "" }: { className?: string }) {
 }
 
 export default function Home() {
+  const carouselRef = useRef<HTMLDivElement>(null);
+
+  const scrollCarousel = (dir: "left" | "right") => {
+    if (!carouselRef.current) return;
+    const amount = 336;
+    carouselRef.current.scrollBy({
+      left: dir === "left" ? -amount : amount,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <>
       {/* SECTION 1 — HERO */}
@@ -259,43 +273,69 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SECTION 3 — SURGICAL SPECIALTIES */}
-      <section className="bg-white py-28 px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center max-w-2xl mx-auto">
-            <p className="section-label">Our specialties</p>
-            <h2 className="text-4xl md:text-5xl font-semibold text-[#0A1628] mt-3 tracking-[-0.03em]" style={{ letterSpacing: "-0.03em" }}>
-              Six disciplines, one commitment to quality
-            </h2>
-            <p className="text-[#64748B] mt-4 leading-relaxed">
-              We supply precision instruments across six major surgical
-              specialties — each category developed with direct input from
-              practicing surgeons.
-            </p>
-          </div>
+      {/* SECTION 3 — SURGICAL SPECIALTIES (carousel) */}
+      <section className="bg-white py-28">
+        <div className="text-center max-w-2xl mx-auto px-6">
+          <p className="section-label">Our specialties</p>
+          <h2 className="text-4xl font-semibold text-[#0A1628] mt-3 tracking-[-0.03em]">
+            Six disciplines, one commitment to quality
+          </h2>
+          <p className="text-[#64748B] mt-4 leading-relaxed">
+            We supply precision instruments across six major surgical
+            specialties — each category developed with direct input from
+            practicing surgeons.
+          </p>
+        </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-14">
-            {specialties.map((s) => (
+        <div
+          ref={carouselRef}
+          className="mt-16 flex gap-4 px-6 pb-4 overflow-x-auto scrollbar-hide snap-x snap-mandatory"
+        >
+          {specialties.map((s, i) => (
+            <div
+              key={s.slug}
+              className={`flex-shrink-0 w-80 rounded-2xl overflow-hidden border transition-all cursor-pointer snap-start ${
+                i === 0
+                  ? "border-blue-500 shadow-md bg-blue-50/30"
+                  : "bg-white border-[#E2E8F0] hover:border-blue-200 hover:shadow-lg"
+              }`}
+            >
+              {/* TODO: Replace with <Image> src={`/images/specialty-${s.slug}.jpg`} */}
               <div
-                key={s.n}
-                className="bg-white border border-[#E2E8F0] rounded-2xl p-8 hover:border-blue-200 hover:shadow-md transition-all cursor-pointer text-center"
+                className="img-placeholder specialty-img w-full h-52 rounded-none"
+                data-specialty={s.slug}
               >
-                <div className="text-blue-500 text-xs font-bold tracking-widest">
-                  {s.n}
-                </div>
-                <h3 className="text-sm font-semibold text-[#0A1628] mt-2">
-                  {s.title}
+                {s.label}
+              </div>
+              <div className="p-6">
+                <h3 className="text-base font-semibold text-[#0A1628]">
+                  {s.name}
                 </h3>
-                <p className="text-xs text-[#64748B] leading-relaxed mt-1">
+                <p className="text-sm text-[#64748B] leading-relaxed mt-2">
                   {s.desc}
                 </p>
-                {/* TODO: Replace with real specialty image */}
-                <div className="img-placeholder h-28 w-full rounded-xl mt-6">
-                  {s.label}
-                </div>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="flex justify-center gap-3 mt-8">
+          <button
+            type="button"
+            aria-label="Previous specialties"
+            onClick={() => scrollCarousel("left")}
+            className="w-10 h-10 rounded-full border border-[#E2E8F0] flex items-center justify-center text-[#64748B] hover:border-blue-500 hover:text-blue-500 transition-all cursor-pointer"
+          >
+            ←
+          </button>
+          <button
+            type="button"
+            aria-label="Next specialties"
+            onClick={() => scrollCarousel("right")}
+            className="w-10 h-10 rounded-full border border-[#E2E8F0] flex items-center justify-center text-[#64748B] hover:border-blue-500 hover:text-blue-500 transition-all cursor-pointer"
+          >
+            →
+          </button>
         </div>
       </section>
 
