@@ -31,36 +31,42 @@ const specialties = [
     name: "Neurosurgical",
     desc: "Instruments for cranial, spinal and micro-neurosurgical procedures — forceps, retractors, dissectors and more.",
     label: "Neurosurgical instruments",
+    img: "/images/categories/neuro.png",
   },
   {
     slug: "general-surgery",
     name: "General Surgery",
     desc: "Core surgical instruments for operating theatres — clamps, scissors, needle holders, and tissue handling tools.",
     label: "General surgery tools",
+    img: "/images/categories/general.png",
   },
   {
     slug: "cardiovascular",
     name: "Cardiovascular",
     desc: "Precision devices for cardiac and vascular interventions — purpose-built for demanding procedures.",
     label: "Cardiovascular devices",
+    img: "/images/categories/cardio.png",
   },
   {
     slug: "gynaecology",
     name: "Gynaecology",
     desc: "Specialised instruments for women's health — designed for both routine and complex procedures.",
     label: "Gynaecology instruments",
+    img: "/images/categories/gyno.png",
   },
   {
     slug: "plastic-oral-surgery",
     name: "Plastic & Oral Surgery",
     desc: "Precision tools for reconstructive and oral surgical procedures — delicate instruments for exacting work.",
     label: "Plastic & oral instruments",
+    img: "/images/categories/oral.png",
   },
   {
     slug: "containers-pads",
     name: "Containers & Pads",
     desc: "Sterile storage solutions and procedural support items for the modern operating theatre.",
     label: "Containers & pads",
+    img: "/images/categories/containers.png",
   },
 ];
 
@@ -257,9 +263,13 @@ export default function Home() {
               key={s.slug}
               className="bg-white border border-[#E2E8F0] rounded-2xl overflow-hidden hover:shadow-md hover:border-blue-200 transition-all duration-200"
             >
-              {/* TODO: Replace with real specialty image */}
-              <div className="img-placeholder w-full h-48 rounded-none">
-                {s.label}
+              <div className="w-full h-48 rounded-none overflow-hidden">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={s.img}
+                  alt={s.label}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                />
               </div>
               <div className="p-6">
                 <h3 className="text-base font-semibold text-[#0A1628] leading-snug">
