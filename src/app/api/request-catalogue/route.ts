@@ -19,14 +19,16 @@ export async function POST(request: Request) {
   try {
     const body = await request.json();
     const name = String(body.name ?? "").trim();
-    const organisation = String(body.organisation ?? "").trim();
     const email = String(body.email ?? "").trim();
     const phone = String(body.phone ?? "").trim();
-    const proposalType = String(body.proposalType ?? "").trim();
-    const description = String(body.description ?? "").trim();
+    const country = String(body.country ?? "").trim();
+    const address = String(body.address ?? "").trim();
+    const institution = String(body.institution ?? "").trim();
+    const institutionType = String(body.institutionType ?? "").trim();
+    const requirements = String(body.requirements ?? "").trim();
 
     // Server-side validation
-    if (!name || !email || !proposalType || !description) {
+    if (!name || !email || !phone || !country || !institution || !institutionType) {
       return Response.json(
         { success: false, error: "Missing required fields." },
         { status: 400 }
@@ -41,16 +43,18 @@ export async function POST(request: Request) {
 
     const fields: Array<[string, string]> = [
       ["Name", name],
-      ["Organisation", organisation || "—"],
       ["Email", email],
-      ["Phone", phone || "—"],
-      ["Nature of proposal", proposalType],
-      ["Description", description],
+      ["Phone", phone],
+      ["Country", country],
+      ["Address", address || "—"],
+      ["Institution", institution],
+      ["Institution type", institutionType],
+      ["Specific requirements", requirements || "—"],
     ];
 
     const html = `
       <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; color: #0A1628; max-width: 600px;">
-        <h2 style="margin: 0 0 16px;">New innovation proposal</h2>
+        <h2 style="margin: 0 0 16px;">New catalogue request</h2>
         ${fields
           .map(
             ([k, v]) =>
@@ -66,12 +70,12 @@ export async function POST(request: Request) {
       from: FROM,
       to: TO,
       replyTo: email,
-      subject: `New innovation proposal from ${name}`,
+      subject: `New catalogue request from ${name}`,
       html,
     });
 
     if (error) {
-      console.error("Resend error (innovation):", error);
+      console.error("Resend error (request-catalogue):", error);
       return Response.json(
         { success: false, error: "Failed to send. Please try again." },
         { status: 500 }
@@ -80,7 +84,7 @@ export async function POST(request: Request) {
 
     return Response.json({ success: true });
   } catch (err) {
-    console.error("Innovation route error:", err);
+    console.error("Request-catalogue route error:", err);
     return Response.json(
       { success: false, error: "Failed to send. Please try again." },
       { status: 500 }

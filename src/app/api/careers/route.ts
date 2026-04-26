@@ -2,26 +2,55 @@ import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+// TODO: switch to noreply@avmhealthcare.com once domain is verified in Resend
+const FROM = "AVM Healthcare <onboarding@resend.dev>";
+// TODO: switch to info@avmhealthcare.com once domain is verified
+const TO = "meharbaansinghkaila@gmail.com";
+
+const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5 MB
+
 const escape = (v: unknown) =>
   String(v ?? "")
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;");
 
+const isValidEmail = (e: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
+
 export async function POST(request: Request) {
   try {
     const formData = await request.formData();
 
-    const name = formData.get("name");
-    const email = formData.get("email");
-    const phone = formData.get("phone");
-    const city = formData.get("city");
-    const areaOfInterest = formData.get("areaOfInterest");
-    const introduction = formData.get("introduction");
+    const name = String(formData.get("name") ?? "").trim();
+    const email = String(formData.get("email") ?? "").trim();
+    const phone = String(formData.get("phone") ?? "").trim();
+    const city = String(formData.get("city") ?? "").trim();
+    const areaOfInterest = String(formData.get("areaOfInterest") ?? "").trim();
+    const introduction = String(formData.get("introduction") ?? "").trim();
     const cv = formData.get("cv");
+
+    // Server-side validation
+    if (!name || !email || !areaOfInterest) {
+      return Response.json(
+        { success: false, error: "Missing required fields." },
+        { status: 400 }
+      );
+    }
+    if (!isValidEmail(email)) {
+      return Response.json(
+        { success: false, error: "Invalid email address." },
+        { status: 400 }
+      );
+    }
 
     const attachments: Array<{ filename: string; content: Buffer }> = [];
     if (cv && cv instanceof File && cv.size > 0) {
+      if (cv.size > MAX_FILE_SIZE) {
+        return Response.json(
+          { success: false, error: "CV must be under 5MB." },
+          { status: 400 }
+        );
+      }
       const arrayBuffer = await cv.arrayBuffer();
       attachments.push({
         filename: cv.name,
@@ -29,54 +58,58 @@ export async function POST(request: Request) {
       });
     }
 
-    const rows: Array<[string, unknown]> = [
+    const cvLine =
+      cv && cv instanceof File && cv.size > 0
+        ? `${cv.name} (${(cv.size / 1024).toFixed(0)} KB)`
+        : "—";
+
+    const fields: Array<[string, string]> = [
       ["Name", name],
       ["Email", email],
-      ["Phone", phone],
-      ["City", city],
+      ["Phone", phone || "—"],
+      ["City", city || "—"],
       ["Area of Interest", areaOfInterest],
-      ["Introduction", introduction],
-      [
-        "CV",
-        cv && cv instanceof File && cv.size > 0
-          ? `${cv.name} (${cv.size} bytes)`
-          : "—",
-      ],
+      ["Introduction", introduction || "—"],
+      ["CV", cvLine],
     ];
 
     const html = `
-      <div style="font-family: 'Helvetica Neue', Arial, sans-serif; color:#0A1628; max-width:560px;">
-        <h2 style="margin:0 0 16px; font-size:18px;">Career Expression of Interest</h2>
-        <table style="width:100%; border-collapse:collapse; font-size:14px;">
-          ${rows
-            .map(
-              ([k, v]) => `
-            <tr>
-              <td style="padding:10px 12px; background:#F5F5F3; border:1px solid #E2E8F0; width:160px; vertical-align:top; font-weight:600;">${k}</td>
-              <td style="padding:10px 12px; border:1px solid #E2E8F0; vertical-align:top; white-space:pre-wrap;">${escape(v)}</td>
-            </tr>`
-            )
-            .join("")}
-        </table>
+      <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; color: #0A1628; max-width: 600px;">
+        <h2 style="margin: 0 0 16px;">New career application</h2>
+        ${fields
+          .map(
+            ([k, v]) =>
+              `<p style="margin: 8px 0;"><strong>${k}:</strong> ${escape(v).replace(/\n/g, "<br>")}</p>`
+          )
+          .join("")}
+        <hr style="border: none; border-top: 1px solid #E2E8F0; margin: 24px 0;">
+        <p style="color: #666; font-size: 12px;">Sent from avmhealthcare.com</p>
       </div>
     `;
 
     const { error } = await resend.emails.send({
-      from: "onboarding@resend.dev",
-      to: "info@avmhealthcare.com",
-      subject: `Career Expression of Interest — ${name ?? "Unknown"}`,
+      from: FROM,
+      to: TO,
+      replyTo: email,
+      subject: `New career application from ${name}`,
       html,
-      replyTo: typeof email === "string" ? email : undefined,
       attachments: attachments.length ? attachments : undefined,
     });
 
     if (error) {
-      return Response.json({ ok: false, error: error.message }, { status: 500 });
+      console.error("Resend error (careers):", error);
+      return Response.json(
+        { success: false, error: "Failed to send. Please try again." },
+        { status: 500 }
+      );
     }
 
-    return Response.json({ ok: true });
+    return Response.json({ success: true });
   } catch (err) {
-    const message = err instanceof Error ? err.message : "Unknown error";
-    return Response.json({ ok: false, error: message }, { status: 500 });
+    console.error("Careers route error:", err);
+    return Response.json(
+      { success: false, error: "Failed to send. Please try again." },
+      { status: 500 }
+    );
   }
 }
