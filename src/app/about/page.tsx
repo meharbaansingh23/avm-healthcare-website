@@ -37,30 +37,6 @@ const certs = [
   { name: "NSIC Registered", img: "/images/certifications/nsic.png" },
 ];
 
-const detailRows: Array<[string, React.ReactNode]> = [
-  [
-    "Registered Office",
-    "17-19 A Block Chhatarpur Extension, Rajpur Road, New Delhi",
-  ],
-  [
-    "Manufacturing Unit",
-    "HR-11A, Street No. 10, New Rohtak Road Industrial Area, New Delhi",
-  ],
-  [
-    "Email",
-    <a
-      key="email"
-      href="mailto:info@avmhealthcare.com"
-      className="text-blue-600 hover:text-blue-700"
-    >
-      info@avmhealthcare.com
-    </a>,
-  ],
-  ["GST", "07AABCA1500D1ZM"],
-  ["IEC", "0597024685"],
-  ["Trade Mark No.", "4621659"],
-];
-
 export default function AboutPage() {
   return (
     <>
@@ -268,21 +244,6 @@ export default function AboutPage() {
               </div>
             ))}
           </div>
-
-          <table className="w-full max-w-2xl mt-12 border-collapse">
-            <tbody>
-              {detailRows.map(([k, v]) => (
-                <tr key={k} className="border-b border-[#E2E8F0]">
-                  <td className="py-4 text-sm text-[#64748B] w-48 align-top pr-4">
-                    {k}
-                  </td>
-                  <td className="py-4 text-sm text-[#0A1628] font-medium">
-                    {v}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
         </div>
       </section>
 
