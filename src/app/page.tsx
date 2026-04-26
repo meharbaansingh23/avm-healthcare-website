@@ -290,9 +290,6 @@ export default function Home() {
                 <p className="text-sm text-[#64748B] leading-relaxed mt-2">
                   {s.desc}
                 </p>
-                <span className="text-xs font-semibold text-blue-600 mt-4 inline-flex items-center gap-1 hover:gap-2 transition-all">
-                  Learn more →
-                </span>
               </div>
             </div>
           ))}
