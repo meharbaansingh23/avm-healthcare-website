@@ -1,3 +1,4 @@
+import Image from "next/image";
 import CareersForm from "@/components/CareersForm";
 
 export const metadata = {
@@ -10,27 +11,27 @@ export default function CareersPage() {
   return (
     <>
       {/* HERO */}
-      <section className="bg-white pt-32 pb-20 px-6 text-center">
+      <section className="bg-white pt-16 pb-12 px-6 text-center">
         <p
-          className="text-xs uppercase font-semibold text-blue-600 mb-6"
+          className="text-xs uppercase font-semibold text-blue-600 mb-5"
           style={{ letterSpacing: "0.15em" }}
         >
           Careers at AVM
         </p>
         <h1
-          className="font-semibold text-5xl md:text-6xl text-[#0A1628] tracking-[-0.03em] leading-[1.05] max-w-3xl mx-auto"
+          className="font-semibold text-4xl md:text-5xl text-[#0A1628] tracking-[-0.03em] leading-[1.05] max-w-3xl mx-auto"
           style={{ letterSpacing: "-0.03em" }}
         >
           Join the team shaping surgical care in India
         </h1>
-        <p className="text-[#64748B] text-lg leading-relaxed mt-6 max-w-xl mx-auto">
+        <p className="text-[#64748B] text-base md:text-lg leading-relaxed mt-5 max-w-xl mx-auto">
           We don&rsquo;t have specific openings listed right now — but
           we&rsquo;re always interested in meeting talented people who care
           about healthcare and want to make a difference.
         </p>
         <a
           href="#apply"
-          className="inline-block mt-10 bg-[#0A1628] text-white px-8 py-4 rounded-lg text-sm font-semibold hover:bg-[#0d1f38] transition-colors"
+          className="inline-block mt-8 bg-[#0A1628] text-white px-8 py-4 rounded-lg text-sm font-semibold hover:bg-[#0d1f38] transition-colors"
         >
           Express your interest
         </a>
@@ -38,18 +39,14 @@ export default function CareersPage() {
 
       {/* HERO IMAGE — full-bleed, navy duotone treatment */}
       {/* TODO: Replace with an AVM-specific photo of the team / facility / surgeons in the field */}
-      <div className="relative w-full h-[500px] md:h-[600px] overflow-hidden">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="https://images.unsplash.com/photo-1685997180450-242a65624238?auto=format&fit=crop&w=2400&q=80"
-          alt="Surgical team in an operating room"
-          style={{
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            display: "block",
-            filter: "grayscale(100%)",
-          }}
+      <div className="relative w-full h-[280px] md:h-[400px] overflow-hidden">
+        <Image
+          src="/images/careers.png"
+          alt="AVM Healthcare team"
+          fill
+          priority
+          sizes="100vw"
+          style={{ objectFit: "cover", filter: "grayscale(100%)" }}
         />
         {/* Navy duotone overlay: mix-blend-color applies navy chrominance to the grayscale image's luminance */}
         <div
