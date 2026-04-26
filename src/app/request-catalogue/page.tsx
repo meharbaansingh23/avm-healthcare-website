@@ -27,17 +27,13 @@ export default function RequestCataloguePage() {
 
           {/* RIGHT — Portrait image */}
           <div className="lg:sticky lg:top-24">
-            <div className="relative rounded-2xl overflow-hidden aspect-[3/4] w-full bg-[#F1F5F9] flex items-center justify-center">
+            <div className="rounded-2xl overflow-hidden aspect-[3/4] w-full bg-[#F1F5F9]">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/images/catalogue-cover.jpg"
+                src="/images/request/cover.png"
                 alt="AVM Healthcare Product Catalogue"
                 style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
               />
-              {/* TODO: Add catalogue cover image at public/images/catalogue-cover.jpg, then delete the fallback overlay below */}
-              <div className="absolute inset-0 flex items-center justify-center text-[#CBD5E1] text-xs uppercase tracking-widest">
-                Catalogue cover
-              </div>
             </div>
             <p className="text-xs text-[#94A3B8] text-center mt-3">
               AVM Healthcare Products · Full Surgical Instruments Catalogue
