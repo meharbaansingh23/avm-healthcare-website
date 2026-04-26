@@ -78,7 +78,7 @@ export default function GroupOfCompanies() {
 
             const inner = (
               <>
-                <div className="h-16 flex items-center">
+                <div className="h-16 w-full flex items-center">
                   {c.logo.type === "text" ? (
                     <span className="font-semibold text-2xl text-[#0A1628] tracking-tight">
                       {c.logo.value}
@@ -90,7 +90,8 @@ export default function GroupOfCompanies() {
                         src={c.logo.src}
                         alt={c.logo.alt}
                         style={{
-                          height: "64px",
+                          maxHeight: "48px",
+                          maxWidth: "140px",
                           width: "auto",
                           objectFit: "contain",
                           display: "block",
