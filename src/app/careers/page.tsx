@@ -37,16 +37,22 @@ export default function CareersPage() {
         </a>
       </section>
 
-      {/* HERO IMAGE — full-bleed, navy duotone treatment */}
+      {/* HERO IMAGE — natural aspect ratio, navy duotone treatment */}
       {/* TODO: Replace with an AVM-specific photo of the team / facility / surgeons in the field */}
-      <div className="relative w-full h-[280px] md:h-[400px] overflow-hidden">
+      <div className="relative w-full max-w-7xl mx-auto">
         <Image
           src="/images/careers.png"
           alt="AVM Healthcare team"
-          fill
+          width={1990}
+          height={1137}
           priority
-          sizes="100vw"
-          style={{ objectFit: "cover", filter: "grayscale(100%)" }}
+          sizes="(min-width: 1280px) 1280px, 100vw"
+          style={{
+            width: "100%",
+            height: "auto",
+            display: "block",
+            filter: "grayscale(100%)",
+          }}
         />
         {/* Navy duotone overlay: mix-blend-color applies navy chrominance to the grayscale image's luminance */}
         <div
