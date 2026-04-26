@@ -1,5 +1,6 @@
 import Link from "next/link";
 import PageHero from "@/components/PageHero";
+import GroupOfCompanies from "@/components/GroupOfCompanies";
 
 export const metadata = {
   title: "About Us — AVM Healthcare Products Pvt. Ltd.",
@@ -268,6 +269,8 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+
+      <GroupOfCompanies />
 
       {/* CTA */}
       <section className="bg-white pb-28 px-6">

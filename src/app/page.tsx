@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import HeroSlideshow from "@/components/HeroSlideshow";
+import GroupOfCompanies from "@/components/GroupOfCompanies";
 import { blogPosts } from "@/lib/blog";
 
 const heroStats = [
@@ -102,21 +103,6 @@ const certs = [
   { name: "ISO Certified", img: "/images/certifications/iso.png" },
   { name: "FDA Compliant", img: "/images/certifications/fda.png" },
   { name: "NSIC Registered", img: "/images/certifications/nsic.png" },
-];
-
-const groupCompanies = [
-  {
-    name: "AVM Healthcare Products",
-    sub: "Parent company",
-    href: null as string | null,
-  },
-  { name: "AVM Surgicare", sub: "Surgical solutions", href: null },
-  {
-    name: "ANI Instruments",
-    sub: "German precision",
-    href: "https://www.animedtec.com/",
-  },
-  { name: "Chaba Mediwise", sub: "Healthcare products", href: null },
 ];
 
 const downloads = [
@@ -505,54 +491,7 @@ export default function Home() {
       </section>
 
       {/* SECTION 8 — GROUP OF COMPANIES */}
-      <section className="bg-[#F5F5F3] py-24 px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center max-w-2xl mx-auto">
-            <p className="section-label">Our group</p>
-            <h2 className="text-4xl md:text-5xl font-semibold text-[#0A1628] mt-3 tracking-[-0.03em]" style={{ letterSpacing: "-0.03em" }}>
-              Part of a larger family
-            </h2>
-            <p className="text-[#64748B] mt-4 leading-relaxed">
-              AVM Healthcare is part of a group of companies committed to
-              advancing surgical and medical care.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12">
-            {groupCompanies.map((c) => {
-              const inner = (
-                <>
-                  {/* TODO: Replace with real logo */}
-                  <div className="w-full h-14 bg-[#F8FAFC] rounded-xl flex items-center justify-center text-[#CBD5E1] text-xs uppercase" style={{ letterSpacing: "0.15em" }}>
-                    Logo
-                  </div>
-                  <div className="text-sm font-semibold text-[#0A1628] mt-5">
-                    {c.name}
-                  </div>
-                  <div className="text-xs text-[#94A3B8] mt-1">{c.sub}</div>
-                </>
-              );
-              const cardClass =
-                "bg-white rounded-2xl border border-[#E2E8F0] p-8 hover:shadow-md hover:border-blue-200 transition-all";
-              return c.href ? (
-                <a
-                  key={c.name}
-                  href={c.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={cardClass}
-                >
-                  {inner}
-                </a>
-              ) : (
-                <div key={c.name} className={cardClass}>
-                  {inner}
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
+      <GroupOfCompanies />
 
       {/* SECTION 9 — DOWNLOADS */}
       <section className="bg-white py-24 px-6">
