@@ -413,7 +413,7 @@ export default function Home() {
             {certs.map((c) => (
               <div
                 key={c.name}
-                className="border border-[#E2E8F0] rounded-2xl p-8 text-center bg-white hover:shadow-sm transition-all flex flex-col items-center justify-center gap-4"
+                className="border border-[#E2E8F0] rounded-2xl p-8 bg-white flex flex-col items-center gap-4 text-center"
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
