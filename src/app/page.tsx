@@ -148,73 +148,74 @@ export default function Home() {
   return (
     <>
       {/* SECTION 1 — HERO */}
-      <section className="bg-white">
-        <div className="max-w-7xl mx-auto px-6 py-20 min-h-[85vh] grid lg:grid-cols-2 gap-16 items-center">
-          <div>
-            <span className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 border border-blue-100 rounded-full px-4 py-1.5 text-xs font-semibold">
-              <span className="block h-1.5 w-1.5 rounded-full bg-blue-500" aria-hidden />
-              Surgical Instruments · Made in India · Since 1996
-            </span>
+      <section
+        className="min-h-[88vh] grid lg:grid-cols-2 gap-16 items-stretch"
+        style={{ background: "linear-gradient(135deg, #ffffff 0%, #EFF6FF 40%, #DBEAFE 100%)" }}
+      >
+        <div className="flex flex-col justify-center pl-6 md:pl-16 lg:pl-24 pr-6 py-16">
+          <span className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 border border-blue-100 rounded-full px-4 py-1.5 text-xs font-semibold w-fit">
+            <span className="block h-1.5 w-1.5 rounded-full bg-blue-500" aria-hidden />
+            Surgical Instruments · Made in India · Since 1996
+          </span>
 
-            <h1
-              className="text-5xl lg:text-6xl font-semibold text-[#0A1628] mt-6 leading-[1.05] tracking-[-0.04em]"
-              style={{ letterSpacing: "-0.03em" }}
+          <h1
+            className="text-5xl lg:text-6xl font-semibold text-[#0A1628] mt-6 leading-[1.05] tracking-[-0.04em]"
+            style={{ letterSpacing: "-0.03em" }}
+          >
+            Precision instruments for modern surgical care
+          </h1>
+
+          <p className="text-[#64748B] text-lg leading-relaxed max-w-md mt-5">
+            AVM Healthcare Products supplies advanced surgical instruments
+            to premier hospitals across India — from neurosurgery to
+            cardiovascular care.
+          </p>
+
+          <div className="flex flex-wrap items-center gap-2 mt-8">
+            <Link
+              href="/request-catalogue"
+              className="bg-[#0A1628] text-white px-7 py-3.5 rounded-lg text-sm font-semibold hover:bg-[#0d1f38] transition-colors"
             >
-              Precision instruments for modern surgical care
-            </h1>
-
-            <p className="text-[#64748B] text-lg leading-relaxed max-w-md mt-5">
-              AVM Healthcare Products supplies advanced surgical instruments
-              to premier hospitals across India — from neurosurgery to
-              cardiovascular care.
-            </p>
-
-            <div className="flex flex-wrap items-center gap-2 mt-8">
-              <Link
-                href="/request-catalogue"
-                className="bg-[#0A1628] text-white px-7 py-3.5 rounded-lg text-sm font-semibold hover:bg-[#0d1f38] transition-colors"
-              >
-                Request catalogue
-              </Link>
-              <a
-                href="#story"
-                className="text-[#64748B] px-5 py-3.5 text-sm hover:text-[#0A1628] transition-colors"
-              >
-                Watch our story →
-              </a>
-            </div>
-
-            <div className="mt-14 pt-8 border-t border-[#E2E8F0] grid grid-cols-2 md:grid-cols-4 gap-8">
-              {heroStats.map((s) => (
-                <div key={s.label}>
-                  <div className="text-3xl font-bold text-[#0A1628] tabular-nums" style={{ letterSpacing: "-0.03em" }}>
-                    {s.value}
-                  </div>
-                  <div className="text-[10px] uppercase text-[#94A3B8] mt-1" style={{ letterSpacing: "0.15em" }}>
-                    {s.label}
-                  </div>
-                </div>
-              ))}
-            </div>
+              Request catalogue
+            </Link>
+            <a
+              href="#story"
+              className="text-[#64748B] px-5 py-3.5 text-sm hover:text-[#0A1628] transition-colors"
+            >
+              Watch our story →
+            </a>
           </div>
 
-          <div className="rounded-2xl shadow-2xl">
-            <HeroSlideshow />
+          <div className="mt-14 pt-8 border-t border-[#E2E8F0] grid grid-cols-2 md:grid-cols-4 gap-8">
+            {heroStats.map((s) => (
+              <div key={s.label}>
+                <div className="text-3xl font-bold text-[#0A1628] tabular-nums" style={{ letterSpacing: "-0.03em" }}>
+                  {s.value}
+                </div>
+                <div className="text-[10px] uppercase text-[#94A3B8] mt-1" style={{ letterSpacing: "0.15em" }}>
+                  {s.label}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 
-        {/* Client strip */}
-        <div className="border-t border-b border-[#E2E8F0] bg-[#FAFAFA]">
-          <div className="max-w-7xl mx-auto px-6 py-5 flex items-center gap-10 overflow-x-auto whitespace-nowrap">
-            <span className="text-[10px] uppercase text-[#94A3B8] shrink-0" style={{ letterSpacing: "0.15em" }}>
-              Trusted by
-            </span>
-            <span className="text-sm text-[#94A3B8]">
-              {trustedBy.join(" · ")}
-            </span>
-          </div>
+        <div>
+          <HeroSlideshow />
         </div>
       </section>
+
+      {/* Client strip */}
+      <div className="border-t border-b border-[#E2E8F0] bg-[#FAFAFA]">
+        <div className="max-w-7xl mx-auto px-6 py-5 flex items-center gap-10 overflow-x-auto whitespace-nowrap">
+          <span className="text-[10px] uppercase text-[#94A3B8] shrink-0" style={{ letterSpacing: "0.15em" }}>
+            Trusted by
+          </span>
+          <span className="text-sm text-[#94A3B8]">
+            {trustedBy.join(" · ")}
+          </span>
+        </div>
+      </div>
 
       {/* SECTION 2 — WHO WE ARE */}
       <section id="story" className="bg-[#F5F5F3] py-28 px-6">
