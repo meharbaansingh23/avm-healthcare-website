@@ -85,7 +85,7 @@ export default function AboutPage() {
           </div>
           <div>
             <Image
-              src="/images/about/hero.png"
+              src="/images/about/hero.webp"
               alt="AVM Healthcare"
               width={1686}
               height={1536}
@@ -157,15 +157,16 @@ export default function AboutPage() {
             </p>
           </div>
           <div>
-            {/* TODO: Replace with facility/team image */}
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/images/hero/Hero-2.png"
-              alt="AVM Healthcare facility"
+            <Image
+              src="/images/about/who-we-are.webp"
+              alt="Who we are at AVM"
+              width={2960}
+              height={1472}
+              sizes="(min-width: 1024px) 50vw, 100vw"
               style={{
                 width: "100%",
-                height: "380px",
-                objectFit: "cover",
+                height: "auto",
+                objectFit: "contain",
                 borderRadius: "16px",
                 display: "block",
               }}
