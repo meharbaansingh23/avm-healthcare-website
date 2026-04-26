@@ -220,7 +220,7 @@ export default function AboutPage() {
                 <img
                   src={c.img}
                   alt={c.name}
-                  style={{ height: '64px', width: 'auto', objectFit: 'contain' }}
+                  style={{ height: '60px', width: 'auto', objectFit: 'contain', display: 'block' }}
                 />
                 <div className="text-sm font-semibold text-[#0A1628]">
                   {c.name}
