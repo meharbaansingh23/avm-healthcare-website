@@ -338,9 +338,13 @@ export default function Home() {
         {/* Accordion */}
         <div className="mt-20 max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-start">
           <div className="lg:sticky lg:top-32">
-            {/* TODO: Replace with real product photography */}
-            <div className="img-placeholder h-96 w-full rounded-2xl">
-              Product / instruments image
+            <div className="h-96 w-full rounded-2xl overflow-hidden">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/images/why/choose.png"
+                alt="AVM Healthcare surgical instruments"
+                style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', borderRadius: '16px' }}
+              />
             </div>
           </div>
 
