@@ -1,7 +1,4 @@
-"use client";
-
 import Link from "next/link";
-import { useRef } from "react";
 import HeroSlideshow from "@/components/HeroSlideshow";
 import { blogPosts } from "@/lib/blog";
 
@@ -156,17 +153,6 @@ function CheckIcon({ className = "" }: { className?: string }) {
 }
 
 export default function Home() {
-  const carouselRef = useRef<HTMLDivElement>(null);
-
-  const scrollCarousel = (dir: "left" | "right") => {
-    if (!carouselRef.current) return;
-    const amount = 336;
-    carouselRef.current.scrollBy({
-      left: dir === "left" ? -amount : amount,
-      behavior: "smooth",
-    });
-  };
-
   return (
     <>
       {/* SECTION 1 — HERO */}
@@ -273,7 +259,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SECTION 3 — SURGICAL SPECIALTIES (carousel) */}
+      {/* SECTION 3 — SURGICAL SPECIALTIES */}
       <section className="bg-white py-28">
         <div className="text-center max-w-2xl mx-auto px-6">
           <p className="section-label">Our specialties</p>
@@ -287,55 +273,29 @@ export default function Home() {
           </p>
         </div>
 
-        <div
-          ref={carouselRef}
-          className="mt-16 flex gap-4 px-6 pb-4 overflow-x-auto scrollbar-hide snap-x snap-mandatory"
-        >
-          {specialties.map((s, i) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-16 max-w-7xl mx-auto px-6">
+          {specialties.map((s) => (
             <div
               key={s.slug}
-              className={`flex-shrink-0 w-80 rounded-2xl overflow-hidden border transition-all cursor-pointer snap-start ${
-                i === 0
-                  ? "border-blue-500 shadow-md bg-blue-50/30"
-                  : "bg-white border-[#E2E8F0] hover:border-blue-200 hover:shadow-lg"
-              }`}
+              className="bg-white border border-[#E2E8F0] rounded-2xl overflow-hidden hover:shadow-md hover:border-blue-200 transition-all duration-200"
             >
-              {/* TODO: Replace with <Image> src={`/images/specialty-${s.slug}.jpg`} */}
-              <div
-                className="img-placeholder specialty-img w-full h-52 rounded-none"
-                data-specialty={s.slug}
-              >
+              {/* TODO: Replace with real specialty image */}
+              <div className="img-placeholder w-full h-48 rounded-none">
                 {s.label}
               </div>
               <div className="p-6">
-                <h3 className="text-base font-semibold text-[#0A1628]">
+                <h3 className="text-base font-semibold text-[#0A1628] leading-snug">
                   {s.name}
                 </h3>
                 <p className="text-sm text-[#64748B] leading-relaxed mt-2">
                   {s.desc}
                 </p>
+                <span className="text-xs font-semibold text-blue-600 mt-4 inline-flex items-center gap-1 hover:gap-2 transition-all">
+                  Learn more →
+                </span>
               </div>
             </div>
           ))}
-        </div>
-
-        <div className="flex justify-center gap-3 mt-8">
-          <button
-            type="button"
-            aria-label="Previous specialties"
-            onClick={() => scrollCarousel("left")}
-            className="w-10 h-10 rounded-full border border-[#E2E8F0] flex items-center justify-center text-[#64748B] hover:border-blue-500 hover:text-blue-500 transition-all cursor-pointer"
-          >
-            ←
-          </button>
-          <button
-            type="button"
-            aria-label="Next specialties"
-            onClick={() => scrollCarousel("right")}
-            className="w-10 h-10 rounded-full border border-[#E2E8F0] flex items-center justify-center text-[#64748B] hover:border-blue-500 hover:text-blue-500 transition-all cursor-pointer"
-          >
-            →
-          </button>
         </div>
       </section>
 
