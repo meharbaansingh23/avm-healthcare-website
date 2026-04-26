@@ -198,7 +198,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="aspect-[4/3] rounded-2xl overflow-hidden">
+          <div className="rounded-2xl shadow-2xl">
             <HeroSlideshow />
           </div>
         </div>
