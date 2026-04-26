@@ -27,16 +27,52 @@ export default function ContactPage() {
               Visit or reach us
             </h2>
 
+            <div className="mt-10">
+              {[
+                {
+                  name: "New Delhi — Registered Office",
+                  address:
+                    "17-19 A Block Chatarpur Extension, Rajpur Road, New Delhi — 110074, India",
+                  maps: "https://maps.app.goo.gl/ypyPSd5SSeybPpA1A",
+                },
+                {
+                  name: "Mumbai — Corporate Office",
+                  address:
+                    "1403, 14th Floor, Peninsula Park, Off Link Road, Andheri West, Mumbai — 400083, India",
+                  maps: null,
+                },
+                {
+                  name: "Hamburg — ANI Medizintechnik GmbH",
+                  address:
+                    "Hans-Henny-Jahnn-Weg 53, 22085 Hamburg, Germany",
+                  maps: "https://maps.app.goo.gl/x6ej4DSTVWZViqKo9",
+                },
+              ].map((office) => (
+                <div
+                  key={office.name}
+                  className="border-b border-[#E2E8F0] pb-6 mb-6 last:border-0 last:mb-0"
+                >
+                  <p className="text-xs font-semibold uppercase tracking-widest text-blue-600 mb-2">
+                    {office.name}
+                  </p>
+                  <p className="text-sm text-[#0A1628] leading-relaxed font-medium">
+                    {office.address}
+                  </p>
+                  {office.maps && (
+                    <a
+                      href={office.maps}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs text-blue-600 hover:text-blue-700 inline-flex items-center gap-1 mt-2"
+                    >
+                      View on Google Maps →
+                    </a>
+                  )}
+                </div>
+              ))}
+            </div>
+
             <div className="mt-10 space-y-8">
-              <div>
-                <p className="text-xs uppercase tracking-[0.15em] text-[#64748B] font-semibold mb-2">
-                  Address
-                </p>
-                <p className="text-sm text-[#0A1628] leading-relaxed">
-                  17-19 A Block Chhatarpur Extension, Rajpur Road,<br />
-                  New Delhi — 110074, India
-                </p>
-              </div>
               <div>
                 <p className="text-xs uppercase tracking-[0.15em] text-[#64748B] font-semibold mb-2">
                   Email
@@ -56,11 +92,6 @@ export default function ContactPage() {
                   Monday – Saturday · 9:30 am – 6:30 pm IST
                 </p>
               </div>
-            </div>
-
-            {/* TODO: Replace with real image */}
-            <div className="img-placeholder h-56 w-full mt-10">
-              Office / location image
             </div>
           </div>
 
