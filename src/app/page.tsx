@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import HeroSlideshow from "@/components/HeroSlideshow";
@@ -467,9 +468,14 @@ export default function Home() {
                 href={`/blog/${p.slug}`}
                 className="bg-white border border-[#E2E8F0] rounded-2xl overflow-hidden hover:shadow-md hover:border-blue-200 transition-all flex flex-col"
               >
-                {/* TODO: Replace with real cover image */}
-                <div className="img-placeholder h-48 w-full rounded-none">
-                  Blog cover image
+                <div className="relative w-full h-48">
+                  <Image
+                    src={p.coverImage}
+                    alt={p.title}
+                    fill
+                    sizes="(min-width: 768px) 33vw, 100vw"
+                    style={{ objectFit: "cover" }}
+                  />
                 </div>
                 <div className="p-6 flex flex-col flex-1">
                   <p className="text-xs font-semibold text-blue-600 uppercase" style={{ letterSpacing: "0.15em" }}>
