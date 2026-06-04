@@ -5,27 +5,27 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const FAQ_ITEMS: Array<{ q: string; a: React.ReactNode }> = [
   {
-    q: "Do you supply to individual doctors or only institutions?",
+    q: "Do You Supply To Individual Doctors Or Only Institutions?",
     a: "We primarily supply to hospitals, surgical centres, government procurement agencies, and distributors. Individual practitioners may contact us to discuss their requirements directly.",
   },
   {
-    q: "How can I request a product catalogue?",
+    q: "How Can I Request A Product Catalogue?",
     a: "You can request our full product catalogue through the Request Catalogue page on this website. Our team will send it to your inbox within one business day.",
   },
   {
-    q: "Do you export outside India?",
+    q: "Do You Export Outside India?",
     a: "Yes. We export to international markets and have an established presence through our German partner, ANI Medizintechnik GmbH, based in Hamburg.",
   },
   {
-    q: "Are your products CE and ISO certified?",
+    q: "Are Your Products CE And ISO Certified?",
     a: "Yes. All AVM products are CE certified, ISO compliant, and FDA registered. Quality is monitored at every stage of manufacturing.",
   },
   {
-    q: "Can instruments be customised to specific requirements?",
+    q: "Can Instruments Be Customised To Specific Requirements?",
     a: "Absolutely. We offer customisation based on the specific needs of individual surgeons and institutions — from dimensions to materials and finishes.",
   },
   {
-    q: "What is your delivery timeline?",
+    q: "What Is Your Delivery Timeline?",
     a: (
       <>
         Delivery timelines vary based on product and location. Please contact us
@@ -41,7 +41,7 @@ const FAQ_ITEMS: Array<{ q: string; a: React.ReactNode }> = [
     ),
   },
   {
-    q: "How do I get after-sales service and support?",
+    q: "How Do I Get After-Sales Service And Support?",
     a: (
       <>
         We offer 24×7 service support. Contact our team at{" "}
@@ -56,7 +56,7 @@ const FAQ_ITEMS: Array<{ q: string; a: React.ReactNode }> = [
     ),
   },
   {
-    q: "Do you work with government hospitals?",
+    q: "Do You Work With Government Hospitals?",
     a: "Yes. We supply to government institutions across India through both direct supply agreements and government procurement programs.",
   },
 ];

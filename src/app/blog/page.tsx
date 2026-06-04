@@ -15,7 +15,7 @@ export default function BlogIndexPage() {
     <>
       <PageHero
         label="AVM Insights"
-        title="From our knowledge base"
+        title="From Our Knowledge Base"
         subtitle="Insights on surgical instrument care, innovation, and best practices from AVM Healthcare."
       />
 
@@ -26,14 +26,15 @@ export default function BlogIndexPage() {
               <FadeInWhenVisible key={p.slug} delay={i * 0.1} className="h-full">
                 <Link
                   href={`/blog/${p.slug}`}
-                  className="h-full bg-white border border-[#E2E8F0] rounded-2xl overflow-hidden transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:border-blue-200 flex flex-col"
+                  className="group h-full bg-white border border-[#E2E8F0] rounded-2xl overflow-hidden transition-all duration-200 hover:-translate-y-1 hover:shadow-xl hover:border-blue-200 flex flex-col"
                 >
-                  <div className="relative w-full h-44 md:h-60">
+                  <div className="relative w-full h-44 md:h-60 overflow-hidden">
                     <Image
                       src={p.coverImage}
                       alt={p.title}
                       fill
                       sizes="(min-width: 768px) 33vw, 100vw"
+                      className="transition-transform duration-500 group-hover:scale-[1.04]"
                       style={{ objectFit: "cover" }}
                     />
                   </div>
@@ -44,7 +45,7 @@ export default function BlogIndexPage() {
                     >
                       {p.category}
                     </p>
-                    <h2 className="text-base font-semibold text-[#0A1628] mt-2 leading-snug">
+                    <h2 className="text-xl font-bold text-[#0A1628] mt-2 leading-snug tracking-tight">
                       {p.title}
                     </h2>
                     <p className="text-sm text-[#475569] mt-2 leading-relaxed flex-1">

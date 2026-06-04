@@ -1,7 +1,8 @@
-import Image from "next/image";
 import Link from "next/link";
 import AboutFaq from "@/components/AboutFaq";
 import FadeInWhenVisible from "@/components/FadeInWhenVisible";
+import KenBurnsImage from "@/components/KenBurnsImage";
+import AnimatedCounter from "@/components/AnimatedCounter";
 
 export const metadata = {
   title: "About Us — AVM Healthcare Products Pvt. Ltd.",
@@ -17,10 +18,10 @@ const ABOUT_TEAM_IMAGE =
   "https://images.unsplash.com/photo-1551601651-2a8555f1a136?auto=format&fit=crop&w=1400&q=80"; // surgical team operating
 
 const aboutStats = [
-  { value: "10,000+", label: "Healthcare SKUs" },
-  { value: "250+", label: "Institutions served" },
-  { value: "100%", label: "On-time fulfilment" },
-  { value: "30+", label: "Years active" },
+  { key: "skus", target: 10000, suffix: "+", thousands: true, label: "Healthcare SKUs" },
+  { key: "institutions", target: 250, suffix: "+", thousands: false, label: "Institutions Served" },
+  { key: "fulfilment", target: 100, suffix: "%", thousands: false, label: "On-Time Fulfilment" },
+  { key: "years", target: 30, suffix: "+", thousands: false, label: "Years Active" },
 ];
 
 const missionCards = [
@@ -52,20 +53,20 @@ const certs = [
 export default function AboutPage() {
   return (
     <>
-      {/* ─── SECTION 1 — HERO (centered, oversized, single image) ─── */}
+      {/* ─── SECTION 1 — HERO (centered, the biggest type on the site) ─── */}
       <section className="bg-white pt-20 pb-16 md:pt-24 md:pb-20 px-6 md:px-8">
         <div className="max-w-6xl mx-auto">
-          <FadeInWhenVisible className="text-center max-w-[700px] mx-auto">
+          <FadeInWhenVisible className="text-center max-w-4xl mx-auto">
             <p
               className="text-xs uppercase font-medium text-[#94A3B8]"
               style={{ letterSpacing: "0.2em" }}
             >
               Est. 1996 · New Delhi, India
             </p>
-            <h1 className="display-heading text-[#0A1628] text-6xl md:text-8xl mt-5">
-              An innovative company, made in India
+            <h1 className="text-[#0A1628] text-7xl md:text-9xl font-bold tracking-tighter leading-[0.95] mt-6">
+              An Innovative Company, Made In India
             </h1>
-            <p className="text-[#475569] text-lg leading-relaxed mt-6">
+            <p className="text-[#475569] text-lg leading-relaxed mt-8 max-w-[700px] mx-auto">
               Indigenous surgical products developed in German collaboration —
               supplying premier institutions across India and worldwide since
               1996.
@@ -74,34 +75,37 @@ export default function AboutPage() {
 
           {/* PLACEHOLDER — client to replace with AVM facility / manufacturing photography */}
           <FadeInWhenVisible delay={0.1} className="mt-14">
-            <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden shadow-lg border border-[#E2E8F0]">
-              <Image
-                src={ABOUT_HERO_IMAGE}
-                alt="Modern operating-room facility"
-                fill
-                priority
-                sizes="(min-width: 1024px) 1152px, 100vw"
-                style={{ objectFit: "cover" }}
-              />
-            </div>
+            <KenBurnsImage
+              src={ABOUT_HERO_IMAGE}
+              alt="Modern operating-room facility"
+              priority
+              sizes="(min-width: 1024px) 1152px, 100vw"
+              className="w-full aspect-[16/9] rounded-2xl border border-[#E2E8F0] shadow-2xl shadow-[#0A1628]/10"
+            />
           </FadeInWhenVisible>
         </div>
       </section>
 
-      {/* ─── SECTION 2 — STATS (centered card) ─── */}
+      {/* ─── SECTION 2 — STATS (animated counters) ─── */}
       <section className="bg-white pb-20 px-6 md:px-8">
         <FadeInWhenVisible className="max-w-6xl mx-auto">
           <div className="bg-white rounded-2xl border border-[#E2E8F0] shadow-sm grid grid-cols-2 md:grid-cols-4 overflow-hidden">
             {aboutStats.map((s, i) => (
               <div
-                key={s.label}
+                key={s.key}
                 className={`py-10 px-8 text-center flex flex-col justify-center items-center ${
                   i >= 2 ? "border-t border-[#E2E8F0] md:border-t-0" : ""
-                } ${i > 0 ? "md:border-l md:border-[#E2E8F0]" : ""}`}
+                } ${i > 0 ? "md:border-l md:border-[#E2E8F0]" : ""} ${
+                  i % 2 === 1 ? "border-l border-[#E2E8F0] md:border-l" : ""
+                }`}
               >
-                <div className="font-bold text-5xl text-[#0A1628] tracking-[-0.04em] tabular-nums">
-                  {s.value}
-                </div>
+                <AnimatedCounter
+                  target={s.target}
+                  suffix={s.suffix}
+                  thousands={s.thousands}
+                  durationMs={2000}
+                  className="font-bold text-5xl text-[#0A1628] tracking-[-0.04em] tabular-nums"
+                />
                 <div className="text-sm text-[#475569] mt-2">{s.label}</div>
               </div>
             ))}
@@ -109,13 +113,13 @@ export default function AboutPage() {
         </FadeInWhenVisible>
       </section>
 
-      {/* ─── SECTION 3 — WHO WE ARE (centered text + image) ─── */}
+      {/* ─── SECTION 3 — WHO WE ARE (centered text + Ken Burns image) ─── */}
       <section className="bg-[#FAFAF9] py-20 md:py-28 px-6 md:px-8">
         <div className="max-w-6xl mx-auto">
           <FadeInWhenVisible className="text-center max-w-[800px] mx-auto">
-            <p className="section-label">Who we are</p>
-            <h2 className="display-heading text-[#0A1628] text-4xl md:text-5xl mt-4">
-              The leading manufacturer of advanced surgical instruments
+            <p className="section-label">Who We Are</p>
+            <h2 className="display-heading text-[#0A1628] text-5xl md:text-6xl mt-4">
+              The Leading Manufacturer Of Advanced Surgical Instruments
             </h2>
             <p className="text-[#475569] text-base leading-relaxed mt-6">
               AVM Healthcare Products Pvt. Ltd. is a New Delhi–based manufacturer
@@ -133,15 +137,12 @@ export default function AboutPage() {
 
           {/* PLACEHOLDER — client to replace with AVM surgical-team photography */}
           <FadeInWhenVisible delay={0.1} className="mt-14 max-w-4xl mx-auto">
-            <div className="relative w-full aspect-[3/2] rounded-2xl overflow-hidden shadow-lg border border-[#E2E8F0]">
-              <Image
-                src={ABOUT_TEAM_IMAGE}
-                alt="Surgical team operating"
-                fill
-                sizes="(min-width: 1024px) 896px, 100vw"
-                style={{ objectFit: "cover" }}
-              />
-            </div>
+            <KenBurnsImage
+              src={ABOUT_TEAM_IMAGE}
+              alt="Surgical team operating"
+              sizes="(min-width: 1024px) 896px, 100vw"
+              className="w-full aspect-[3/2] rounded-2xl border border-[#E2E8F0] shadow-2xl shadow-[#0A1628]/10"
+            />
           </FadeInWhenVisible>
         </div>
       </section>
@@ -151,8 +152,8 @@ export default function AboutPage() {
         <div className="max-w-6xl mx-auto">
           <FadeInWhenVisible className="text-center max-w-2xl mx-auto">
             <p className="section-label">Purpose</p>
-            <h2 className="display-heading text-[#0A1628] text-5xl md:text-6xl mt-4">
-              Mission, motive &amp; collaboration
+            <h2 className="display-heading text-[#0A1628] text-5xl md:text-7xl mt-4">
+              Mission, Motive &amp; Collaboration
             </h2>
           </FadeInWhenVisible>
 
@@ -160,14 +161,14 @@ export default function AboutPage() {
             {missionCards.map((c, i) => {
               const isGreen = c.accent === "green";
               return (
-                <FadeInWhenVisible key={c.title} delay={i * 0.1} className="h-full">
-                  <div className="h-full bg-white border border-[#E2E8F0] rounded-2xl p-8 text-center transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:border-blue-200 flex flex-col items-center">
+                <FadeInWhenVisible key={c.title} delay={i * 0.15} className="h-full">
+                  <div className="h-full bg-white border border-[#E2E8F0] rounded-2xl p-8 text-center transition-all duration-200 hover:-translate-y-1 hover:shadow-xl hover:border-blue-300 flex flex-col items-center">
                     {/* Accent marker — green only for the international/precision card */}
                     <div
                       className={`w-10 h-0.5 ${isGreen ? "bg-[#059669]" : "bg-blue-600"}`}
                     />
                     <h3
-                      className={`text-base font-semibold mt-5 ${
+                      className={`text-xl md:text-2xl font-bold tracking-tight mt-5 ${
                         isGreen ? "text-[#059669]" : "text-[#0A1628]"
                       }`}
                     >
@@ -184,10 +185,10 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ─── SECTION 5 — ANI callout strip (centered, no emoji) ─── */}
-      <div className="bg-blue-50 border-y border-blue-100 py-6 px-6 md:px-8">
-        <FadeInWhenVisible className="max-w-3xl mx-auto text-center flex flex-col items-center gap-2">
-          <p className="text-sm text-[#0A1628]">
+      {/* ─── SECTION 5 — ANI callout strip (centered, animated arrow) ─── */}
+      <div className="bg-blue-50 border-y border-blue-100 py-8 px-6 md:px-8">
+        <FadeInWhenVisible className="max-w-3xl mx-auto text-center flex flex-col items-center gap-3">
+          <p className="text-base md:text-lg text-[#0A1628]">
             Based in Germany? Our products are also available through ANI
             Instruments — our German precision partner.
           </p>
@@ -195,9 +196,12 @@ export default function AboutPage() {
             href="https://www.animedtec.com/"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-blue-600 font-semibold text-sm hover:text-blue-700"
+            className="group inline-flex items-center gap-1.5 text-blue-600 font-semibold text-sm hover:text-blue-700"
           >
-            Visit ANI Instruments →
+            Visit ANI Instruments
+            <span className="inline-block transition-transform duration-200 group-hover:translate-x-1" aria-hidden>
+              →
+            </span>
           </a>
         </FadeInWhenVisible>
       </div>
@@ -206,21 +210,21 @@ export default function AboutPage() {
       <section className="bg-[#FAFAF9] py-20 md:py-28 px-6 md:px-8">
         <div className="max-w-6xl mx-auto">
           <FadeInWhenVisible className="text-center max-w-2xl mx-auto">
-            <p className="section-label">Certifications &amp; compliance</p>
-            <h2 className="display-heading text-[#0A1628] text-5xl md:text-6xl mt-4">
-              Built to the highest standards
+            <p className="section-label">Certifications &amp; Compliance</p>
+            <h2 className="display-heading text-[#0A1628] text-5xl md:text-7xl mt-4">
+              Built To The Highest Standards
             </h2>
           </FadeInWhenVisible>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16">
             {certs.map((c, i) => (
               <FadeInWhenVisible key={c.name} delay={i * 0.1} className="h-full">
-                <div className="h-full bg-white border border-[#E2E8F0] rounded-xl p-8 text-center flex flex-col items-center justify-center gap-4 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:border-blue-200">
+                <div className="group h-full bg-white border border-[#E2E8F0] rounded-xl p-8 text-center flex flex-col items-center justify-center gap-4 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:border-blue-200">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={c.img}
                     alt={c.name}
-                    style={{ height: "60px", width: "auto", objectFit: "contain", display: "block" }}
+                    className="h-[60px] w-auto object-contain transition-transform duration-200 group-hover:scale-105"
                   />
                   <div className="text-sm font-semibold text-[#0A1628]">
                     {c.name}
@@ -237,8 +241,8 @@ export default function AboutPage() {
         <div className="max-w-3xl mx-auto">
           <FadeInWhenVisible className="text-center">
             <p className="section-label">FAQ</p>
-            <h2 className="display-heading text-[#0A1628] text-5xl md:text-6xl mt-4">
-              Frequently asked questions
+            <h2 className="display-heading text-[#0A1628] text-5xl md:text-7xl mt-4">
+              Frequently Asked Questions
             </h2>
             <p className="text-[#475569] mt-5 leading-relaxed">
               Everything you need to know about AVM Healthcare Products.
@@ -254,7 +258,7 @@ export default function AboutPage() {
       <section className="bg-[#FAFAF9] py-20 px-6 md:px-8">
         <FadeInWhenVisible className="bg-white rounded-2xl border border-[#E2E8F0] shadow-sm p-12 max-w-4xl mx-auto text-center flex flex-col items-center">
           <h3 className="display-heading text-[#0A1628] text-3xl md:text-4xl">
-            Get our detailed product catalogue
+            Get Our Detailed Product Catalogue
           </h3>
           <p className="text-[#475569] text-sm mt-3 max-w-md leading-relaxed">
             3,400+ instruments across 6 specialties — delivered within one

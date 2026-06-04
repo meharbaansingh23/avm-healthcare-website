@@ -16,8 +16,8 @@ export default function RequestCataloguePage() {
           {/* LEFT — Form */}
           <FadeInWhenVisible>
             <p className="section-label mb-3">Request Catalogue</p>
-            <h1 className="display-heading text-[#0A1628] text-4xl md:text-5xl mb-4">
-              Get our detailed product catalogue
+            <h1 className="text-[#0A1628] text-4xl md:text-6xl font-bold tracking-tighter leading-[1.05] mb-4">
+              Get Our Detailed Product Catalogue
             </h1>
             <p className="text-[#475569] text-sm leading-relaxed mb-10">
               Fill in your details and our team will send you the full catalogue

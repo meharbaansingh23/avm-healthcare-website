@@ -22,8 +22,8 @@ export default function InnovationPage() {
             >
               Innovation
             </p>
-            <h1 className="display-heading text-[#0A1628] text-5xl md:text-7xl mt-5">
-              Build the next generation of surgical instruments with us
+            <h1 className="text-[#0A1628] text-6xl md:text-8xl font-bold tracking-tighter leading-[1.05] mt-5">
+              Build The Next Generation Of Surgical Instruments With Us
             </h1>
             <p className="text-[#475569] text-base md:text-lg leading-relaxed mt-6 max-w-xl mx-auto">
               We partner with surgeons, researchers, and institutions to develop
@@ -72,7 +72,7 @@ export default function InnovationPage() {
         <div className="max-w-2xl mx-auto">
           <FadeInWhenVisible className="text-center mb-12">
             <h2 className="display-heading text-[#0A1628] text-4xl md:text-5xl">
-              Submit a proposal
+              Submit A Proposal
             </h2>
             <p className="text-[#475569] mt-4 leading-relaxed max-w-xl mx-auto">
               Tell us about your idea — the problem you&rsquo;re solving, the

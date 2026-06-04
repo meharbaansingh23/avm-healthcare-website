@@ -46,7 +46,7 @@ export default function ContactForm() {
       aria-busy={status === "submitting"}
     >
       <h2 className="display-heading text-[#0A1628] text-3xl md:text-4xl text-center mb-2">
-        Send us a message
+        Send Us A Message
       </h2>
 
       {status === "success" && (

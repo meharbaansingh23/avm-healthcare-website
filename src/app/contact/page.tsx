@@ -34,8 +34,8 @@ export default function ContactPage() {
         {/* Intro */}
         <FadeInWhenVisible className="text-center max-w-3xl mx-auto">
           <p className="section-label">Contact us</p>
-          <h1 className="display-heading text-[#0A1628] text-5xl md:text-7xl mt-4">
-            Get in touch
+          <h1 className="text-[#0A1628] text-6xl md:text-8xl font-bold tracking-tighter leading-[1.05] mt-4">
+            Get In Touch
           </h1>
           <p className="text-[#475569] text-lg mt-5 max-w-xl mx-auto leading-relaxed">
             Our team is based in New Delhi and is available Monday to Saturday,

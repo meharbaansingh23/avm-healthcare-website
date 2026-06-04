@@ -15,8 +15,8 @@ export default function CareersPage() {
       <section className="bg-white pt-20 pb-12 md:pt-24 md:pb-16 px-6 md:px-8 text-center">
         <FadeInWhenVisible className="max-w-3xl mx-auto">
           <p className="section-label">Careers at AVM</p>
-          <h1 className="display-heading text-[#0A1628] text-5xl md:text-7xl mt-5">
-            Join the team shaping surgical care in India
+          <h1 className="text-[#0A1628] text-6xl md:text-8xl font-bold tracking-tighter leading-[1.05] mt-5">
+            Join The Team Shaping Surgical Care In India
           </h1>
           <p className="text-[#475569] text-base md:text-lg leading-relaxed mt-6 max-w-xl mx-auto">
             We don&rsquo;t have specific openings listed right now — but
@@ -63,7 +63,7 @@ export default function CareersPage() {
         <div className="max-w-2xl mx-auto">
           <FadeInWhenVisible className="text-center mb-12">
             <h2 className="display-heading text-[#0A1628] text-4xl md:text-5xl">
-              Express your interest
+              Express Your Interest
             </h2>
             <p className="text-[#475569] mt-4 leading-relaxed max-w-xl mx-auto">
               Tell us a bit about yourself and what you&rsquo;d like to bring to

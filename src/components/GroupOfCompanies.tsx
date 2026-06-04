@@ -56,8 +56,8 @@ export default function GroupOfCompanies() {
         {/* Top row — centered */}
         <FadeInWhenVisible className="text-center max-w-2xl mx-auto mb-16">
           <p className="section-label">Our group</p>
-          <h2 className="display-heading text-[#0A1628] text-5xl md:text-6xl mt-4">
-            Part of a larger family
+          <h2 className="display-heading text-[#0A1628] text-5xl md:text-7xl mt-4">
+            Part Of A Larger Family
           </h2>
           <p className="text-sm text-[#475569] mt-5 leading-relaxed">
             AVM Healthcare is part of a group of companies united by a shared
@@ -84,6 +84,7 @@ export default function GroupOfCompanies() {
                       <img
                         src={c.logo.src}
                         alt={c.logo.alt}
+                        className="transition-transform duration-200 group-hover:scale-105"
                         style={{
                           maxHeight: "48px",
                           maxWidth: "140px",

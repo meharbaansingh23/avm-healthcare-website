@@ -85,7 +85,7 @@ export default async function BlogPostPage({
 
         <div className="bg-[#FAFAF9] rounded-2xl p-8 mt-16 text-center border border-[#E2E8F0]">
           <h3 className="display-heading text-[#0A1628] text-2xl md:text-3xl">
-            Interested in our surgical instruments?
+            Interested In Our Surgical Instruments?
           </h3>
           <p className="text-[#475569] text-sm mt-3 leading-relaxed max-w-md mx-auto">
             Request our detailed catalogue — over 3,400 instruments across six
