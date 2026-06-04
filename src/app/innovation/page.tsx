@@ -1,5 +1,6 @@
 import Image from "next/image";
 import InnovationForm from "@/components/InnovationForm";
+import FadeInWhenVisible from "@/components/FadeInWhenVisible";
 
 export const metadata = {
   title: "Innovation — AVM Healthcare Products Pvt. Ltd.",
@@ -10,38 +11,35 @@ export const metadata = {
 export default function InnovationPage() {
   return (
     <>
-      {/* HERO — two column on desktop, stacked on mobile */}
-      <section className="bg-white pt-16 pb-20 px-6">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* LEFT — text */}
-          <div>
+      {/* HERO — centered */}
+      <section className="bg-white pt-20 pb-16 md:pt-24 md:pb-20 px-6 md:px-8">
+        <div className="max-w-6xl mx-auto">
+          <FadeInWhenVisible className="text-center max-w-3xl mx-auto">
+            {/* SANCTIONED GREEN ACCENT (Innovation page) — green eyebrow */}
             <p
-              className="text-xs uppercase font-semibold text-blue-600 mb-5"
-              style={{ letterSpacing: "0.15em" }}
+              className="text-xs uppercase font-medium text-[#059669]"
+              style={{ letterSpacing: "0.2em" }}
             >
               Innovation
             </p>
-            <h1
-              className="font-semibold text-4xl md:text-5xl text-[#0A1628] tracking-[-0.03em] leading-[1.05]"
-              style={{ letterSpacing: "-0.03em" }}
-            >
+            <h1 className="display-heading text-[#0A1628] text-5xl md:text-7xl mt-5">
               Build the next generation of surgical instruments with us
             </h1>
-            <p className="text-[#64748B] text-base md:text-lg leading-relaxed mt-6 max-w-md">
-              We partner with surgeons, researchers, and institutions to
-              develop instruments that solve real problems in the operating
-              theatre.
+            <p className="text-[#475569] text-base md:text-lg leading-relaxed mt-6 max-w-xl mx-auto">
+              We partner with surgeons, researchers, and institutions to develop
+              instruments that solve real problems in the operating theatre.
             </p>
+            {/* SANCTIONED GREEN ACCENT (Innovation page) — green hover on the primary CTA */}
             <a
               href="#proposal"
-              className="inline-block mt-8 bg-[#0A1628] text-white px-8 py-4 rounded-lg text-sm font-semibold hover:bg-[#0d1f38] transition-colors"
+              className="inline-block mt-8 bg-[#0A1628] text-white px-8 py-4 rounded-lg text-sm font-semibold hover:bg-[#059669] transition-colors"
             >
               Submit a proposal
             </a>
-          </div>
+          </FadeInWhenVisible>
 
-          {/* RIGHT — image with soft blue radial gradient spotlight */}
-          <div className="relative isolate">
+          {/* Image with soft blue radial gradient spotlight */}
+          <FadeInWhenVisible delay={0.1} className="relative isolate mt-14 max-w-4xl mx-auto">
             <div
               aria-hidden
               className="absolute -inset-8 -z-10 pointer-events-none"
@@ -57,7 +55,7 @@ export default function InnovationPage() {
               width={1200}
               height={799}
               priority
-              sizes="(min-width: 1024px) 50vw, 100vw"
+              sizes="(min-width: 1024px) 896px, 100vw"
               style={{
                 width: "100%",
                 height: "auto",
@@ -65,26 +63,25 @@ export default function InnovationPage() {
                 display: "block",
               }}
             />
-          </div>
+          </FadeInWhenVisible>
         </div>
       </section>
 
       {/* FORM SECTION */}
-      <section id="proposal" className="bg-white py-24 px-6 scroll-mt-20">
+      <section id="proposal" className="bg-white py-24 px-6 md:px-8 scroll-mt-20">
         <div className="max-w-2xl mx-auto">
-          <div className="text-center mb-12">
-            <h2
-              className="font-semibold text-4xl text-[#0A1628] tracking-[-0.03em] leading-tight"
-              style={{ letterSpacing: "-0.03em" }}
-            >
+          <FadeInWhenVisible className="text-center mb-12">
+            <h2 className="display-heading text-[#0A1628] text-4xl md:text-5xl">
               Submit a proposal
             </h2>
-            <p className="text-[#64748B] mt-4 leading-relaxed">
+            <p className="text-[#475569] mt-4 leading-relaxed max-w-xl mx-auto">
               Tell us about your idea — the problem you&rsquo;re solving, the
               product concept, and how you see AVM being involved.
             </p>
-          </div>
-          <InnovationForm />
+          </FadeInWhenVisible>
+          <FadeInWhenVisible delay={0.1}>
+            <InnovationForm />
+          </FadeInWhenVisible>
         </div>
       </section>
     </>

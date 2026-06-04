@@ -34,7 +34,7 @@ function SuccessState({ message }: { message: string }) {
         />
       </svg>
       <h3 className="text-xl font-semibold text-[#0A1628] mt-6">Thank you</h3>
-      <p className="text-[#64748B] mt-2 max-w-sm mx-auto leading-relaxed">{message}</p>
+      <p className="text-[#475569] mt-2 max-w-sm mx-auto leading-relaxed">{message}</p>
     </div>
   );
 }
@@ -184,7 +184,7 @@ export default function CatalogueForm() {
 
       <div>
         <label htmlFor="rc-req" className="form-label">
-          Specific requirements <span className="normal-case tracking-normal text-[#64748B] font-normal">(optional)</span>
+          Specific requirements <span className="normal-case tracking-normal text-[#475569] font-normal">(optional)</span>
         </label>
         <textarea
           id="rc-req"

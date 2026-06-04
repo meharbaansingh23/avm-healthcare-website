@@ -1,8 +1,12 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Google Sans Flex", ui-sans-serif, system-ui, sans-serif;
-  --font-serif: "Google Sans Flex", ui-sans-serif, system-ui, sans-serif;
+  /* Body + display typeface. Helvetica Neue first (per design system),
+     then self-hosted Inter (next/font) as a close substitute, then system. */
+  --font-sans: "Helvetica Neue", var(--font-inter), system-ui, -apple-system,
+    "Segoe UI", Roboto, Arial, sans-serif;
+  --font-serif: "Helvetica Neue", var(--font-inter), system-ui, -apple-system,
+    sans-serif;
 }
 
 html {
@@ -13,7 +17,7 @@ html,
 body {
   background: #ffffff;
   color: #0a1628;
-  font-family: "Google Sans Flex", sans-serif;
+  font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -23,9 +27,10 @@ body {
   font-variant-numeric: tabular-nums;
 }
 
+/* Oversized Ramp-style display heading: tight tracking, near-1.0 line height. */
 .display-heading {
-  font-family: "Google Sans Flex", sans-serif;
-  font-weight: 600;
+  font-family: var(--font-sans);
+  font-weight: 700;
   letter-spacing: -0.04em;
   line-height: 1.02;
 }
@@ -50,15 +55,16 @@ body {
 }
 
 @layer components {
+  /* Eyebrow label — uppercase, tracking-widest, text-xs, medium, blue. */
   .section-label {
     @apply text-xs uppercase font-medium text-blue-600;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.2em;
   }
 
   .section-heading {
-    font-family: "Google Sans Flex", sans-serif;
-    @apply text-4xl font-semibold text-[#0A1628] leading-tight;
-    letter-spacing: -0.03em;
+    font-family: var(--font-sans);
+    @apply text-4xl md:text-5xl font-bold text-[#0A1628] leading-tight;
+    letter-spacing: -0.035em;
   }
 
   .btn-primary {
@@ -69,7 +75,7 @@ body {
   }
 
   .btn-secondary {
-    @apply text-[#64748B] px-5 py-3.5 text-sm transition-colors inline-flex items-center gap-1;
+    @apply text-[#475569] px-5 py-3.5 text-sm transition-colors inline-flex items-center gap-1;
   }
   .btn-secondary:hover {
     color: #0a1628;
@@ -81,7 +87,7 @@ body {
   }
 
   .form-label {
-    @apply block text-xs uppercase font-semibold text-[#64748B] mb-2;
+    @apply block text-xs uppercase font-semibold text-[#475569] mb-2;
     letter-spacing: 0.15em;
   }
 

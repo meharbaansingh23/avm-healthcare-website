@@ -45,7 +45,7 @@ export default function ContactForm() {
       className="flex flex-col gap-6"
       aria-busy={status === "submitting"}
     >
-      <h2 className="font-serif text-2xl text-[#0A1628] font-bold mb-2">
+      <h2 className="display-heading text-[#0A1628] text-3xl md:text-4xl text-center mb-2">
         Send us a message
       </h2>
 

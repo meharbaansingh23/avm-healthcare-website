@@ -32,7 +32,7 @@ export default function Navbar() {
             <Link
               key={l.href}
               href={l.href}
-              className="text-sm text-[#64748B] hover:text-[#0A1628] transition-colors"
+              className="text-sm text-[#475569] hover:text-[#0A1628] transition-colors"
             >
               {l.label}
             </Link>
@@ -76,7 +76,7 @@ export default function Navbar() {
               <Link
                 key={l.href}
                 href={l.href}
-                className="text-sm text-[#64748B] hover:text-[#0A1628] py-2"
+                className="text-sm text-[#475569] hover:text-[#0A1628] py-2"
                 onClick={() => setOpen(false)}
               >
                 {l.label}

@@ -1,4 +1,5 @@
 import CatalogueForm from "@/components/CatalogueForm";
+import FadeInWhenVisible from "@/components/FadeInWhenVisible";
 
 export const metadata = {
   title: "Request Catalogue — AVM Healthcare Products Pvt. Ltd.",
@@ -9,25 +10,25 @@ export const metadata = {
 export default function RequestCataloguePage() {
   return (
     <div className="min-h-screen bg-white">
-      <div className="max-w-7xl mx-auto px-6 py-16">
+      <div className="max-w-6xl mx-auto px-6 md:px-8 py-16 md:py-20">
+        {/* Two-column layout retained — form-focused page exception to the centered rule */}
         <div className="grid lg:grid-cols-2 gap-16 items-start">
           {/* LEFT — Form */}
-          <div>
-            <p className="text-xs uppercase tracking-[0.12em] font-medium text-blue-600 mb-3">
-              Request Catalogue
-            </p>
-            <h1 className="text-4xl font-semibold text-[#0A1628] tracking-[-0.03em] leading-tight mb-3">
+          <FadeInWhenVisible>
+            <p className="section-label mb-3">Request Catalogue</p>
+            <h1 className="display-heading text-[#0A1628] text-4xl md:text-5xl mb-4">
               Get our detailed product catalogue
             </h1>
-            <p className="text-[#64748B] text-sm leading-relaxed mb-10">
-              Fill in your details and our team will send you the full catalogue within one business day.
+            <p className="text-[#475569] text-sm leading-relaxed mb-10">
+              Fill in your details and our team will send you the full catalogue
+              within one business day.
             </p>
             <CatalogueForm />
-          </div>
+          </FadeInWhenVisible>
 
           {/* RIGHT — Portrait image */}
-          <div className="lg:sticky lg:top-24">
-            <div className="rounded-2xl overflow-hidden aspect-[3/4] w-full bg-[#F1F5F9]">
+          <FadeInWhenVisible delay={0.1} className="lg:sticky lg:top-24">
+            <div className="rounded-2xl overflow-hidden aspect-[3/4] w-full bg-[#F1F5F9] shadow-lg border border-[#E2E8F0]">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/images/request/cover.png"
@@ -38,7 +39,7 @@ export default function RequestCataloguePage() {
             <p className="text-xs text-[#94A3B8] text-center mt-3">
               AVM Healthcare Products · Full Surgical Instruments Catalogue
             </p>
-          </div>
+          </FadeInWhenVisible>
         </div>
       </div>
     </div>

@@ -36,7 +36,7 @@ function SuccessState({ message }: { message: string }) {
         />
       </svg>
       <h3 className="text-xl font-semibold text-[#0A1628] mt-6">Thank you</h3>
-      <p className="text-[#64748B] mt-2 max-w-sm mx-auto leading-relaxed">{message}</p>
+      <p className="text-[#475569] mt-2 max-w-sm mx-auto leading-relaxed">{message}</p>
     </div>
   );
 }
@@ -195,14 +195,14 @@ export default function CareersForm() {
           htmlFor="c-cv"
           className="form-input flex items-center justify-between gap-3 cursor-pointer hover:border-blue-300 peer-focus-visible:border-blue-600 peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-blue-600"
         >
-          <span className="text-[#64748B] truncate">
+          <span className="text-[#475569] truncate">
             {cvName || "Choose file…"}
           </span>
           <span className="text-blue-600 font-semibold text-xs uppercase tracking-[0.15em]">
             Browse
           </span>
         </label>
-        <p className="text-xs text-[#64748B] italic mt-2">
+        <p className="text-xs text-[#475569] italic mt-2">
           Maximum file size 5MB. If upload fails, please email your CV directly
           to{" "}
           <a

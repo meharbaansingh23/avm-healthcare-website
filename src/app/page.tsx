@@ -3,9 +3,16 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import HeroSlideshow from "@/components/HeroSlideshow";
+import { motion, AnimatePresence } from "framer-motion";
+import FadeInWhenVisible from "@/components/FadeInWhenVisible";
 import GroupOfCompanies from "@/components/GroupOfCompanies";
 import { blogPosts } from "@/lib/blog";
+
+// PLACEHOLDER IMAGERY — to be replaced by client-provided photography.
+// Real Unsplash CDN URL (verified). Dramatic, editorial operating-theatre shot
+// chosen for the full-bleed hero so the dark left-gradient keeps text readable.
+const HERO_IMAGE =
+  "https://images.unsplash.com/photo-1504439468489-c8920d796a29?auto=format&fit=crop&w=1920&q=80";
 
 const specialties = [
   {
@@ -93,6 +100,8 @@ const certs = [
   { name: "NSIC Registered", img: "/images/certifications/nsic.png" },
 ];
 
+// Product support documents — the "Warranty Certificate" PDF (previously 3rd)
+// has been removed per the redesign brief. Three documents remain.
 const downloads = [
   {
     title: "Care & Maintenance Guide",
@@ -105,16 +114,30 @@ const downloads = [
     href: "/downloads/Certificate%20of%20Authenticity.pdf",
   },
   {
-    title: "Warranty Certificate",
-    desc: "Standard warranty certificate for AVM instruments.",
-    href: "/downloads/Warranty%20Certificate.pdf",
-  },
-  {
     title: "Warranty by AVM",
     desc: "Complete warranty terms offered by AVM Healthcare.",
     href: "/downloads/Warranty%20offered%20by%20AVM.pdf",
   },
 ];
+
+function ArrowRight({ className = "" }: { className?: string }) {
+  return (
+    <svg
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden
+    >
+      <path d="M5 12h14M13 6l6 6-6 6" />
+    </svg>
+  );
+}
 
 export default function Home() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
@@ -158,388 +181,431 @@ export default function Home() {
 
   return (
     <>
-      {/* SECTION 1 — HERO */}
-      <section className="bg-gradient-to-br from-white via-white to-blue-50 min-h-[88vh] grid lg:grid-cols-2 gap-16 items-stretch">
-        <div className="flex flex-col justify-center pl-6 md:pl-16 lg:pl-24 pr-6 py-16">
-          <p className="text-sm text-[#94A3B8] tracking-wide mb-4">Surgical Instruments · Made in India · Since 1996</p>
+      {/* ─── SECTION 1 — FULL-BLEED HERO (left-aligned: the one exception) ─── */}
+      <section className="relative min-h-[calc(100svh-4rem)] flex items-center overflow-hidden bg-[#0A1628]">
+        {/* PLACEHOLDER — client to replace with AVM-specific operating-theatre photography */}
+        <Image
+          src={HERO_IMAGE}
+          alt="Surgical team operating in a modern operating theatre"
+          fill
+          priority
+          sizes="100vw"
+          style={{ objectFit: "cover" }}
+        />
+        {/* Dark gradient overlay — keeps left-aligned text readable */}
+        <div
+          aria-hidden
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(to right, rgba(10,22,40,0.85) 0%, rgba(10,22,40,0.6) 50%, rgba(10,22,40,0.4) 100%)",
+          }}
+        />
 
-          <h1
-            className="text-5xl lg:text-6xl font-semibold text-[#0A1628] mt-6 leading-[1.05] tracking-[-0.04em]"
-            style={{ letterSpacing: "-0.03em" }}
+        <div className="relative z-10 w-full max-w-6xl mx-auto px-6 md:px-8 py-24">
+          <div className="max-w-[600px] text-left">
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              className="text-xs uppercase font-medium text-[#DBEAFE]"
+              style={{ letterSpacing: "0.2em" }}
+            >
+              Surgical Instruments · Made in India · Since 1996
+            </motion.p>
+
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
+              className="display-heading text-white text-6xl md:text-8xl mt-6"
+            >
+              Precision instruments for modern surgical care
+            </motion.h1>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+              className="text-white/90 text-lg leading-relaxed mt-7"
+            >
+              AVM Healthcare Products supplies advanced surgical instruments to
+              premier hospitals across India — from neurosurgery to
+              cardiovascular care.
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
+              className="mt-9"
+            >
+              <Link
+                href="/request-catalogue"
+                className="inline-flex items-center gap-2 bg-white text-[#0A1628] px-8 py-4 rounded-lg text-sm font-semibold transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl"
+              >
+                Request catalogue
+                <ArrowRight />
+              </Link>
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Scroll indicator — animated chevron */}
+        <motion.div
+          aria-hidden
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/70"
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M6 9l6 6 6-6" />
+          </svg>
+        </motion.div>
+      </section>
+
+      {/* ─── SECTION 2 — QUOTE STRIP ─── */}
+      <section className="bg-white py-20 px-6 md:px-8">
+        <FadeInWhenVisible className="max-w-[800px] mx-auto text-center">
+          <div className="w-12 h-px bg-blue-600 mx-auto" />
+          <blockquote className="display-heading text-[#0A1628] text-3xl md:text-4xl italic mt-8 leading-snug">
+            &ldquo;Our motto is to provide world-class instruments for the
+            benefit of mankind.&rdquo;
+          </blockquote>
+          <p
+            className="text-xs uppercase font-medium text-[#94A3B8] mt-8"
+            style={{ letterSpacing: "0.2em" }}
           >
-            Precision instruments for modern surgical care
-          </h1>
-
-          <p className="text-[#64748B] text-lg leading-relaxed max-w-md mt-5">
-            AVM Healthcare Products supplies advanced surgical instruments
-            to premier hospitals across India — from neurosurgery to
-            cardiovascular care.
+            — Anil Chaba · Director
           </p>
-
-          <div className="mt-8">
-            <Link
-              href="/request-catalogue"
-              className="bg-[#0A1628] text-white px-7 py-3.5 rounded-lg text-sm font-semibold hover:bg-[#0d1f38] transition-colors inline-block"
-            >
-              Request catalogue
-            </Link>
-          </div>
-        </div>
-
-        <div className="flex items-center pr-6 md:pr-12">
-          <div className="rounded-2xl overflow-hidden aspect-[4/3] w-full shadow-sm border border-[#E2E8F0]">
-            <HeroSlideshow />
-          </div>
-        </div>
+        </FadeInWhenVisible>
       </section>
 
-      {/* SECTION 2 — WHO WE ARE */}
-      <section id="story" className="bg-[#F5F5F3] py-28 px-6">
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center">
-          <div>
-            <p className="section-label">Who we are</p>
-            <h2 className="text-4xl font-semibold text-[#0A1628] mt-3 tracking-[-0.03em] leading-tight" style={{ letterSpacing: "-0.03em" }}>
-              Supplying surgical excellence since 1996
-            </h2>
-            <p className="text-[#64748B] mt-6 leading-relaxed">
-              AVM Healthcare Products Pvt. Ltd. is a New Delhi–based
-              manufacturer and supplier of advanced quality surgical
-              instruments and medical devices. We design, develop, and supply
-              instruments across neurosurgery, general surgery, cardiovascular,
-              gynaecology, plastic surgery, and more.
-            </p>
-            <blockquote className="mt-8 border-l-4 border-blue-500 pl-5 italic text-lg text-[#0A1628] font-medium leading-relaxed">
-              &ldquo;Our motto is to provide world-class instruments for the
-              benefit of mankind.&rdquo;
-            </blockquote>
-          </div>
-
-          <div className="rounded-2xl overflow-hidden aspect-video shadow-lg border border-[#E2E8F0] bg-black">
-            <iframe
-              src="https://www.youtube.com/embed/_QNRNKJiNuA"
-              title="AVM Healthcare — Our story"
-              className="w-full h-full"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION 3 — SURGICAL SPECIALTIES */}
-      <section className="bg-white py-28">
-        <div className="text-center max-w-2xl mx-auto px-6">
-          <p className="section-label">Our specialties</p>
-          <h2 className="text-4xl font-semibold text-[#0A1628] mt-3 tracking-[-0.03em]">
-            Six disciplines, one commitment to quality
+      {/* ─── SECTION 3 — WHO WE ARE (centered, no video) ─── */}
+      <section id="story" className="bg-[#FAFAF9] py-20 md:py-28 px-6 md:px-8">
+        <FadeInWhenVisible className="max-w-[700px] mx-auto text-center">
+          <p className="section-label">Who we are</p>
+          <h2 className="section-heading mt-4">
+            Supplying surgical excellence since 1996
           </h2>
-          <p className="text-[#64748B] mt-4 leading-relaxed">
-            We supply precision instruments across six major surgical
-            specialties — each category developed with direct input from
-            practicing surgeons.
+          <p className="text-[#475569] mt-6 leading-relaxed">
+            AVM Healthcare Products Pvt. Ltd. is a New Delhi–based manufacturer
+            and supplier of advanced quality surgical instruments and medical
+            devices. We design, develop, and supply instruments across
+            neurosurgery, general surgery, cardiovascular, gynaecology, plastic
+            surgery, and more.
           </p>
-        </div>
+        </FadeInWhenVisible>
+      </section>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-16 max-w-7xl mx-auto px-6">
-          {specialties.map((s) => (
-            <div
-              key={s.slug}
-              className="bg-white border border-[#E2E8F0] rounded-2xl overflow-hidden hover:shadow-md hover:border-blue-200 transition-all duration-200"
-            >
-              <div className="w-full h-48 rounded-none overflow-hidden">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={s.img}
-                  alt={s.label}
-                  style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-                />
-              </div>
-              <div className="p-6">
-                <h3 className="text-base font-semibold text-[#0A1628] leading-snug">
-                  {s.name}
-                </h3>
-                <p className="text-sm text-[#64748B] leading-relaxed mt-2">
-                  {s.desc}
-                </p>
-              </div>
-            </div>
-          ))}
+      {/* ─── SECTION 4 — SURGICAL SPECIALTIES ─── */}
+      <section className="bg-white py-20 md:py-28 px-6 md:px-8">
+        <div className="max-w-6xl mx-auto">
+          <FadeInWhenVisible className="text-center max-w-2xl mx-auto">
+            <p className="section-label">Our specialties</p>
+            <h2 className="display-heading text-[#0A1628] text-5xl md:text-6xl mt-4">
+              Six disciplines, one commitment to quality
+            </h2>
+            <p className="text-[#475569] mt-5 leading-relaxed">
+              We supply precision instruments across six major surgical
+              specialties — each category developed with direct input from
+              practicing surgeons.
+            </p>
+          </FadeInWhenVisible>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-16">
+            {specialties.map((s, i) => (
+              <FadeInWhenVisible key={s.slug} delay={(i % 3) * 0.1} className="h-full">
+                <div className="h-full bg-white border border-[#E2E8F0] rounded-2xl overflow-hidden transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:border-blue-200">
+                  <div className="w-full h-48 overflow-hidden">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={s.img}
+                      alt={s.label}
+                      style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                    />
+                  </div>
+                  <div className="p-6 text-center">
+                    <h3 className="text-base font-semibold text-[#0A1628] leading-snug">
+                      {s.name}
+                    </h3>
+                    <p className="text-sm text-[#475569] leading-relaxed mt-2">
+                      {s.desc}
+                    </p>
+                  </div>
+                </div>
+              </FadeInWhenVisible>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* SECTION 4 — WHY CHOOSE AVM */}
-      <section className="bg-[#F5F5F3] py-28">
-        {/* Header row */}
-        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row md:justify-between md:items-end gap-12">
-          <div>
-            <p className="text-xs uppercase font-medium text-blue-600" style={{ letterSpacing: "0.12em" }}>
-              Why choose AVM
-            </p>
-            <h2 className="text-4xl md:text-5xl font-semibold text-[#0A1628] mt-4 max-w-md leading-[1.05] tracking-[-0.03em]">
+      {/* ─── SECTION 5 — WHY CHOOSE AVM (showcase) ─── */}
+      {/* Soft blue gradient background (per design system). Green active accent on accordion. */}
+      <section
+        className="py-24 md:py-32 px-6 md:px-8"
+        style={{ background: "linear-gradient(180deg, #DBEAFE 0%, #EFF6FF 100%)" }}
+      >
+        <div className="max-w-6xl mx-auto">
+          <FadeInWhenVisible className="text-center max-w-[700px] mx-auto">
+            <p className="section-label">Why choose AVM</p>
+            <h2 className="display-heading text-[#0A1628] text-6xl md:text-8xl mt-4">
               Built for the demands of modern surgery
             </h2>
-          </div>
-          <p className="text-[#64748B] text-base leading-relaxed max-w-md">
-            Every instrument we supply meets the highest standards of material
-            quality, precision engineering, and surgical performance — because
-            in the operating theatre, there is no margin for error.
-          </p>
-        </div>
+            <p className="text-[#475569] text-lg mt-6 leading-relaxed">
+              Every instrument we supply meets the highest standards of material
+              quality, precision engineering, and surgical performance — because
+              in the operating theatre, there is no margin for error.
+            </p>
+          </FadeInWhenVisible>
 
-        {/* Stats card */}
-        <div className="mt-16 max-w-7xl mx-auto px-6">
-          <div ref={statsRef} className="bg-white rounded-2xl border border-[#E2E8F0] grid grid-cols-2 md:grid-cols-4 overflow-hidden">
-            {whyStats.map((stat, i) => {
-              const value = counts[stat.key];
-              const display = stat.thousands ? value.toLocaleString() : value;
-              return (
-                <div
-                  key={stat.key}
-                  className={`py-10 px-8 flex flex-col justify-center items-center text-center ${
-                    i >= 2 ? "border-t border-[#E2E8F0] md:border-t-0" : ""
-                  } ${i > 0 ? "md:border-l md:border-[#E2E8F0]" : ""}`}
-                >
-                  <div className="font-semibold text-4xl text-[#0A1628] tracking-[-0.04em] tabular-nums">
-                    {display}
-                    {stat.suffix}
+          {/* Stats card */}
+          <FadeInWhenVisible delay={0.1} className="mt-16">
+            <div
+              ref={statsRef}
+              className="bg-white rounded-2xl border border-[#E2E8F0] shadow-sm grid grid-cols-2 md:grid-cols-4 overflow-hidden"
+            >
+              {whyStats.map((stat, i) => {
+                const value = counts[stat.key];
+                const display = stat.thousands ? value.toLocaleString() : value;
+                return (
+                  <div
+                    key={stat.key}
+                    className={`py-10 px-8 flex flex-col justify-center items-center text-center ${
+                      i >= 2 ? "border-t border-[#E2E8F0] md:border-t-0" : ""
+                    } ${i > 0 ? "md:border-l md:border-[#E2E8F0]" : ""}`}
+                  >
+                    <div className="font-bold text-4xl text-[#0A1628] tracking-[-0.04em] tabular-nums">
+                      {display}
+                      {stat.suffix}
+                    </div>
+                    <div className="text-sm text-[#475569] mt-2">{stat.label}</div>
                   </div>
-                  <div className="text-sm text-[#64748B] mt-2">{stat.label}</div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Accordion */}
-        <div className="mt-20 max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-start">
-          <div className="lg:sticky lg:top-32">
-            <div className="h-96 w-full rounded-2xl overflow-hidden">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/images/why/choose.png"
-                alt="AVM Healthcare surgical instruments"
-                style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', borderRadius: '16px' }}
-              />
+                );
+              })}
             </div>
-          </div>
+          </FadeInWhenVisible>
 
-          <div>
+          {/* Accordion — centered single column, framer-motion expand, green active state */}
+          <FadeInWhenVisible delay={0.15} className="mt-12 max-w-[800px] mx-auto flex flex-col gap-3">
             {whyAvm.map((row, i) => {
               const isOpen = openIndex === i;
               return (
                 <div
                   key={row.title}
-                  className="border-b border-[#E2E8F0] py-6 cursor-pointer group"
-                  onClick={() => setOpenIndex(isOpen ? null : i)}
-                  role="button"
-                  tabIndex={0}
-                  aria-expanded={isOpen}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter" || e.key === " ") {
-                      e.preventDefault();
-                      setOpenIndex(isOpen ? null : i);
-                    }
-                  }}
+                  className={`rounded-xl border transition-colors duration-200 overflow-hidden ${
+                    isOpen
+                      ? "border-[#059669] bg-[#ECFDF5]"
+                      : "border-[#E2E8F0] bg-white hover:border-blue-200"
+                  }`}
                 >
-                  <div className="flex justify-between items-center gap-6">
+                  <button
+                    type="button"
+                    onClick={() => setOpenIndex(isOpen ? null : i)}
+                    aria-expanded={isOpen}
+                    className="w-full flex justify-between items-center gap-6 text-left px-6 py-5 cursor-pointer"
+                  >
                     <h3
                       className={`text-base font-semibold transition-colors ${
-                        isOpen
-                          ? "text-blue-600"
-                          : "text-[#0A1628] group-hover:text-blue-600"
+                        isOpen ? "text-[#059669]" : "text-[#0A1628]"
                       }`}
                     >
                       {row.title}
                     </h3>
                     <span
-                      className={`shrink-0 transition-all duration-300 ${
-                        isOpen
-                          ? "rotate-45 text-blue-600"
-                          : "text-[#94A3B8] group-hover:text-blue-600"
+                      className={`shrink-0 transition-transform duration-300 ${
+                        isOpen ? "rotate-45 text-[#059669]" : "text-[#94A3B8]"
                       }`}
                       aria-hidden
                     >
-                      <svg
-                        width="16"
-                        height="16"
-                        viewBox="0 0 16 16"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="1.75"
-                        strokeLinecap="round"
-                      >
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round">
                         <path d="M8 2v12M2 8h12" />
                       </svg>
                     </span>
-                  </div>
-                  <div
-                    className="overflow-hidden transition-[max-height] duration-300 ease-in-out"
-                    style={{ maxHeight: isOpen ? "240px" : "0px" }}
-                  >
-                    <p className="text-sm text-[#64748B] leading-relaxed mt-3 max-w-prose">
-                      {row.desc}
-                    </p>
-                  </div>
+                  </button>
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3, ease: "easeOut" }}
+                        style={{ overflow: "hidden" }}
+                      >
+                        <p className="text-sm text-[#475569] leading-relaxed px-6 pb-5">
+                          {row.desc}
+                        </p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
               );
             })}
-          </div>
+          </FadeInWhenVisible>
         </div>
       </section>
 
-      {/* SECTION 5 — CERTIFICATIONS */}
-      <section className="bg-white py-24 px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center max-w-2xl mx-auto">
-            <p className="section-label">Certifications & compliance</p>
-            <h2 className="text-4xl md:text-5xl font-semibold text-[#0A1628] mt-3 tracking-[-0.03em]" style={{ letterSpacing: "-0.03em" }}>
+      {/* ─── SECTION 6 — CERTIFICATIONS ─── */}
+      <section className="bg-white py-20 md:py-28 px-6 md:px-8">
+        <div className="max-w-6xl mx-auto">
+          <FadeInWhenVisible className="text-center max-w-2xl mx-auto">
+            <p className="section-label">Certifications &amp; compliance</p>
+            <h2 className="display-heading text-[#0A1628] text-5xl md:text-6xl mt-4">
               Built to the highest standards
             </h2>
-          </div>
+          </FadeInWhenVisible>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12">
-            {certs.map((c) => (
-              <div
-                key={c.name}
-                className="border border-[#E2E8F0] rounded-2xl p-8 bg-white flex flex-col items-center gap-4 text-center"
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={c.img}
-                  alt={c.name}
-                  style={{ height: '60px', width: 'auto', objectFit: 'contain', display: 'block' }}
-                />
-                <div className="text-sm font-semibold text-[#0A1628]">
-                  {c.name}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16">
+            {certs.map((c, i) => (
+              <FadeInWhenVisible key={c.name} delay={i * 0.1} className="h-full">
+                <div className="h-full border border-[#E2E8F0] rounded-xl p-8 bg-white flex flex-col items-center justify-center gap-4 text-center transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:border-blue-200">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={c.img}
+                    alt={c.name}
+                    style={{ height: "60px", width: "auto", objectFit: "contain", display: "block" }}
+                  />
+                  <div className="text-sm font-semibold text-[#0A1628]">{c.name}</div>
                 </div>
-              </div>
+              </FadeInWhenVisible>
             ))}
           </div>
         </div>
       </section>
 
-      {/* SECTION 6 — REQUEST CATALOGUE CTA */}
-      <section className="bg-[#F5F5F3] py-24 px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <p className="section-label">Get started</p>
-          <h2 className="text-5xl font-semibold text-[#0A1628] mt-3 tracking-[-0.03em]" style={{ letterSpacing: "-0.03em" }}>
+      {/* ─── SECTION 7 — CATALOGUE CTA (navy, dramatic, subtle green accent) ─── */}
+      <section className="bg-[#0A1628] py-28 md:py-36 px-6 md:px-8">
+        <FadeInWhenVisible className="max-w-3xl mx-auto text-center">
+          {/* Subtle green accent line — secondary nod to the green palette */}
+          <div className="w-12 h-px bg-[#059669] mx-auto" />
+          <p
+            className="text-xs uppercase font-medium text-[#DBEAFE] mt-8"
+            style={{ letterSpacing: "0.2em" }}
+          >
+            Get started
+          </p>
+          <h2 className="display-heading text-white text-5xl md:text-7xl mt-5">
             Request our detailed product catalogue
           </h2>
-          <p className="text-[#64748B] text-lg mt-5 max-w-xl mx-auto leading-relaxed">
-            Over 3,400 surgical instruments across 6 specialties. Our team
-            will send the full catalogue to your inbox within one business
-            day.
+          <p className="text-white/80 text-lg mt-6 max-w-xl mx-auto leading-relaxed">
+            Over 3,400 surgical instruments across 6 specialties. Our team will
+            send the full catalogue to your inbox within one business day.
           </p>
           <Link
             href="/request-catalogue"
-            className="inline-block mt-10 bg-[#0A1628] text-white px-10 py-4 rounded-lg text-sm font-semibold hover:bg-[#0d1f38] transition-colors"
+            className="inline-flex items-center gap-2 mt-10 bg-white text-[#0A1628] px-9 py-4 rounded-lg text-sm font-semibold transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl"
           >
-            Request full catalogue →
+            Request full catalogue
+            <ArrowRight />
           </Link>
-        </div>
+        </FadeInWhenVisible>
       </section>
 
-      {/* SECTION 7 — BLOG PREVIEW */}
-      <section className="bg-white py-28 px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-wrap items-end justify-between gap-6">
-            <div className="max-w-xl">
-              <p className="section-label">AVM Insights</p>
-              <h2 className="text-4xl md:text-5xl font-semibold text-[#0A1628] mt-3 tracking-[-0.03em]" style={{ letterSpacing: "-0.03em" }}>
-                From our knowledge base
-              </h2>
-              <p className="text-[#64748B] mt-4 leading-relaxed">
-                Insights on surgical instrument care, innovation, and best
-                practices.
-              </p>
-            </div>
+      {/* ─── SECTION 8 — BLOG PREVIEW (centered) ─── */}
+      <section className="bg-white py-20 md:py-28 px-6 md:px-8">
+        <div className="max-w-6xl mx-auto">
+          <FadeInWhenVisible className="text-center max-w-2xl mx-auto">
+            <p className="section-label">AVM Insights</p>
+            <h2 className="display-heading text-[#0A1628] text-5xl md:text-6xl mt-4">
+              From our knowledge base
+            </h2>
+            <p className="text-[#475569] mt-5 leading-relaxed">
+              Insights on surgical instrument care, innovation, and best
+              practices.
+            </p>
+          </FadeInWhenVisible>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
+            {blogPosts.map((p, i) => (
+              <FadeInWhenVisible key={p.slug} delay={i * 0.1} className="h-full">
+                <Link
+                  href={`/blog/${p.slug}`}
+                  className="h-full bg-white border border-[#E2E8F0] rounded-2xl overflow-hidden transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:border-blue-200 flex flex-col"
+                >
+                  <div className="relative w-full h-48">
+                    <Image
+                      src={p.coverImage}
+                      alt={p.title}
+                      fill
+                      sizes="(min-width: 768px) 33vw, 100vw"
+                      style={{ objectFit: "cover" }}
+                    />
+                  </div>
+                  <div className="p-6 flex flex-col flex-1 text-center">
+                    <p
+                      className="text-xs font-medium text-blue-600 uppercase"
+                      style={{ letterSpacing: "0.15em" }}
+                    >
+                      {p.category}
+                    </p>
+                    <h3 className="text-base font-semibold text-[#0A1628] mt-2 leading-snug">
+                      {p.title}
+                    </h3>
+                    <p className="text-sm text-[#475569] mt-2 leading-relaxed flex-1">
+                      {p.excerpt}
+                    </p>
+                    <span className="text-xs font-semibold text-blue-600 mt-4 inline-flex items-center justify-center gap-1">
+                      Read article →
+                    </span>
+                  </div>
+                </Link>
+              </FadeInWhenVisible>
+            ))}
+          </div>
+
+          <FadeInWhenVisible delay={0.2} className="text-center mt-12">
             <Link
               href="/blog"
-              className="text-blue-600 text-sm font-semibold hover:text-blue-700 transition-colors ml-auto"
+              className="text-blue-600 text-sm font-semibold hover:text-blue-700 transition-colors inline-flex items-center gap-1"
             >
               View all articles →
             </Link>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-            {blogPosts.map((p) => (
-              <Link
-                key={p.slug}
-                href={`/blog/${p.slug}`}
-                className="bg-white border border-[#E2E8F0] rounded-2xl overflow-hidden hover:shadow-md hover:border-blue-200 transition-all flex flex-col"
-              >
-                <div className="relative w-full h-48">
-                  <Image
-                    src={p.coverImage}
-                    alt={p.title}
-                    fill
-                    sizes="(min-width: 768px) 33vw, 100vw"
-                    style={{ objectFit: "cover" }}
-                  />
-                </div>
-                <div className="p-6 flex flex-col flex-1">
-                  <p className="text-xs font-semibold text-blue-600 uppercase" style={{ letterSpacing: "0.15em" }}>
-                    {p.category}
-                  </p>
-                  <h3 className="text-base font-semibold text-[#0A1628] mt-2 leading-snug">
-                    {p.title}
-                  </h3>
-                  <p className="text-sm text-[#64748B] mt-2 leading-relaxed flex-1">
-                    {p.excerpt}
-                  </p>
-                  <span className="text-xs font-semibold text-blue-600 mt-4 inline-flex items-center gap-1 transition-all hover:gap-2">
-                    Read article →
-                  </span>
-                </div>
-              </Link>
-            ))}
-          </div>
+          </FadeInWhenVisible>
         </div>
       </section>
 
-      {/* SECTION 8 — GROUP OF COMPANIES */}
+      {/* ─── SECTION 9 — GROUP OF COMPANIES ─── */}
       <GroupOfCompanies />
 
-      {/* SECTION 9 — DOWNLOADS */}
-      <section className="bg-white py-24 px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center max-w-2xl mx-auto">
+      {/* ─── SECTION 10 — DOWNLOADS (3 documents) ─── */}
+      <section className="bg-white py-20 md:py-28 px-6 md:px-8">
+        <div className="max-w-5xl mx-auto">
+          <FadeInWhenVisible className="text-center max-w-2xl mx-auto">
             <p className="section-label">Resources</p>
-            <h2 className="text-4xl md:text-5xl font-semibold text-[#0A1628] mt-3 tracking-[-0.03em]" style={{ letterSpacing: "-0.03em" }}>
+            <h2 className="display-heading text-[#0A1628] text-5xl md:text-6xl mt-4">
               Product support documents
             </h2>
-            <p className="text-[#64748B] mt-4 leading-relaxed">
+            <p className="text-[#475569] mt-5 leading-relaxed">
               Download our warranty and care documentation for AVM surgical
               instruments.
             </p>
-          </div>
+          </FadeInWhenVisible>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
-            {downloads.map((d) => (
-              <div
-                key={d.title}
-                className="bg-white rounded-2xl border border-[#E2E8F0] p-7 hover:shadow-md hover:border-blue-200 transition-all flex flex-col"
-              >
-                <div
-                  className="w-10 h-10 bg-red-50 rounded-lg flex items-center justify-center text-red-500 text-xs font-bold"
-                  aria-hidden
-                >
-                  PDF
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16">
+            {downloads.map((d, i) => (
+              <FadeInWhenVisible key={d.title} delay={i * 0.1} className="h-full">
+                <div className="h-full bg-white rounded-2xl border border-[#E2E8F0] p-7 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:border-blue-200 flex flex-col items-center text-center">
+                  <div
+                    className="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center text-blue-600 text-xs font-bold"
+                    aria-hidden
+                  >
+                    PDF
+                  </div>
+                  <h3 className="text-sm font-semibold text-[#0A1628] mt-5 leading-snug">
+                    {d.title}
+                  </h3>
+                  <p className="text-xs text-[#94A3B8] mt-2 leading-relaxed flex-1">
+                    {d.desc}
+                  </p>
+                  <a
+                    href={d.href}
+                    download
+                    className="mt-6 text-blue-600 text-xs font-semibold hover:text-blue-700 inline-flex items-center gap-1 transition-colors"
+                  >
+                    Download ↓
+                  </a>
                 </div>
-                <h3 className="text-sm font-semibold text-[#0A1628] mt-5 leading-snug">
-                  {d.title}
-                </h3>
-                <p className="text-xs text-[#94A3B8] mt-2 leading-relaxed flex-1">
-                  {d.desc}
-                </p>
-                <a
-                  href={d.href}
-                  download
-                  className="mt-6 text-blue-600 text-xs font-semibold hover:text-blue-700 inline-flex items-center gap-1 self-start transition-colors"
-                >
-                  Download ↓
-                </a>
-              </div>
+              </FadeInWhenVisible>
             ))}
           </div>
         </div>
