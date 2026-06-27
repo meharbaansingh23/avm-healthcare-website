@@ -14,7 +14,7 @@ export default function InnovationPage() {
       {/* HERO — centered */}
       <section className="bg-white pt-20 pb-16 md:pt-24 md:pb-20 px-6 md:px-8">
         <div className="max-w-6xl mx-auto">
-          <FadeInWhenVisible className="text-center max-w-3xl mx-auto">
+          <FadeInWhenVisible className="text-center max-w-5xl mx-auto">
             {/* SANCTIONED GREEN ACCENT (Innovation page) — green eyebrow */}
             <p
               className="text-xs uppercase font-medium text-[#059669]"
@@ -22,10 +22,10 @@ export default function InnovationPage() {
             >
               Innovation
             </p>
-            <h1 className="text-[#0A1628] text-6xl md:text-8xl font-bold tracking-tighter leading-[1.05] mt-5">
+            <h1 className="text-[#0A1628] text-5xl md:text-7xl font-bold tracking-tighter leading-[1.05] mt-5">
               Build The Next Generation Of Surgical Instruments With Us
             </h1>
-            <p className="text-[#475569] text-base md:text-lg leading-relaxed mt-6 max-w-xl mx-auto">
+            <p className="text-[#475569] text-base md:text-lg leading-relaxed mt-6 max-w-2xl mx-auto">
               We partner with surgeons, researchers, and institutions to develop
               instruments that solve real problems in the operating theatre.
             </p>
@@ -38,15 +38,16 @@ export default function InnovationPage() {
             </a>
           </FadeInWhenVisible>
 
-          {/* Image with soft blue radial gradient spotlight */}
+          {/* Image with soft blue radial gradient spotlight — an ambient glow
+              that bleeds well beyond the image edges, blurred for softness */}
           <FadeInWhenVisible delay={0.1} className="relative isolate mt-14 max-w-4xl mx-auto">
             <div
               aria-hidden
-              className="absolute -inset-8 -z-10 pointer-events-none"
+              className="absolute -inset-16 md:-inset-28 -z-10 pointer-events-none"
               style={{
                 background:
-                  "radial-gradient(circle at center, rgba(37, 99, 235, 0.15) 0%, rgba(37, 99, 235, 0.05) 40%, transparent 70%)",
-                filter: "blur(40px)",
+                  "radial-gradient(circle at center, rgba(37, 99, 235, 0.12) 0%, rgba(37, 99, 235, 0.06) 50%, transparent 75%)",
+                filter: "blur(60px)",
               }}
             />
             <Image

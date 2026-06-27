@@ -11,11 +11,11 @@ export const metadata = {
 export default function CareersPage() {
   return (
     <>
-      {/* HERO — centered */}
-      <section className="bg-white pt-20 pb-12 md:pt-24 md:pb-16 px-6 md:px-8 text-center">
+      {/* HERO — centered, on one cohesive off-white section with the image */}
+      <section className="bg-[#FAFAF9] pt-20 pb-16 md:pt-24 md:pb-20 px-6 md:px-8 text-center">
         <FadeInWhenVisible className="max-w-3xl mx-auto">
           <p className="section-label">Careers at AVM</p>
-          <h1 className="text-[#0A1628] text-6xl md:text-8xl font-bold tracking-tighter leading-[1.05] mt-5">
+          <h1 className="text-[#0A1628] text-5xl md:text-7xl font-bold tracking-tighter leading-[1.05] mt-5">
             Join The Team Shaping Surgical Care In India
           </h1>
           <p className="text-[#475569] text-base md:text-lg leading-relaxed mt-6 max-w-xl mx-auto">
@@ -30,33 +30,33 @@ export default function CareersPage() {
             Express your interest
           </a>
         </FadeInWhenVisible>
-      </section>
 
-      {/* HERO IMAGE — natural aspect ratio, navy duotone treatment */}
-      {/* TODO: Replace with an AVM-specific photo of the team / facility / surgeons in the field */}
-      <FadeInWhenVisible delay={0.1} className="relative w-full max-w-6xl mx-auto px-6 md:px-8">
-        <div className="relative w-full overflow-hidden rounded-2xl">
-          <Image
-            src="/images/careers.png"
-            alt="AVM Healthcare team"
-            width={1990}
-            height={1137}
-            priority
-            sizes="(min-width: 1152px) 1152px, 100vw"
-            style={{
-              width: "100%",
-              height: "auto",
-              display: "block",
-              filter: "grayscale(100%)",
-            }}
-          />
-          {/* Navy duotone overlay: mix-blend-color applies navy chrominance to the grayscale image's luminance */}
-          <div
-            className="absolute inset-0 bg-[#0A1628] mix-blend-color pointer-events-none"
-            aria-hidden
-          />
-        </div>
-      </FadeInWhenVisible>
+        {/* HERO IMAGE — navy duotone treatment, sized down to sit with the text */}
+        {/* TODO: Replace with an AVM-specific photo of the team / facility / surgeons in the field */}
+        <FadeInWhenVisible delay={0.1} className="relative w-full max-w-4xl mx-auto mt-14">
+          <div className="relative w-full overflow-hidden rounded-2xl shadow-xl shadow-[#0A1628]/10">
+            <Image
+              src="/images/careers.png"
+              alt="AVM Healthcare team"
+              width={1990}
+              height={1137}
+              priority
+              sizes="(min-width: 896px) 896px, 100vw"
+              style={{
+                width: "100%",
+                height: "auto",
+                display: "block",
+                filter: "grayscale(100%)",
+              }}
+            />
+            {/* Navy duotone overlay: mix-blend-color applies navy chrominance to the grayscale image's luminance */}
+            <div
+              className="absolute inset-0 bg-[#0A1628] mix-blend-color pointer-events-none"
+              aria-hidden
+            />
+          </div>
+        </FadeInWhenVisible>
+      </section>
 
       {/* FORM SECTION */}
       <section id="apply" className="bg-white pt-24 pb-32 px-6 md:px-8 scroll-mt-20">

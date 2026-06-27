@@ -1,3 +1,4 @@
+import Image from "next/image";
 import CatalogueForm from "@/components/CatalogueForm";
 import FadeInWhenVisible from "@/components/FadeInWhenVisible";
 
@@ -26,19 +27,29 @@ export default function RequestCataloguePage() {
             <CatalogueForm />
           </FadeInWhenVisible>
 
-          {/* RIGHT — Portrait image */}
+          {/* RIGHT — Portrait catalogue cover */}
+          {/* TODO: Replace with client-provided catalogue cover image when available */}
           <FadeInWhenVisible delay={0.1} className="lg:sticky lg:top-24">
-            <div className="rounded-2xl overflow-hidden aspect-[3/4] w-full bg-[#F1F5F9] shadow-lg border border-[#E2E8F0]">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/images/request/cover.png"
-                alt="AVM Healthcare Product Catalogue"
-                style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+            <div
+              className="rounded-2xl overflow-hidden aspect-[3/4] w-full shadow-lg border border-[#E2E8F0] flex flex-col items-center justify-center text-center px-8"
+              style={{ background: "linear-gradient(160deg, #0A1628 0%, #1E293B 100%)" }}
+            >
+              <Image
+                src="/images/logo-light.png"
+                alt="AVM Healthcare Products"
+                width={1015}
+                height={251}
+                priority
+                className="h-12 w-auto"
               />
+              <p className="text-xs uppercase tracking-widest text-white/70 mt-8">
+                Product Catalogue 2026
+              </p>
+              <p className="text-lg text-white mt-3">AVM Healthcare Products</p>
+              <p className="text-xs text-white/50 mt-2">
+                Surgical Instruments · Made In India · Since 1996
+              </p>
             </div>
-            <p className="text-xs text-[#94A3B8] text-center mt-3">
-              AVM Healthcare Products · Full Surgical Instruments Catalogue
-            </p>
           </FadeInWhenVisible>
         </div>
       </div>

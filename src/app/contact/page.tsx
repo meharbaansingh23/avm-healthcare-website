@@ -1,5 +1,6 @@
 import ContactForm from "@/components/ContactForm";
 import FadeInWhenVisible from "@/components/FadeInWhenVisible";
+import PillButton from "@/components/PillButton";
 
 export const metadata = {
   title: "Contact — AVM Healthcare Products Pvt. Ltd.",
@@ -34,7 +35,7 @@ export default function ContactPage() {
         {/* Intro */}
         <FadeInWhenVisible className="text-center max-w-3xl mx-auto">
           <p className="section-label">Contact us</p>
-          <h1 className="text-[#0A1628] text-6xl md:text-8xl font-bold tracking-tighter leading-[1.05] mt-4">
+          <h1 className="text-[#0A1628] text-5xl md:text-7xl font-bold tracking-tighter leading-[1.05] mt-4">
             Get In Touch
           </h1>
           <p className="text-[#475569] text-lg mt-5 max-w-xl mx-auto leading-relaxed">
@@ -58,14 +59,11 @@ export default function ContactPage() {
                   {office.address}
                 </p>
                 {office.maps && (
-                  <a
-                    href={office.maps}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-xs text-blue-600 hover:text-blue-700 inline-flex items-center gap-1 mt-4"
-                  >
-                    View on Google Maps →
-                  </a>
+                  <div className="mt-4">
+                    <PillButton href={office.maps} external size="sm">
+                      View on Google Maps
+                    </PillButton>
+                  </div>
                 )}
               </div>
             </FadeInWhenVisible>
@@ -120,8 +118,11 @@ export default function ContactPage() {
           </div>
         </FadeInWhenVisible>
 
+        {/* Divider — breaks up the run from the contact details into the form */}
+        <div className="w-20 h-px bg-[#2563EB]/50 mx-auto mt-16" aria-hidden />
+
         {/* Form */}
-        <FadeInWhenVisible delay={0.1} className="mt-20 max-w-2xl mx-auto">
+        <FadeInWhenVisible delay={0.1} className="mt-16 max-w-2xl mx-auto">
           <ContactForm />
         </FadeInWhenVisible>
       </div>

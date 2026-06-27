@@ -7,6 +7,7 @@ import FadeInWhenVisible from "@/components/FadeInWhenVisible";
 import Marquee from "@/components/Marquee";
 import HeroSlideshow from "@/components/HeroSlideshow";
 import ImageCarousel, { type CarouselImage } from "@/components/ImageCarousel";
+import PillButton from "@/components/PillButton";
 import AnimatedCounter from "@/components/AnimatedCounter";
 import GroupOfCompanies from "@/components/GroupOfCompanies";
 import { blogPosts } from "@/lib/blog";
@@ -224,7 +225,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
-              className="text-white text-7xl md:text-8xl font-bold tracking-tighter leading-[1.05] mt-6"
+              className="text-white text-5xl md:text-7xl font-bold tracking-tighter leading-[1.05] mt-6"
             >
               Precision Instruments For Modern Surgical Care
             </motion.h1>
@@ -289,7 +290,7 @@ export default function Home() {
             <p className="section-label">Who We Are</p>
             <span className="w-8 h-px bg-blue-600" aria-hidden />
           </div>
-          <h2 className="display-heading text-[#0A1628] text-5xl md:text-6xl mt-5">
+          <h2 className="display-heading text-[#0A1628] text-4xl md:text-6xl mt-5">
             Supplying Surgical Excellence Since 1996
           </h2>
           <p className="text-[#475569] mt-6 leading-relaxed">
@@ -306,7 +307,7 @@ export default function Home() {
       <section className="bg-white py-20 md:py-28 overflow-hidden">
         <FadeInWhenVisible className="text-center max-w-2xl mx-auto px-6 md:px-8">
           <p className="section-label">Our Specialties</p>
-          <h2 className="display-heading text-[#0A1628] text-5xl md:text-7xl mt-4">
+          <h2 className="display-heading text-[#0A1628] text-4xl md:text-6xl mt-4">
             Six Disciplines, One Commitment To Quality
           </h2>
           <p className="text-[#475569] mt-5 leading-relaxed">
@@ -335,7 +336,7 @@ export default function Home() {
           >
             Our Craft
           </p>
-          <h2 className="text-[#0A1628] text-5xl md:text-7xl font-bold tracking-tighter leading-[1.05] mt-4">
+          <h2 className="text-[#0A1628] text-4xl md:text-6xl font-bold tracking-tighter leading-[1.05] mt-4">
             Crafted With Precision
           </h2>
           <p className="text-[#475569] text-base md:text-lg leading-relaxed mt-5 max-w-[600px] mx-auto">
@@ -360,7 +361,7 @@ export default function Home() {
           {/* LEFT — sticky headline + stats */}
           <div className="lg:sticky lg:top-28 self-start text-center lg:text-left">
             <p className="section-label">Why Choose AVM</p>
-            <h2 className="text-[#0A1628] text-6xl md:text-8xl font-bold tracking-tighter leading-[1.05] mt-4">
+            <h2 className="text-[#0A1628] text-4xl md:text-6xl font-bold tracking-tighter leading-[1.05] mt-4">
               Built For The Demands Of Modern Surgery
             </h2>
             <p className="text-[#475569] text-lg mt-6 leading-relaxed max-w-md mx-auto lg:mx-0">
@@ -369,23 +370,26 @@ export default function Home() {
               in the operating theatre, there is no margin for error.
             </p>
 
-            {/* Stats card */}
-            <div className="mt-10 bg-white rounded-2xl border border-[#E2E8F0] shadow-sm grid grid-cols-2 overflow-hidden">
+            {/* Stats — sit directly on the section background (no card), with
+                subtle dividers and a stronger number/label hierarchy */}
+            <div className="mt-10 grid grid-cols-2">
               {whyStats.map((stat, i) => (
                 <div
                   key={stat.key}
-                  className={`py-8 px-6 flex flex-col justify-center items-center text-center ${
-                    i % 2 === 1 ? "border-l border-[#E2E8F0]" : ""
-                  } ${i >= 2 ? "border-t border-[#E2E8F0]" : ""}`}
+                  className={`py-8 px-4 md:px-6 flex flex-col justify-center items-center text-center ${
+                    i % 2 === 1 ? "border-l border-[#0A1628]/10" : ""
+                  } ${i >= 2 ? "border-t border-[#0A1628]/10" : ""}`}
                 >
                   <AnimatedCounter
                     target={stat.target}
                     suffix={stat.suffix}
                     thousands={stat.thousands}
                     durationMs={2000}
-                    className="font-bold text-4xl text-[#0A1628] tracking-[-0.04em] tabular-nums"
+                    className="font-bold text-5xl md:text-6xl text-[#0A1628] tracking-[-0.04em] tabular-nums"
                   />
-                  <div className="text-sm text-[#475569] mt-2">{stat.label}</div>
+                  <div className="text-xs uppercase tracking-wider font-medium text-[#94A3B8] mt-2">
+                    {stat.label}
+                  </div>
                 </div>
               ))}
             </div>
@@ -405,7 +409,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto">
           <FadeInWhenVisible className="text-center max-w-2xl mx-auto">
             <p className="section-label">Certifications &amp; Compliance</p>
-            <h2 className="display-heading text-[#0A1628] text-5xl md:text-7xl mt-4">
+            <h2 className="display-heading text-[#0A1628] text-4xl md:text-6xl mt-4">
               Built To The Highest Standards
             </h2>
           </FadeInWhenVisible>
@@ -450,7 +454,7 @@ export default function Home() {
           >
             Get Started
           </p>
-          <h2 className="text-white text-6xl md:text-7xl font-bold tracking-tighter leading-[1.05] mt-5">
+          <h2 className="text-white text-4xl md:text-6xl font-bold tracking-tighter leading-[1.05] mt-5">
             Request Our Detailed Product Catalogue
           </h2>
           <p className="text-white/80 text-lg mt-6 max-w-xl mx-auto leading-relaxed">
@@ -472,7 +476,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto">
           <FadeInWhenVisible className="text-center max-w-2xl mx-auto">
             <p className="section-label">AVM Insights</p>
-            <h2 className="display-heading text-[#0A1628] text-5xl md:text-7xl mt-4">
+            <h2 className="display-heading text-[#0A1628] text-4xl md:text-6xl mt-4">
               From Our Knowledge Base
             </h2>
             <p className="text-[#475569] mt-5 leading-relaxed">
@@ -511,9 +515,9 @@ export default function Home() {
                     <p className="text-sm text-[#475569] mt-2 leading-relaxed flex-1">
                       {p.excerpt}
                     </p>
-                    <span className="text-xs font-semibold text-blue-600 mt-4 inline-flex items-center justify-center gap-1">
-                      Read article →
-                    </span>
+                    <div className="mt-4 flex justify-center">
+                      <PillButton>Read article</PillButton>
+                    </div>
                   </div>
                 </Link>
               </FadeInWhenVisible>
@@ -521,12 +525,7 @@ export default function Home() {
           </div>
 
           <FadeInWhenVisible delay={0.2} className="text-center mt-12">
-            <Link
-              href="/blog"
-              className="text-blue-600 text-sm font-semibold hover:text-blue-700 transition-colors inline-flex items-center gap-1"
-            >
-              View all articles →
-            </Link>
+            <PillButton href="/blog">View all articles</PillButton>
           </FadeInWhenVisible>
         </div>
       </section>
@@ -539,7 +538,7 @@ export default function Home() {
         <div className="max-w-5xl mx-auto">
           <FadeInWhenVisible className="text-center max-w-2xl mx-auto">
             <p className="section-label">Resources</p>
-            <h2 className="display-heading text-[#0A1628] text-5xl md:text-7xl mt-4">
+            <h2 className="display-heading text-[#0A1628] text-4xl md:text-6xl mt-4">
               Product Support Documents
             </h2>
             <p className="text-[#475569] mt-5 leading-relaxed">

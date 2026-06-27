@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import PageHero from "@/components/PageHero";
 import FadeInWhenVisible from "@/components/FadeInWhenVisible";
+import PillButton from "@/components/PillButton";
 import { blogPosts } from "@/lib/blog";
 
 export const metadata = {
@@ -51,13 +52,8 @@ export default function BlogIndexPage() {
                     <p className="text-sm text-[#475569] mt-2 leading-relaxed flex-1">
                       {p.excerpt}
                     </p>
-                    <div className="flex items-center justify-center gap-3 mt-4">
-                      <span className="text-xs font-semibold text-blue-600 inline-flex items-center gap-1">
-                        Read article →
-                      </span>
-                      <span className="text-[#E2E8F0]" aria-hidden>
-                        ·
-                      </span>
+                    <div className="flex items-center justify-center gap-3 mt-5">
+                      <PillButton size="sm">Read article</PillButton>
                       <span className="text-xs text-[#94A3B8]">{p.readTime}</span>
                     </div>
                   </div>
