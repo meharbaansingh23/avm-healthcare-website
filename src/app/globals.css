@@ -78,6 +78,33 @@ body {
   }
 }
 
+/* ─── Reusable image carousel (Crafted With Precision / Our Instruments) ─── */
+/* Cards keep their natural ratio: fixed responsive height, width derives from
+   the per-card aspect-ratio style. Track scrolls -50% for a seamless loop. */
+.carousel-card {
+  height: var(--card-h-mobile, 280px);
+}
+@media (min-width: 768px) {
+  .carousel-card {
+    height: var(--card-h-desktop, 400px);
+  }
+}
+.carousel-track {
+  animation: carousel-scroll var(--carousel-duration, 60s) linear infinite;
+  will-change: transform;
+}
+.carousel--pause:hover .carousel-track {
+  animation-play-state: paused;
+}
+@keyframes carousel-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
 /* ─── Ken Burns (slow, subtle zoom on static imagery) ─── */
 .kenburns-img {
   animation: kenburns 20s ease-in-out infinite alternate;

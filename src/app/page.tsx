@@ -2,19 +2,29 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import FadeInWhenVisible from "@/components/FadeInWhenVisible";
 import Marquee from "@/components/Marquee";
+import HeroSlideshow from "@/components/HeroSlideshow";
+import ImageCarousel, { type CarouselImage } from "@/components/ImageCarousel";
 import AnimatedCounter from "@/components/AnimatedCounter";
 import GroupOfCompanies from "@/components/GroupOfCompanies";
 import { blogPosts } from "@/lib/blog";
 
-// PLACEHOLDER IMAGERY — to be replaced by client-provided photography.
-// Real Unsplash CDN URL (verified). Dramatic, editorial operating-theatre shot
-// chosen for the full-bleed hero so the dark left-gradient keeps text readable.
-const HERO_IMAGE =
-  "https://images.unsplash.com/photo-1504439468489-c8920d796a29?auto=format&fit=crop&w=1920&q=80";
+// "Crafted With Precision" carousel — client product / scene photography.
+// Dimensions are the natural source sizes so each card keeps its true ratio.
+const craftGallery: CarouselImage[] = [
+  { src: "/images/why-choose-avm.webp", alt: "Surgical instruments arranged on a dark display surface", width: 1504, height: 1003 },
+  { src: "/images/gallery-neurosurgical.webp", alt: "Neurosurgical instrument set", width: 1500, height: 1000 },
+  { src: "/images/gallery-kerrison.webp", alt: "Kerrison rongeur, close detail", width: 1733, height: 754 },
+  { src: "/images/gallery-trident.webp", alt: "Trident surgical instrument detail", width: 1924, height: 1084 },
+  { src: "/images/gallery-tray-instruments.webp", alt: "Surgical tray laid with instruments", width: 1504, height: 1004 },
+  { src: "/images/gallery-instruments-array.webp", alt: "An array of polished surgical instruments", width: 6000, height: 3594 },
+  { src: "/images/gallery-tray-1.webp", alt: "Sterilisation tray with surgical instruments", width: 1503, height: 1003 },
+  { src: "/images/gallery-tray-2.webp", alt: "Surgical instrument tray, alternate view", width: 1503, height: 1003 },
+  { src: "/images/gallery-tray-3.webp", alt: "Surgical instrument tray, detail view", width: 1503, height: 1003 },
+  { src: "/images/gallery-gynaecology.webp", alt: "Gynaecology surgical instruments", width: 973, height: 949 },
+];
 
 const specialties = [
   {
@@ -22,42 +32,42 @@ const specialties = [
     name: "Neurosurgical",
     desc: "Cranial, spinal and micro-neurosurgical instruments.",
     label: "Neurosurgical instruments",
-    img: "/images/categories/neuro.png",
+    img: "/images/neurosurgical.webp",
   },
   {
     slug: "general-surgery",
     name: "General Surgery",
     desc: "Core instruments for the operating theatre.",
     label: "General surgery tools",
-    img: "/images/categories/general.png",
+    img: "/images/general-surgery.webp",
   },
   {
     slug: "cardiovascular",
     name: "Cardiovascular",
     desc: "Precision devices for cardiac and vascular work.",
     label: "Cardiovascular devices",
-    img: "/images/categories/cardio.png",
+    img: "/images/cardiovascular.webp",
   },
   {
     slug: "gynaecology",
     name: "Gynaecology",
     desc: "Specialised instruments for women's health.",
     label: "Gynaecology instruments",
-    img: "/images/categories/gyno.png",
+    img: "/images/gynaecology.webp",
   },
   {
     slug: "plastic-oral-surgery",
     name: "Plastic & Oral Surgery",
     desc: "Delicate tools for reconstructive and oral surgery.",
     label: "Plastic & oral instruments",
-    img: "/images/categories/oral.png",
+    img: "/images/plastic-oral.webp",
   },
   {
     slug: "containers-pads",
     name: "Containers & Pads",
     desc: "Sterile storage and procedural support items.",
     label: "Containers & pads",
-    img: "/images/categories/containers.png",
+    img: "/images/containers-pads.webp",
   },
 ];
 
@@ -191,52 +201,12 @@ function WhyCard({ title, desc }: { title: string; desc: string }) {
 }
 
 export default function Home() {
-  const heroRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"],
-  });
-  // Parallax: the background drifts at ~half the scroll speed. scale keeps the
-  // frame covered as it translates.
-  const heroY = useTransform(scrollYProgress, [0, 1], ["-8%", "8%"]);
-
   return (
     <>
       {/* ─── SECTION 1 — FULL-BLEED HERO (left-aligned: the one exception) ─── */}
-      <section
-        ref={heroRef}
-        className="relative min-h-[calc(100svh-4rem)] flex items-center overflow-hidden bg-[#0A1628]"
-      >
-        {/* PLACEHOLDER — client to replace with AVM-specific operating-theatre photography */}
-        <motion.div aria-hidden className="absolute inset-0" style={{ y: heroY, scale: 1.15 }}>
-          <Image
-            src={HERO_IMAGE}
-            alt="Surgical team operating in a modern operating theatre"
-            fill
-            priority
-            sizes="100vw"
-            style={{ objectFit: "cover" }}
-          />
-        </motion.div>
-
-        {/* Directional gradient — keeps left-aligned text readable */}
-        <div
-          aria-hidden
-          className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(to right, rgba(10,22,40,0.85) 0%, rgba(10,22,40,0.6) 50%, rgba(10,22,40,0.4) 100%)",
-          }}
-        />
-        {/* Vignette — darkens the edges so attention falls on the text */}
-        <div
-          aria-hidden
-          className="absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(120% 100% at 50% 50%, transparent 55%, rgba(10,22,40,0.5) 100%)",
-          }}
-        />
+      <section className="relative min-h-[calc(100svh-4rem)] flex items-center overflow-hidden bg-[#0A1628]">
+        {/* Crossfading 3-slide background slideshow (text overlay stays constant) */}
+        <HeroSlideshow />
 
         <div className="relative z-10 w-full max-w-6xl mx-auto px-6 md:px-8 py-24">
           <div className="max-w-[640px] text-left">
@@ -285,24 +255,6 @@ export default function Home() {
               </Link>
             </motion.div>
           </div>
-        </div>
-
-        {/* Scroll indicator — "Scroll" label + a pulsing vertical line */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3">
-          <span
-            className="text-[10px] uppercase text-white/70"
-            style={{ letterSpacing: "0.3em" }}
-          >
-            Scroll
-          </span>
-          <span className="relative block h-10 w-px bg-white/15 overflow-hidden">
-            <motion.span
-              aria-hidden
-              className="absolute top-0 left-0 w-px bg-white/80"
-              animate={{ height: [0, 40, 0] }}
-              transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
-            />
-          </span>
         </div>
       </section>
 
@@ -371,6 +323,29 @@ export default function Home() {
               <SpecialtyCard key={s.slug} s={s} />
             ))}
           />
+        </div>
+      </section>
+
+      {/* ─── SECTION 4.5 — CRAFTED WITH PRECISION (image gallery carousel) ─── */}
+      <section className="bg-white py-24 md:py-32 overflow-hidden">
+        <FadeInWhenVisible className="text-center max-w-2xl mx-auto px-6 md:px-8">
+          <p
+            className="text-xs uppercase font-medium text-[#2563EB]"
+            style={{ letterSpacing: "0.2em" }}
+          >
+            Our Craft
+          </p>
+          <h2 className="text-[#0A1628] text-5xl md:text-7xl font-bold tracking-tighter leading-[1.05] mt-4">
+            Crafted With Precision
+          </h2>
+          <p className="text-[#475569] text-base md:text-lg leading-relaxed mt-5 max-w-[600px] mx-auto">
+            Every instrument tells a story of meticulous engineering and surgical
+            heritage.
+          </p>
+        </FadeInWhenVisible>
+
+        <div className="mt-16">
+          <ImageCarousel images={craftGallery} speedSeconds={60} fadeColor="#FFFFFF" />
         </div>
       </section>
 

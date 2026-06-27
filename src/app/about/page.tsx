@@ -3,6 +3,21 @@ import AboutFaq from "@/components/AboutFaq";
 import FadeInWhenVisible from "@/components/FadeInWhenVisible";
 import KenBurnsImage from "@/components/KenBurnsImage";
 import AnimatedCounter from "@/components/AnimatedCounter";
+import ImageCarousel, { type CarouselImage } from "@/components/ImageCarousel";
+
+// "Our Instruments" carousel — breadth of surgical disciplines AVM manufactures.
+// Dimensions are the natural source sizes so each card keeps its true ratio.
+const instrumentGallery: CarouselImage[] = [
+  { src: "/images/general-surgery-detail.webp", alt: "General surgery instrument, close detail", width: 1504, height: 1003 },
+  { src: "/images/gallery-5.webp", alt: "Surgical instruments arranged on a surface", width: 3991, height: 1967 },
+  { src: "/images/gallery-7.webp", alt: "Polished surgical instruments in detail", width: 5145, height: 3795 },
+  { src: "/images/gallery-1.webp", alt: "General surgery instrument set", width: 1504, height: 1004 },
+  { src: "/images/gallery-kerrison-2.webp", alt: "Kerrison rongeur instrument detail", width: 1924, height: 1084 },
+  { src: "/images/neurosurgical.webp", alt: "Neurosurgical instruments", width: 1924, height: 995 },
+  { src: "/images/cardiovascular.webp", alt: "Cardiovascular surgical instruments", width: 1502, height: 1004 },
+  { src: "/images/plastic-oral.webp", alt: "Plastic and oral surgery instruments", width: 1024, height: 1024 },
+  { src: "/images/gallery-gs-alt.webp", alt: "General surgery instruments, alternate view", width: 1504, height: 1004 },
+];
 
 export const metadata = {
   title: "About Us — AVM Healthcare Products Pvt. Ltd.",
@@ -10,12 +25,9 @@ export const metadata = {
     "AVM Healthcare Products is a New Delhi–based manufacturer of advanced surgical instruments, supplying premier institutions across India and exporting worldwide.",
 };
 
-// PLACEHOLDER IMAGERY — to be replaced by client-provided photography.
-// Verified real Unsplash CDN URLs.
-const ABOUT_HERO_IMAGE =
-  "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=1600&q=80"; // modern operating-room facility
-const ABOUT_TEAM_IMAGE =
-  "https://images.unsplash.com/photo-1551601651-2a8555f1a136?auto=format&fit=crop&w=1400&q=80"; // surgical team operating
+// Client-provided photography.
+const ABOUT_HERO_IMAGE = "/images/hero-2.webp"; // instruments laid out in an operating room
+const ABOUT_TEAM_IMAGE = "/images/neurosurgical-alt.webp"; // neurosurgical instrument set
 
 const aboutStats = [
   { key: "skus", target: 10000, suffix: "+", thousands: true, label: "Healthcare SKUs" },
@@ -73,11 +85,10 @@ export default function AboutPage() {
             </p>
           </FadeInWhenVisible>
 
-          {/* PLACEHOLDER — client to replace with AVM facility / manufacturing photography */}
           <FadeInWhenVisible delay={0.1} className="mt-14">
             <KenBurnsImage
               src={ABOUT_HERO_IMAGE}
-              alt="Modern operating-room facility"
+              alt="AVM surgical instruments laid out in an operating room"
               priority
               sizes="(min-width: 1024px) 1152px, 100vw"
               className="w-full aspect-[16/9] rounded-2xl border border-[#E2E8F0] shadow-2xl shadow-[#0A1628]/10"
@@ -135,11 +146,10 @@ export default function AboutPage() {
             </p>
           </FadeInWhenVisible>
 
-          {/* PLACEHOLDER — client to replace with AVM surgical-team photography */}
           <FadeInWhenVisible delay={0.1} className="mt-14 max-w-4xl mx-auto">
             <KenBurnsImage
               src={ABOUT_TEAM_IMAGE}
-              alt="Surgical team operating"
+              alt="AVM neurosurgical instrument set"
               sizes="(min-width: 1024px) 896px, 100vw"
               className="w-full aspect-[3/2] rounded-2xl border border-[#E2E8F0] shadow-2xl shadow-[#0A1628]/10"
             />
@@ -182,6 +192,24 @@ export default function AboutPage() {
               );
             })}
           </div>
+        </div>
+      </section>
+
+      {/* ─── SECTION 4.5 — OUR INSTRUMENTS (image gallery carousel) ─── */}
+      <section className="py-24 md:py-32 overflow-hidden" style={{ backgroundColor: "#FAFAF9" }}>
+        <FadeInWhenVisible className="text-center max-w-2xl mx-auto px-6 md:px-8">
+          <p className="section-label">Our Instruments</p>
+          <h2 className="text-[#0A1628] text-5xl md:text-7xl font-bold tracking-tighter leading-[1.05] mt-4">
+            Built For Every Surgical Discipline
+          </h2>
+          <p className="text-[#475569] text-base md:text-lg leading-relaxed mt-5 max-w-[600px] mx-auto">
+            From neurosurgery to cardiovascular care — a glimpse into the breadth
+            of instruments we manufacture.
+          </p>
+        </FadeInWhenVisible>
+
+        <div className="mt-16">
+          <ImageCarousel images={instrumentGallery} speedSeconds={60} fadeColor="#FAFAF9" />
         </div>
       </section>
 
