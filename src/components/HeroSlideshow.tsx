@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 
 // Client-provided photography. The text overlay (in page.tsx) stays constant
 // across all three slides — only the background image crossfades.
@@ -22,19 +22,38 @@ const slides = [
 ];
 
 /**
- * Full-bleed hero background slideshow. Three slides crossfade (1s) via
- * framer-motion's AnimatePresence with mode="sync" (the entering and exiting
- * slides animate simultaneously, giving a true crossfade). A directional dark
- * gradient keeps the left-aligned hero text readable across every slide.
+ * Full-bleed hero background slideshow. All three slides are rendered at once,
+ * stacked absolutely; only the `active` slide has opacity 1 while the others sit
+ * at opacity 0. Animating opacity alone (1.5s easeInOut) gives a true crossfade
+ * with no enter/exit flicker. A single dark gradient overlay sits ON TOP of the
+ * whole stack (not per-slide) to keep the left-aligned hero text readable.
  *
- * Auto-rotation uses a setInterval (6s) with cleanup on unmount / dependency
- * change. Hovering the dot navigation pauses rotation; clicking a dot switches
- * slide and — because `active` is a dependency — resets the rotation timer.
+ * Auto-rotation uses a setInterval (6s) held in a ref, with explicit
+ * start/stop helpers so a manual dot click can reset the timer and hovering the
+ * dot navigation can pause it. The interval is cleared on unmount.
  */
 export default function HeroSlideshow() {
-  const [active, setActive] = useState(0);
-  const [paused, setPaused] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
   const [reducedMotion, setReducedMotion] = useState(false);
+
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const isHoveringRef = useRef(false);
+
+  const stopRotation = useCallback(() => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
+  }, []);
+
+  const startRotation = useCallback(() => {
+    stopRotation();
+    // Don't auto-rotate while paused on hover or when reduced motion is set.
+    if (reducedMotion || isHoveringRef.current) return;
+    intervalRef.current = setInterval(() => {
+      setActiveIndex((i) => (i + 1) % slides.length);
+    }, 6000);
+  }, [reducedMotion, stopRotation]);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -45,15 +64,18 @@ export default function HeroSlideshow() {
     return () => mq.removeEventListener("change", handler);
   }, []);
 
-  // Auto-rotation: advance the slide every 6s. setInterval is cleared on unmount
-  // and whenever a dependency changes (so a manual dot click resets the timer).
+  // Start/refresh the auto-rotation; cleared on unmount or when startRotation
+  // changes (e.g. reduced-motion preference flips).
   useEffect(() => {
-    if (reducedMotion || paused) return;
-    const id = setInterval(() => {
-      setActive((i) => (i + 1) % slides.length);
-    }, 6000);
-    return () => clearInterval(id);
-  }, [reducedMotion, paused, active]);
+    startRotation();
+    return stopRotation;
+  }, [startRotation, stopRotation]);
+
+  // Manual selection: jump to the slide and reset the rotation timer.
+  const handleDotClick = (i: number) => {
+    setActiveIndex(i);
+    startRotation();
+  };
 
   return (
     <div
@@ -62,28 +84,28 @@ export default function HeroSlideshow() {
       aria-roledescription="carousel"
       aria-label="Hero image slideshow"
     >
-      <AnimatePresence mode="sync" initial={false}>
+      {/* All slides stacked; only opacity animates → flicker-free crossfade */}
+      {slides.map((slide, i) => (
         <motion.div
-          key={active}
+          key={i}
           className="absolute inset-0"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: reducedMotion ? 0 : 1, ease: "easeInOut" }}
+          initial={false}
+          animate={{ opacity: i === activeIndex ? 1 : 0 }}
+          transition={{ duration: reducedMotion ? 0 : 1.5, ease: "easeInOut" }}
           aria-hidden
         >
           <Image
-            src={slides[active].src}
-            alt={slides[active].alt}
+            src={slide.src}
+            alt={slide.alt}
             fill
-            priority={active === 0}
+            priority={i === 0}
             sizes="100vw"
-            style={{ objectFit: "cover" }}
+            className="object-cover"
           />
         </motion.div>
-      </AnimatePresence>
+      ))}
 
-      {/* Directional gradient — keeps the left-aligned hero text readable */}
+      {/* Constant directional gradient — sits on top of all slides */}
       <div
         aria-hidden
         className="absolute inset-0"
@@ -105,18 +127,24 @@ export default function HeroSlideshow() {
       {/* Dot navigation — bottom centre. Hovering pauses auto-rotation. */}
       <div
         className="absolute inset-x-0 bottom-0 mb-12 flex justify-center gap-2 z-20"
-        onMouseEnter={() => setPaused(true)}
-        onMouseLeave={() => setPaused(false)}
+        onMouseEnter={() => {
+          isHoveringRef.current = true;
+          stopRotation();
+        }}
+        onMouseLeave={() => {
+          isHoveringRef.current = false;
+          startRotation();
+        }}
       >
         {slides.map((_, i) => (
           <button
             key={i}
             type="button"
             aria-label={`Go to slide ${i + 1}`}
-            aria-current={i === active}
-            onClick={() => setActive(i)}
+            aria-current={i === activeIndex}
+            onClick={() => handleDotClick(i)}
             className={`h-2 w-2 rounded-full transition-colors cursor-pointer ${
-              i === active ? "bg-white" : "bg-white/40 hover:bg-white/60"
+              i === activeIndex ? "bg-white" : "bg-white/40 hover:bg-white/60"
             }`}
           />
         ))}

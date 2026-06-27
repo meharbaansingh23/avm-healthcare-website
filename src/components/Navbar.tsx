@@ -17,7 +17,7 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-[#E2E8F0]">
-      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+      <div className="max-w-[1536px] mx-auto px-6 md:px-8 lg:px-12 h-16 flex items-center justify-between">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <a href="/">
           <img
@@ -71,7 +71,7 @@ export default function Navbar() {
 
       {open && (
         <div className="md:hidden border-t border-[#E2E8F0] bg-white">
-          <nav className="max-w-7xl mx-auto px-6 py-4 flex flex-col gap-1">
+          <nav className="max-w-[1536px] mx-auto px-6 md:px-8 lg:px-12 py-4 flex flex-col gap-1">
             {links.map((l) => (
               <Link
                 key={l.href}
