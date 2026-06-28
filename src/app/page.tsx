@@ -125,7 +125,7 @@ const certificateDownload = {
 
 const warrantyDownload = {
   title: "Warranty By AVM",
-  desc: "Complete warranty terms offered by AVM Healthcare.",
+  desc: "Comprehensive warranty terms covering materials, craftsmanship, and the lifetime quality of every AVM instrument.",
   href: "/downloads/Warranty%20offered%20by%20AVM.pdf",
 };
 
@@ -592,28 +592,52 @@ export default function Home() {
               </div>
             </FadeInWhenVisible>
 
-            {/* Warranty by AVM — standard treatment, height-matched to sibling */}
+            {/* Warranty by AVM — editorial / aristocratic treatment, matched to Authenticity */}
             <FadeInWhenVisible delay={0.1} className="h-full">
-              <div className="h-full bg-white rounded-2xl border border-[#E2E8F0] p-10 transition-all duration-200 hover:-translate-y-1 hover:shadow-xl hover:border-blue-200 flex flex-col items-center justify-center text-center">
+              <div
+                className="h-full rounded-2xl p-10 flex flex-col items-center text-center"
+                style={{
+                  background: "linear-gradient(180deg, #0A1628 0%, #1E293B 100%)",
+                  border: "1px solid rgba(255,255,255,0.15)",
+                }}
+              >
                 <div
-                  className="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center text-blue-600 text-xs font-bold"
-                  aria-hidden
+                  className="w-full h-full rounded-xl flex flex-col items-center text-center p-6"
+                  style={{ border: "1px solid rgba(255,255,255,0.25)" }}
                 >
-                  PDF
+                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                    <circle cx="24" cy="24" r="22" stroke="rgba(255,255,255,0.4)" strokeWidth="1" />
+                    <circle cx="24" cy="24" r="16" stroke="rgba(255,255,255,0.3)" strokeWidth="1" />
+                    <path d="M24 12 L26 22 L36 24 L26 26 L24 36 L22 26 L12 24 L22 22 Z" fill="rgba(255,255,255,0.6)" />
+                  </svg>
+
+                  <p
+                    className="text-xs text-white/60 mt-6"
+                    style={{ letterSpacing: "0.3em" }}
+                  >
+                    DOCUMENT OF
+                  </p>
+                  <h3 className="font-serif italic text-3xl text-white mt-2">
+                    Warranty
+                  </h3>
+
+                  <div className="w-[60px] h-px bg-white/30 mt-6" />
+
+                  <p className="text-sm text-white/70 mt-6 max-w-xs mx-auto leading-relaxed">
+                    {warrantyDownload.desc}
+                  </p>
+
+                  <div className="pt-6">
+                    <a
+                      href={warrantyDownload.href}
+                      download
+                      className="group/pill inline-flex items-center gap-2 rounded-full font-medium cursor-pointer transition-all duration-200 px-5 py-2.5 text-sm bg-white text-[#0A1628] shadow-sm hover:shadow-md hover:bg-[#FAFAF9]"
+                    >
+                      Download Warranty
+                      <Download size={14} aria-hidden />
+                    </a>
+                  </div>
                 </div>
-                <h3 className="text-base font-bold text-[#0A1628] mt-5 leading-snug tracking-tight">
-                  {warrantyDownload.title}
-                </h3>
-                <p className="text-xs text-[#94A3B8] mt-2 leading-relaxed">
-                  {warrantyDownload.desc}
-                </p>
-                <a
-                  href={warrantyDownload.href}
-                  download
-                  className="mt-6 text-blue-600 text-xs font-semibold hover:text-blue-700 inline-flex items-center gap-1 transition-colors"
-                >
-                  Download ↓
-                </a>
               </div>
             </FadeInWhenVisible>
           </div>
