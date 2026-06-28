@@ -27,12 +27,12 @@ export const metadata = {
 };
 
 // Client-provided photography.
-const ABOUT_HERO_IMAGE = "/images/gallery-instruments-array.webp"; // editorial array of instruments with a softly blurred operating theatre behind
+const ABOUT_HERO_IMAGE = "/images/about/hero.webp"; // editorial Kerrison rongeur fan — clean composition, no watermark crop issues
 const ABOUT_TEAM_IMAGE = "/images/neurosurgical-alt.webp"; // neurosurgical instrument set
 
 const aboutStats = [
-  { key: "skus", target: 10000, suffix: "+", thousands: true, label: "Healthcare SKUs" },
-  { key: "institutions", target: 250, suffix: "+", thousands: false, label: "Institutions Served" },
+  { key: "skus", target: 10000, suffix: "+", thousands: true, label: "Surgical Products" },
+  { key: "institutions", target: 3000, suffix: "+", thousands: true, label: "Institutions Served" },
   { key: "fulfilment", target: 100, suffix: "%", thousands: false, label: "On-Time Fulfilment" },
   { key: "years", target: 30, suffix: "+", thousands: false, label: "Years Active" },
 ];
@@ -88,7 +88,7 @@ export default function AboutPage() {
         <FadeInWhenVisible delay={0.1} className="mt-14 max-w-7xl mx-auto">
           <KenBurnsImage
             src={ABOUT_HERO_IMAGE}
-            alt="An array of polished AVM surgical instruments arranged before a softly blurred operating theatre"
+            alt="A fanned arrangement of polished AVM Kerrison rongeurs in steel, black and gold finishes"
             priority
             sizes="100vw"
             className="w-full aspect-[21/9] rounded-2xl border border-[#E2E8F0] shadow-2xl shadow-[#0A1628]/10"
@@ -135,8 +135,8 @@ export default function AboutPage() {
               AVM Healthcare Products Pvt. Ltd. is a New Delhi–based manufacturer
               and supplier of surgical instruments and medical devices, engaged
               in the design, development, innovation, production and sales across
-              neurosurgery, cranio surgery, plastic surgery, implants, spinal
-              surgery, cardiovascular, gynaecology, ENT, orthopaedics, and more.
+              Neurosurgery, Cranio Surgery, Plastic Surgery, implants, Spinal
+              Surgery, Cardiovascular, Gynaecology, ENT, Orthopaedics, and more.
             </p>
             <p className="text-[#475569] text-base leading-relaxed mt-4">
               We produce AVM indigenous products in German collaboration and ANI
@@ -202,8 +202,8 @@ export default function AboutPage() {
             Built For Every Surgical Discipline
           </h2>
           <p className="text-[#475569] text-base md:text-lg leading-relaxed mt-5 max-w-[600px] mx-auto">
-            From neurosurgery to cardiovascular care — a glimpse into the breadth
-            of instruments we manufacture.
+            Neurosurgery, Cardiovascular, Thoracic, Oncosurgery, Orthopaedics,
+            G.I. Surgery, Urology — and other Super Specialities.
           </p>
         </FadeInWhenVisible>
 
@@ -280,8 +280,8 @@ export default function AboutPage() {
             Get Our Detailed Product Catalogue
           </h3>
           <p className="text-[#475569] text-sm mt-3 max-w-md leading-relaxed">
-            3,400+ instruments across 6 specialties — delivered within one
-            business day.
+            Over 10,000 Surgical Products across multiple specialties —
+            delivered to your inbox within one business day.
           </p>
           <Link
             href="/request-catalogue"

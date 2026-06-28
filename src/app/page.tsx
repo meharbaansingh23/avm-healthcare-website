@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { Download } from "lucide-react";
 import FadeInWhenVisible from "@/components/FadeInWhenVisible";
 import Marquee from "@/components/Marquee";
 import HeroSlideshow from "@/components/HeroSlideshow";
@@ -73,8 +74,8 @@ const specialties = [
 ];
 
 const whyStats = [
-  { key: "skus", label: "Healthcare SKUs", target: 10000, suffix: "+", thousands: true },
-  { key: "institutions", label: "Institutions Served", target: 250, suffix: "+", thousands: false },
+  { key: "skus", label: "Surgical Products", target: 10000, suffix: "+", thousands: true },
+  { key: "institutions", label: "Institutions Served", target: 3000, suffix: "+", thousands: true },
   { key: "fulfilment", label: "On-Time Fulfilment", target: 100, suffix: "%", thousands: false },
   { key: "years", label: "Years Active", target: 30, suffix: "+", thousands: false },
 ];
@@ -113,25 +114,20 @@ const certs = [
   { name: "NSIC Registered", img: "/images/certifications/nsic.png" },
 ];
 
-// Product support documents — the "Warranty Certificate" PDF (previously 3rd)
-// has been removed per the redesign brief. Three documents remain.
-const downloads = [
-  {
-    title: "Care & Maintenance Guide",
-    desc: "Proper care and maintenance of surgical instruments.",
-    href: "/downloads/Care%20and%20Maintenance%20of%20Surgical%20Instruments.pdf",
-  },
-  {
-    title: "Certificate Of Authenticity",
-    desc: "Official certificate of authenticity for AVM products.",
-    href: "/downloads/Certificate%20of%20Authenticity.pdf",
-  },
-  {
-    title: "Warranty By AVM",
-    desc: "Complete warranty terms offered by AVM Healthcare.",
-    href: "/downloads/Warranty%20offered%20by%20AVM.pdf",
-  },
-];
+// Product support documents — the "Care & Maintenance Guide" card has been
+// removed per the redesign brief. Two documents remain: an editorial
+// "Certificate of Authenticity" card and the standard "Warranty by AVM" card.
+const certificateDownload = {
+  title: "Certificate Of Authenticity",
+  desc: "Official certificate of authenticity for AVM products.",
+  href: "/downloads/Certificate%20of%20Authenticity.pdf",
+};
+
+const warrantyDownload = {
+  title: "Warranty By AVM",
+  desc: "Complete warranty terms offered by AVM Healthcare.",
+  href: "/downloads/Warranty%20offered%20by%20AVM.pdf",
+};
 
 function ArrowRight({ className = "" }: { className?: string }) {
   return (
@@ -236,9 +232,9 @@ export default function Home() {
               transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
               className="text-white/90 text-lg leading-relaxed mt-7"
             >
-              AVM Healthcare Products supplies advanced surgical instruments to
-              premier hospitals across India — from neurosurgery to
-              cardiovascular care.
+              AVM Healthcare Products supplies advanced Surgical instruments to
+              premier hospitals across India — from Neurosurgery to
+              Cardiovascular care.
             </motion.p>
 
             <motion.div
@@ -287,7 +283,7 @@ export default function Home() {
         <FadeInWhenVisible className="text-center max-w-2xl mx-auto px-6 md:px-8">
           <p className="section-label">Our Specialties</p>
           <h2 className="display-heading text-[#0A1628] text-4xl md:text-6xl mt-4">
-            Six Disciplines, One Commitment To Quality
+            Multi-Disciplines, One Commitment To Quality
           </h2>
         </FadeInWhenVisible>
 
@@ -318,6 +314,35 @@ export default function Home() {
         <div className="mt-16">
           <ImageCarousel images={craftGallery} speedSeconds={60} fadeColor="#FFFFFF" />
         </div>
+      </section>
+
+      {/* ─── SECTION 4.7 — INSIDE AVM (story video) ─── */}
+      <section className="py-24 px-6 md:px-8" style={{ backgroundColor: "#FAFAF9" }}>
+        <FadeInWhenVisible className="text-center max-w-2xl mx-auto">
+          <p
+            className="text-xs uppercase font-medium text-[#2563EB]"
+            style={{ letterSpacing: "0.2em" }}
+          >
+            Inside AVM
+          </p>
+          <h2 className="text-[#0A1628] text-4xl md:text-6xl font-bold tracking-tighter leading-[1.05] mt-4">
+            See Our Story In Motion
+          </h2>
+        </FadeInWhenVisible>
+
+        <FadeInWhenVisible delay={0.1} className="mt-14 max-w-5xl mx-auto">
+          <div className="relative w-full aspect-video rounded-2xl shadow-2xl overflow-hidden">
+            <iframe
+              src="https://www.youtube.com/embed/_QNRNKJiNuA"
+              title="AVM Healthcare Products — Our Story"
+              width="100%"
+              height="100%"
+              className="absolute inset-0"
+              allowFullScreen
+              loading="lazy"
+            />
+          </div>
+        </FadeInWhenVisible>
       </section>
 
       {/* ─── SECTION 5 — WHY CHOOSE AVM (sticky scroll showcase) ─── */}
@@ -428,8 +453,8 @@ export default function Home() {
             Request Our Detailed Product Catalogue
           </h2>
           <p className="text-white/80 text-lg mt-6 max-w-xl mx-auto leading-relaxed">
-            Over 3,400 surgical instruments across 6 specialties. Our team will
-            send the full catalogue to your inbox within one business day.
+            Over 10,000 Surgical Products across multiple specialties —
+            delivered to your inbox within one business day.
           </p>
           <Link
             href="/request-catalogue"
@@ -517,32 +542,80 @@ export default function Home() {
             </p>
           </FadeInWhenVisible>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16">
-            {downloads.map((d, i) => (
-              <FadeInWhenVisible key={d.title} delay={i * 0.1} className="h-full">
-                <div className="h-full bg-white rounded-2xl border border-[#E2E8F0] p-7 transition-all duration-200 hover:-translate-y-1 hover:shadow-xl hover:border-blue-200 flex flex-col items-center text-center">
-                  <div
-                    className="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center text-blue-600 text-xs font-bold"
-                    aria-hidden
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-16 max-w-3xl mx-auto">
+            {/* Certificate of Authenticity — editorial / aristocratic treatment */}
+            <FadeInWhenVisible className="h-full">
+              <div
+                className="h-full rounded-2xl p-10 flex flex-col items-center text-center"
+                style={{
+                  background: "linear-gradient(180deg, #0A1628 0%, #1E293B 100%)",
+                  border: "1px solid rgba(255,255,255,0.15)",
+                }}
+              >
+                <div
+                  className="w-full h-full rounded-xl flex flex-col items-center text-center p-6"
+                  style={{ border: "1px solid rgba(255,255,255,0.25)" }}
+                >
+                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                    <circle cx="24" cy="24" r="22" stroke="rgba(255,255,255,0.4)" strokeWidth="1" />
+                    <circle cx="24" cy="24" r="16" stroke="rgba(255,255,255,0.3)" strokeWidth="1" />
+                    <path d="M24 12 L26 22 L36 24 L26 26 L24 36 L22 26 L12 24 L22 22 Z" fill="rgba(255,255,255,0.6)" />
+                  </svg>
+
+                  <p
+                    className="text-xs text-white/60 mt-6"
+                    style={{ letterSpacing: "0.3em" }}
                   >
-                    PDF
-                  </div>
-                  <h3 className="text-base font-bold text-[#0A1628] mt-5 leading-snug tracking-tight">
-                    {d.title}
-                  </h3>
-                  <p className="text-xs text-[#94A3B8] mt-2 leading-relaxed flex-1">
-                    {d.desc}
+                    DOCUMENT OF
                   </p>
-                  <a
-                    href={d.href}
-                    download
-                    className="mt-6 text-blue-600 text-xs font-semibold hover:text-blue-700 inline-flex items-center gap-1 transition-colors"
-                  >
-                    Download ↓
-                  </a>
+                  <h3 className="font-serif italic text-3xl text-white mt-2">
+                    Authenticity
+                  </h3>
+
+                  <div className="w-[60px] h-px bg-white/30 mt-6" />
+
+                  <p className="text-sm text-white/70 mt-6 max-w-xs mx-auto leading-relaxed">
+                    {certificateDownload.desc}
+                  </p>
+
+                  <div className="pt-6">
+                    <a
+                      href={certificateDownload.href}
+                      download
+                      className="group/pill inline-flex items-center gap-2 rounded-full font-medium cursor-pointer transition-all duration-200 px-5 py-2.5 text-sm bg-white text-[#0A1628] shadow-sm hover:shadow-md hover:bg-[#FAFAF9]"
+                    >
+                      Download Certificate
+                      <Download size={14} aria-hidden />
+                    </a>
+                  </div>
                 </div>
-              </FadeInWhenVisible>
-            ))}
+              </div>
+            </FadeInWhenVisible>
+
+            {/* Warranty by AVM — standard treatment, height-matched to sibling */}
+            <FadeInWhenVisible delay={0.1} className="h-full">
+              <div className="h-full bg-white rounded-2xl border border-[#E2E8F0] p-10 transition-all duration-200 hover:-translate-y-1 hover:shadow-xl hover:border-blue-200 flex flex-col items-center justify-center text-center">
+                <div
+                  className="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center text-blue-600 text-xs font-bold"
+                  aria-hidden
+                >
+                  PDF
+                </div>
+                <h3 className="text-base font-bold text-[#0A1628] mt-5 leading-snug tracking-tight">
+                  {warrantyDownload.title}
+                </h3>
+                <p className="text-xs text-[#94A3B8] mt-2 leading-relaxed">
+                  {warrantyDownload.desc}
+                </p>
+                <a
+                  href={warrantyDownload.href}
+                  download
+                  className="mt-6 text-blue-600 text-xs font-semibold hover:text-blue-700 inline-flex items-center gap-1 transition-colors"
+                >
+                  Download ↓
+                </a>
+              </div>
+            </FadeInWhenVisible>
           </div>
         </div>
       </section>

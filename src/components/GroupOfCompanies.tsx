@@ -22,6 +22,7 @@ const COMPANIES: Company[] = [
   {
     name: "AVM Surgicare",
     sub: "Surgical solutions",
+    // TODO: Replace AVM Surgicare logo when client provides corrected version
     logo: {
       type: "img",
       src: "/images/companies/AVM-Surgicare.png",
@@ -41,11 +42,10 @@ const COMPANIES: Company[] = [
   {
     name: "Chaba Mediwise",
     sub: "Healthcare products",
-    logo: {
-      type: "img",
-      src: "/images/companies/CHABA-MEDWISE.png",
-      alt: "Chaba Mediwise",
-    },
+    // TODO: Replace with correct Chaba Mediwise logo when client provides
+    // (the previous image here was the wrong logo — Acewise, not Chaba
+    // Mediwise — so we show a styled text label in its place for now).
+    logo: { type: "text", value: "Chaba Mediwise" },
   },
 ];
 
@@ -75,7 +75,7 @@ export default function GroupOfCompanies() {
               <>
                 <div className="h-16 w-full flex items-center justify-center">
                   {c.logo.type === "text" ? (
-                    <span className="font-semibold text-2xl text-[#0A1628] tracking-tight">
+                    <span className="font-medium text-2xl text-[#0A1628] tracking-tight">
                       {c.logo.value}
                     </span>
                   ) : (
