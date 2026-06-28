@@ -51,10 +51,10 @@ export default function InnovationPage() {
               }}
             />
             <Image
-              src="/images/innovation.png"
-              alt="AVM Healthcare innovation"
-              width={1200}
-              height={799}
+              src="/images/general-surgery-detail.webp"
+              alt="Close-up of AVM surgical instruments arranged on a sterile field"
+              width={1504}
+              height={1003}
               priority
               sizes="(min-width: 1024px) 896px, 100vw"
               style={{
