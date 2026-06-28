@@ -282,39 +282,13 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─── SECTION 3 — WHO WE ARE (centered) ─── */}
-      <section id="story" className="bg-[#FAFAF9] py-20 md:py-28 px-6 md:px-8">
-        <FadeInWhenVisible className="max-w-[760px] mx-auto text-center">
-          <div className="flex items-center justify-center gap-3">
-            <span className="w-8 h-px bg-blue-600" aria-hidden />
-            <p className="section-label">Who We Are</p>
-            <span className="w-8 h-px bg-blue-600" aria-hidden />
-          </div>
-          <h2 className="display-heading text-[#0A1628] text-4xl md:text-6xl mt-5">
-            Supplying Surgical Excellence Since 1996
-          </h2>
-          <p className="text-[#475569] mt-6 leading-relaxed">
-            AVM Healthcare Products Pvt. Ltd. is a New Delhi–based manufacturer
-            and supplier of advanced quality surgical instruments and medical
-            devices. We design, develop, and supply instruments across
-            neurosurgery, general surgery, cardiovascular, gynaecology, plastic
-            surgery, and more.
-          </p>
-        </FadeInWhenVisible>
-      </section>
-
-      {/* ─── SECTION 4 — SPECIALTIES MARQUEE ─── */}
+      {/* ─── SECTION 3 — SPECIALTIES MARQUEE ─── */}
       <section className="bg-white py-20 md:py-28 overflow-hidden">
         <FadeInWhenVisible className="text-center max-w-2xl mx-auto px-6 md:px-8">
           <p className="section-label">Our Specialties</p>
           <h2 className="display-heading text-[#0A1628] text-4xl md:text-6xl mt-4">
             Six Disciplines, One Commitment To Quality
           </h2>
-          <p className="text-[#475569] mt-5 leading-relaxed">
-            We supply precision instruments across six major surgical
-            specialties — each category developed with direct input from
-            practicing surgeons.
-          </p>
         </FadeInWhenVisible>
 
         <div className="mt-16">
@@ -339,10 +313,6 @@ export default function Home() {
           <h2 className="text-[#0A1628] text-4xl md:text-6xl font-bold tracking-tighter leading-[1.05] mt-4">
             Crafted With Precision
           </h2>
-          <p className="text-[#475569] text-base md:text-lg leading-relaxed mt-5 max-w-[600px] mx-auto">
-            Every instrument tells a story of meticulous engineering and surgical
-            heritage.
-          </p>
         </FadeInWhenVisible>
 
         <div className="mt-16">

@@ -27,7 +27,7 @@ export const metadata = {
 };
 
 // Client-provided photography.
-const ABOUT_HERO_IMAGE = "/images/hero-2.webp"; // instruments laid out in an operating room
+const ABOUT_HERO_IMAGE = "/images/gallery-instruments-array.webp"; // editorial array of instruments with a softly blurred operating theatre behind
 const ABOUT_TEAM_IMAGE = "/images/neurosurgical-alt.webp"; // neurosurgical instrument set
 
 const aboutStats = [
@@ -88,7 +88,7 @@ export default function AboutPage() {
         <FadeInWhenVisible delay={0.1} className="mt-14 max-w-7xl mx-auto">
           <KenBurnsImage
             src={ABOUT_HERO_IMAGE}
-            alt="AVM surgical instruments laid out in an operating room"
+            alt="An array of polished AVM surgical instruments arranged before a softly blurred operating theatre"
             priority
             sizes="100vw"
             className="w-full aspect-[21/9] rounded-2xl border border-[#E2E8F0] shadow-2xl shadow-[#0A1628]/10"
@@ -96,27 +96,27 @@ export default function AboutPage() {
         </FadeInWhenVisible>
       </section>
 
-      {/* ─── SECTION 2 — STATS (animated counters) ─── */}
+      {/* ─── SECTION 2 — STATS (animated counters, no card — matches homepage) ─── */}
       <section className="bg-white pb-20 px-6 md:px-8">
         <FadeInWhenVisible className="max-w-6xl mx-auto">
-          <div className="bg-white rounded-2xl border border-[#E2E8F0] shadow-sm grid grid-cols-2 md:grid-cols-4 overflow-hidden">
+          <div className="grid grid-cols-2 md:grid-cols-4">
             {aboutStats.map((s, i) => (
               <div
                 key={s.key}
-                className={`py-10 px-8 text-center flex flex-col justify-center items-center ${
-                  i >= 2 ? "border-t border-[#E2E8F0] md:border-t-0" : ""
-                } ${i > 0 ? "md:border-l md:border-[#E2E8F0]" : ""} ${
-                  i % 2 === 1 ? "border-l border-[#E2E8F0] md:border-l" : ""
-                }`}
+                className={`py-8 px-4 md:px-6 text-center flex flex-col justify-center items-center ${
+                  i < 2 ? "border-b border-[#E2E8F0] md:border-b-0" : ""
+                } ${i < 3 ? "md:border-r md:border-[#E2E8F0]" : ""}`}
               >
                 <AnimatedCounter
                   target={s.target}
                   suffix={s.suffix}
                   thousands={s.thousands}
                   durationMs={2000}
-                  className="font-bold text-5xl text-[#0A1628] tracking-[-0.04em] tabular-nums"
+                  className="font-bold text-5xl md:text-6xl text-[#0A1628] tracking-[-0.04em] tabular-nums"
                 />
-                <div className="text-sm text-[#475569] mt-2">{s.label}</div>
+                <div className="text-xs uppercase tracking-wider font-medium text-[#94A3B8] mt-2">
+                  {s.label}
+                </div>
               </div>
             ))}
           </div>
