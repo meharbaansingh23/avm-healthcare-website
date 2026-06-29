@@ -40,12 +40,13 @@ const COMPANIES: Company[] = [
     href: "https://www.animedtec.com/",
   },
   {
-    name: "Chaba Mediwise",
-    sub: "Healthcare products",
-    // TODO: Replace with correct Chaba Mediwise logo when client provides
-    // (the previous image here was the wrong logo — Acewise, not Chaba
-    // Mediwise — so we show a styled text label in its place for now).
-    logo: { type: "text", value: "Chaba Mediwise" },
+    name: "AceWeise",
+    sub: "Surgical solutions",
+    logo: {
+      type: "img",
+      src: "/images/companies/aceweise.jpeg",
+      alt: "AceWeise",
+    },
   },
 ];
 
