@@ -85,7 +85,11 @@ export default function GroupOfCompanies() {
                       <img
                         src={c.logo.src}
                         alt={c.logo.alt}
-                        className="transition-transform duration-200 group-hover:scale-105"
+                        className={
+                          c.name === "ANI Instruments"
+                            ? "scale-[1.35] transition-transform duration-200 group-hover:scale-[1.42]"
+                            : "transition-transform duration-200 group-hover:scale-105"
+                        }
                         style={{
                           maxHeight: "48px",
                           maxWidth: "140px",
