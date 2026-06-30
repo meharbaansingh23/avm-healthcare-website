@@ -37,9 +37,14 @@ export async function POST(request: Request) {
       </div>
     `;
 
+    const toEmails = (process.env.RESEND_TO_EMAIL || "info@avmhealthcare.com")
+      .split(",")
+      .map((e) => e.trim())
+      .filter(Boolean);
+
     const { error } = await resend.emails.send({
-      from: "onboarding@resend.dev",
-      to: "info@avmhealthcare.com",
+      from: "AVM Healthcare <contact@send.avmhealthcare.com>",
+      to: toEmails,
       subject: `New Contact Enquiry — ${name ?? "Unknown"}`,
       html,
       replyTo: email,

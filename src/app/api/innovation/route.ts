@@ -2,10 +2,11 @@ import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-// TODO: switch to noreply@avmhealthcare.com once domain is verified in Resend
-const FROM = "AVM Healthcare <onboarding@resend.dev>";
-// TODO: switch to info@avmhealthcare.com once domain is verified
-const TO = "meharbaansinghkaila@gmail.com";
+const FROM = "AVM Innovation <innovation@send.avmhealthcare.com>";
+const toEmails = (process.env.RESEND_TO_EMAIL || "info@avmhealthcare.com")
+  .split(",")
+  .map((e) => e.trim())
+  .filter(Boolean);
 
 const escape = (v: unknown) =>
   String(v ?? "")
@@ -64,7 +65,7 @@ export async function POST(request: Request) {
 
     const { error } = await resend.emails.send({
       from: FROM,
-      to: TO,
+      to: toEmails,
       replyTo: email,
       subject: `New innovation proposal from ${name}`,
       html,

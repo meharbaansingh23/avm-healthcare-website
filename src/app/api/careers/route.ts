@@ -2,10 +2,11 @@ import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-// TODO: switch to noreply@avmhealthcare.com once domain is verified in Resend
-const FROM = "AVM Healthcare <onboarding@resend.dev>";
-// TODO: switch to info@avmhealthcare.com once domain is verified
-const TO = "meharbaansinghkaila@gmail.com";
+const FROM = "AVM Careers <careers@send.avmhealthcare.com>";
+const toEmails = (process.env.RESEND_TO_EMAIL || "info@avmhealthcare.com")
+  .split(",")
+  .map((e) => e.trim())
+  .filter(Boolean);
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5 MB
 
@@ -89,7 +90,7 @@ export async function POST(request: Request) {
 
     const { error } = await resend.emails.send({
       from: FROM,
-      to: TO,
+      to: toEmails,
       replyTo: email,
       subject: `New career application from ${name}`,
       html,
