@@ -27,7 +27,7 @@ export const metadata = {
 };
 
 // Client-provided photography.
-const ABOUT_HERO_IMAGE = "/images/about/hero.webp"; // editorial Kerrison rongeur fan — clean composition, no watermark crop issues
+const ABOUT_HERO_IMAGE = "/images/an-innovative-company.webp"; // client-provided OR table instrument tray shot
 const ABOUT_TEAM_IMAGE = "/images/neurosurgical-alt.webp"; // neurosurgical instrument set
 
 const aboutStats = [
@@ -88,10 +88,10 @@ export default function AboutPage() {
         <FadeInWhenVisible delay={0.1} className="mt-14 max-w-7xl mx-auto">
           <KenBurnsImage
             src={ABOUT_HERO_IMAGE}
-            alt="A fanned arrangement of polished AVM Kerrison rongeurs in steel, black and gold finishes"
+            alt="A wide-angle view of AVM surgical instruments laid out on a sterile tray in an operating theatre"
             priority
             sizes="100vw"
-            className="w-full aspect-[21/9] rounded-2xl border border-[#E2E8F0] shadow-2xl shadow-[#0A1628]/10"
+            className="w-full aspect-[16/9] rounded-2xl border border-[#E2E8F0] shadow-2xl shadow-[#0A1628]/10"
           />
         </FadeInWhenVisible>
       </section>
