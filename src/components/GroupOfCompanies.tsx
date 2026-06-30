@@ -87,7 +87,7 @@ export default function GroupOfCompanies() {
                         alt={c.logo.alt}
                         className={
                           c.name === "ANI Instruments"
-                            ? "scale-[1.35] transition-transform duration-200 group-hover:scale-[1.42]"
+                            ? "scale-[1.6] transition-transform duration-200 group-hover:scale-[1.68]"
                             : "transition-transform duration-200 group-hover:scale-105"
                         }
                         style={{
