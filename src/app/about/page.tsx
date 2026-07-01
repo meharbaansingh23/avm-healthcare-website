@@ -91,7 +91,7 @@ export default function AboutPage() {
             alt="A wide-angle view of AVM surgical instruments laid out on a sterile tray in an operating theatre"
             priority
             sizes="100vw"
-            className="w-full aspect-[16/9] rounded-2xl border border-[#E2E8F0] shadow-2xl shadow-[#0A1628]/10"
+            className="w-full aspect-[4835/2997] rounded-2xl border border-[#E2E8F0] shadow-2xl shadow-[#0A1628]/10"
           />
         </FadeInWhenVisible>
       </section>
