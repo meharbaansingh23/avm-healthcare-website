@@ -28,7 +28,7 @@ export const metadata = {
 
 // Client-provided photography.
 const ABOUT_HERO_IMAGE = "/images/an-innovative-company.webp"; // client-provided OR table instrument tray shot
-const ABOUT_TEAM_IMAGE = "/images/neurosurgical-alt.webp"; // neurosurgical instrument set
+const ABOUT_TEAM_IMAGE = "/images/neurosurgical.webp"; // neurosurgical instrument set
 
 const aboutStats = [
   { key: "skus", target: 10000, suffix: "+", thousands: true, label: "Surgical Products" },
