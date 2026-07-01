@@ -22,7 +22,7 @@ export async function POST(request: Request) {
       fields,
     });
 
-    const toEmails = (process.env.RESEND_TO_EMAIL || "info@avmhealthcare.com")
+    const toEmails = (process.env.RESEND_TO_SALES || "sales@avmhealthcare.com")
       .split(",")
       .map((e) => e.trim())
       .filter(Boolean);

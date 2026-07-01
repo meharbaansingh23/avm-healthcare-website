@@ -80,10 +80,10 @@ export default function ContactPage() {
               Email
             </p>
             <a
-              href="mailto:info@avmhealthcare.com"
+              href="mailto:sales@avmhealthcare.com"
               className="text-sm text-blue-600 hover:text-blue-700"
             >
-              info@avmhealthcare.com
+              sales@avmhealthcare.com
             </a>
           </div>
           <div>

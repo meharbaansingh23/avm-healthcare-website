@@ -4,7 +4,7 @@ import { renderFormSubmissionEmail } from "@/emails/FormSubmissionEmail";
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 const FROM = "AVM Healthcare <catalogue@send.avmhealthcare.com>";
-const toEmails = (process.env.RESEND_TO_EMAIL || "info@avmhealthcare.com")
+const toEmails = (process.env.RESEND_TO_SALES || "sales@avmhealthcare.com")
   .split(",")
   .map((e) => e.trim())
   .filter(Boolean);
