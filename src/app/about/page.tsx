@@ -150,7 +150,7 @@ export default function AboutPage() {
               src={ABOUT_TEAM_IMAGE}
               alt="AVM neurosurgical instrument set"
               sizes="(min-width: 1024px) 896px, 100vw"
-              className="w-full aspect-[3/2] rounded-2xl border border-[#E2E8F0] shadow-2xl shadow-[#0A1628]/10"
+              className="w-full aspect-[1785/923] rounded-2xl border border-[#E2E8F0] shadow-2xl shadow-[#0A1628]/10"
             />
           </FadeInWhenVisible>
         </div>
