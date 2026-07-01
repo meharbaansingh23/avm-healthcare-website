@@ -17,13 +17,13 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-[#E2E8F0]">
-      <div className="max-w-[1536px] mx-auto px-6 md:px-8 lg:px-12 h-16 flex items-center justify-between">
+      <div className="max-w-[1536px] mx-auto px-6 md:px-8 lg:px-12 h-[68px] md:h-20 flex items-center justify-between">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <a href="/">
           <img
             src="/images/logo-dark.png"
             alt="AVM Healthcare Products"
-            style={{ height: '36px', width: 'auto', display: 'block' }}
+            className="h-[42px] md:h-[52px] w-auto block"
           />
         </a>
 
