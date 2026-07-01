@@ -152,12 +152,12 @@ function ArrowRight({ className = "" }: { className?: string }) {
 function SpecialtyCard({ s }: { s: (typeof specialties)[number] }) {
   return (
     <div className="group/card h-full w-[300px] sm:w-[340px] flex flex-col bg-white border border-[#E2E8F0] rounded-2xl overflow-hidden transition-all duration-200 hover:border-blue-200 hover:shadow-xl">
-      <div className="relative aspect-[3/2] overflow-hidden">
+      <div className="relative aspect-[3/2] overflow-hidden bg-[#FAFAF9]">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={s.img}
           alt={s.label}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-105"
+          className="w-full h-full object-contain transition-transform duration-500 group-hover/card:scale-105"
         />
       </div>
       <div className="p-6 text-center flex-1">
