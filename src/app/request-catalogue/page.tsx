@@ -27,29 +27,21 @@ export default function RequestCataloguePage() {
             <CatalogueForm />
           </FadeInWhenVisible>
 
-          {/* RIGHT — Portrait catalogue cover */}
-          {/* TODO: Replace with client-provided catalogue cover image when available */}
+          {/* RIGHT — Catalogue cover */}
           <FadeInWhenVisible delay={0.1} className="lg:sticky lg:top-24">
-            <div
-              className="rounded-2xl overflow-hidden aspect-[3/4] w-full shadow-lg border border-[#E2E8F0] flex flex-col items-center justify-center text-center px-8"
-              style={{ background: "linear-gradient(160deg, #0A1628 0%, #1E293B 100%)" }}
-            >
+            <div className="relative rounded-2xl overflow-hidden aspect-[2251/3184] w-full shadow-lg border border-[#E2E8F0]">
               <Image
-                src="/images/logo-light.png"
-                alt="AVM Healthcare Products"
-                width={1015}
-                height={251}
+                src="/images/catalogue_cover_page.webp"
+                alt="AVM Healthcare Products — Full Surgical Instruments Catalogue"
+                fill
                 priority
-                className="h-12 w-auto"
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
               />
-              <p className="text-xs uppercase tracking-widest text-white/70 mt-8">
-                Product Catalogue 2026
-              </p>
-              <p className="text-lg text-white mt-3">AVM Healthcare Products</p>
-              <p className="text-xs text-white/50 mt-2">
-                Surgical Instruments · Made In India · Since 1996
-              </p>
             </div>
+            <p className="mt-3 text-center text-xs text-[#94A3B8]">
+              AVM Healthcare Products · Full Surgical Instruments Catalogue
+            </p>
           </FadeInWhenVisible>
         </div>
       </div>
