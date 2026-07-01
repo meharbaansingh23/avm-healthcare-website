@@ -3,9 +3,12 @@ import FadeInWhenVisible from "@/components/FadeInWhenVisible";
 import PillButton from "@/components/PillButton";
 
 export const metadata = {
-  title: "Contact — AVM Healthcare Products Pvt. Ltd.",
+  title: "Contact Us",
   description:
-    "Get in touch with AVM Healthcare. Our New Delhi team is available Monday to Saturday, 9:30am–6:30pm IST.",
+    "Get in touch with AVM Healthcare. Offices in New Delhi, Mumbai, and Hamburg. Working hours Monday–Saturday, 9:30am–6:30pm IST.",
+  alternates: {
+    canonical: "https://avmhealthcare.com/contact",
+  },
 };
 
 const offices = [

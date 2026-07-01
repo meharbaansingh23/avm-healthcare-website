@@ -3,9 +3,12 @@ import InnovationForm from "@/components/InnovationForm";
 import FadeInWhenVisible from "@/components/FadeInWhenVisible";
 
 export const metadata = {
-  title: "Innovation — AVM Healthcare Products Pvt. Ltd.",
+  title: "Innovation",
   description:
-    "Collaborate with AVM Healthcare on new product concepts, manufacturing partnerships, research, and technology licensing.",
+    "AVM Healthcare partners with surgeons, researchers, and institutions to build the next generation of surgical instruments. Submit your proposal.",
+  alternates: {
+    canonical: "https://avmhealthcare.com/innovation",
+  },
 };
 
 export default function InnovationPage() {

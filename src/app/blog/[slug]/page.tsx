@@ -16,8 +16,17 @@ export async function generateMetadata({
   const post = blogPosts.find((p) => p.slug === slug);
   if (!post) return {};
   return {
-    title: `${post.title} — AVM Insights`,
+    title: post.title,
     description: post.excerpt,
+    alternates: {
+      canonical: `https://avmhealthcare.com/blog/${slug}`,
+    },
+    openGraph: {
+      title: post.title,
+      description: post.excerpt,
+      url: `https://avmhealthcare.com/blog/${slug}`,
+      images: [{ url: post.coverImage, alt: post.title }],
+    },
   };
 }
 

@@ -6,9 +6,12 @@ import PillButton from "@/components/PillButton";
 import { blogPosts } from "@/lib/blog";
 
 export const metadata = {
-  title: "Insights — AVM Healthcare Products Pvt. Ltd.",
+  title: "Blog",
   description:
     "Insights on surgical instrument care, innovation, and best practices from AVM Healthcare.",
+  alternates: {
+    canonical: "https://avmhealthcare.com/blog",
+  },
 };
 
 export default function BlogIndexPage() {

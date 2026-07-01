@@ -3,9 +3,12 @@ import CatalogueForm from "@/components/CatalogueForm";
 import FadeInWhenVisible from "@/components/FadeInWhenVisible";
 
 export const metadata = {
-  title: "Request Catalogue — AVM Healthcare Products Pvt. Ltd.",
+  title: "Request Catalogue",
   description:
-    "Request the AVM Healthcare product catalogue — over 3,400 surgical instruments across 6 specialties, delivered within one business day.",
+    "Request AVM Healthcare's detailed product catalogue. Over 10,000 surgical products across multiple specialties, delivered to your inbox within one business day.",
+  alternates: {
+    canonical: "https://avmhealthcare.com/request-catalogue",
+  },
 };
 
 export default function RequestCataloguePage() {

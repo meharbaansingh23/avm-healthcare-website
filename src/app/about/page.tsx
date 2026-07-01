@@ -21,9 +21,12 @@ const instrumentGallery: CarouselImage[] = [
 ];
 
 export const metadata = {
-  title: "About Us — AVM Healthcare Products Pvt. Ltd.",
+  title: "About Us",
   description:
-    "AVM Healthcare Products is a New Delhi–based manufacturer of advanced surgical instruments, supplying premier institutions across India and exporting worldwide.",
+    "AVM Healthcare Products Pvt. Ltd. — 30+ years of manufacturing precision surgical instruments in New Delhi, developed in German collaboration and supplied to premier institutions across India and worldwide.",
+  alternates: {
+    canonical: "https://avmhealthcare.com/about",
+  },
 };
 
 // Client-provided photography.

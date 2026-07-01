@@ -3,9 +3,12 @@ import CareersForm from "@/components/CareersForm";
 import FadeInWhenVisible from "@/components/FadeInWhenVisible";
 
 export const metadata = {
-  title: "Careers — AVM Healthcare Products Pvt. Ltd.",
+  title: "Careers",
   description:
-    "Join AVM Healthcare. We are always looking for driven people who care about advancing surgical care.",
+    "Join the team shaping surgical care in India. AVM Healthcare is always interested in meeting talented people who care about healthcare and want to make a difference.",
+  alternates: {
+    canonical: "https://avmhealthcare.com/careers",
+  },
 };
 
 export default function CareersPage() {
