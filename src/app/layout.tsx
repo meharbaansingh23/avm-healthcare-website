@@ -57,7 +57,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "AVM Healthcare — Precision Surgical Instruments Since 1996",
     description: SITE_DESCRIPTION,
-    images: ["/images/og-image.png"],
+    images: ["/opengraph-image.png"],
   },
   robots: {
     index: true,
