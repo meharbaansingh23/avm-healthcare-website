@@ -80,6 +80,20 @@ export default function ContactPage() {
               className="text-xs uppercase text-[#475569] font-semibold mb-2"
               style={{ letterSpacing: "0.15em" }}
             >
+              Phone
+            </p>
+            <a
+              href="tel:+919810345155"
+              className="text-sm text-blue-600 hover:text-blue-700"
+            >
+              +91 98103 45155
+            </a>
+          </div>
+          <div>
+            <p
+              className="text-xs uppercase text-[#475569] font-semibold mb-2"
+              style={{ letterSpacing: "0.15em" }}
+            >
               Email
             </p>
             <a

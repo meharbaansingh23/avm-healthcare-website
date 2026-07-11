@@ -210,6 +210,13 @@ export default function CareersForm() {
             className="text-blue-600 hover:text-blue-700"
           >
             careers@avmhealthcare.com
+          </a>{" "}
+          or call{" "}
+          <a
+            href="tel:+919810074695"
+            className="text-blue-600 hover:text-blue-700"
+          >
+            +91 98100 74695
           </a>
           .
         </p>
