@@ -45,7 +45,7 @@ export default function Footer() {
 
             <div className="flex items-center gap-3 mt-6">
               <a
-                href="https://www.linkedin.com/in/avm-health-care-5571711b7/"
+                href="https://www.linkedin.com/company/avm-healthcare"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
@@ -69,7 +69,7 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-10 md:gap-16">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-10 md:gap-12">
             {footerColumns.map((col) => (
               <div key={col.heading}>
                 <h3 className="text-xs font-semibold text-[#0A1628] uppercase mb-4" style={{ letterSpacing: "0.15em" }}>
@@ -86,6 +86,28 @@ export default function Footer() {
                 ))}
               </div>
             ))}
+
+            <div>
+              <h3 className="text-xs font-semibold text-[#0A1628] uppercase mb-4" style={{ letterSpacing: "0.15em" }}>
+                Contact
+              </h3>
+              <p className="mb-2 text-sm text-[#475569] leading-relaxed">
+                17-19 A Block, Chatarpur Extension, Rajpur Road, New Delhi —
+                110074, India
+              </p>
+              <a
+                href="tel:+919810345155"
+                className="block mb-2 text-sm text-[#475569] hover:text-[#0A1628] transition-colors"
+              >
+                +91 98103 45155
+              </a>
+              <a
+                href="mailto:sales@avmhealthcare.com"
+                className="block mb-2 text-sm text-[#475569] hover:text-[#0A1628] transition-colors"
+              >
+                sales@avmhealthcare.com
+              </a>
+            </div>
           </div>
         </div>
 
