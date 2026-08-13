@@ -45,7 +45,7 @@ export default function Footer() {
 
             <div className="flex items-center gap-3 mt-6">
               <a
-                href="https://www.linkedin.com/company/avm-healthcare"
+                href="https://www.linkedin.com/in/avm-health-care-5571711b7/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"

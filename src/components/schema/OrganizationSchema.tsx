@@ -56,7 +56,7 @@ const organization = {
     },
   ],
   sameAs: [
-    "https://www.linkedin.com/company/avm-healthcare",
+    "https://www.linkedin.com/in/avm-health-care-5571711b7/",
     // TODO — two Facebook presences exist. Add the canonical one only.
   ],
   knowsAbout: [
