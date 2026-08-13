@@ -7,6 +7,13 @@ export type BlogPost = {
   readTime: string;
   content: string;
   coverImage: string;
+  metaTitle?: string;
+  metaDescription?: string;
+  keywords?: string[];
+  author?: string;
+  image?: string;
+  datePublished?: string;
+  dateModified?: string;
 };
 
 export const blogPosts: BlogPost[] = [
