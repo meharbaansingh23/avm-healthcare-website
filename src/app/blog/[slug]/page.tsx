@@ -1,7 +1,13 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { blogPosts } from "@/lib/blog";
+import { renderContent } from "@/lib/renderContent";
+import BlogPostingSchema from "@/components/schema/BlogPostingSchema";
+import BreadcrumbSchema from "@/components/schema/BreadcrumbSchema";
+
+const BASE_URL = "https://avmhealthcare.com";
 
 export function generateStaticParams() {
   return blogPosts.map((post) => ({ slug: post.slug }));
@@ -11,21 +17,37 @@ export async function generateMetadata({
   params,
 }: {
   params: Promise<{ slug: string }>;
-}) {
+}): Promise<Metadata> {
   const { slug } = await params;
   const post = blogPosts.find((p) => p.slug === slug);
+
   if (!post) return {};
+
+  const url = `${BASE_URL}/blog/${post.slug}`;
+  const title = { absolute: post.metaTitle ?? `${post.title} | AVM Healthcare` };
+  const description = post.metaDescription ?? post.excerpt;
+  const image = post.image ?? "/opengraph-image.png";
+
   return {
-    title: post.title,
-    description: post.excerpt,
-    alternates: {
-      canonical: `https://avmhealthcare.com/blog/${slug}`,
-    },
+    title,
+    description,
+    alternates: { canonical: url },
     openGraph: {
-      title: post.title,
-      description: post.excerpt,
-      url: `https://avmhealthcare.com/blog/${slug}`,
-      images: [{ url: post.coverImage, alt: post.title }],
+      type: "article",
+      title,
+      description,
+      url,
+      siteName: "AVM Healthcare",
+      locale: "en_IN",
+      images: [{ url: `${BASE_URL}${image}`, width: 1200, height: 630 }],
+      ...(post.datePublished && { publishedTime: post.datePublished }),
+      ...(post.dateModified && { modifiedTime: post.dateModified }),
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [`${BASE_URL}${image}`],
     },
   };
 }
@@ -39,10 +61,15 @@ export default async function BlogPostPage({
   const post = blogPosts.find((p) => p.slug === slug);
   if (!post) notFound();
 
-  const paragraphs = post.content.split(/\n\n+/);
-
   return (
     <article className="bg-white">
+      <BlogPostingSchema post={post} />
+      <BreadcrumbSchema
+        crumbs={[
+          { name: "Blog", path: "/blog" },
+          { name: post.title, path: `/blog/${post.slug}` },
+        ]}
+      />
       <div className="max-w-3xl mx-auto px-6 md:px-8 py-16 md:py-20">
         <Link
           href="/blog"
@@ -82,14 +109,7 @@ export default async function BlogPostPage({
 
         {/* Body — left-aligned for comfortable reading */}
         <div className="mt-12">
-          {paragraphs.map((para, i) => (
-            <p
-              key={i}
-              className="text-lg text-[#475569] leading-[1.85] mb-6"
-            >
-              {para}
-            </p>
-          ))}
+          {renderContent(post.content)}
         </div>
 
         <div className="bg-[#FAFAF9] rounded-2xl p-8 mt-16 text-center border border-[#E2E8F0]">

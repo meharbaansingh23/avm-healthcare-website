@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import OrganizationSchema from "@/components/schema/OrganizationSchema";
 
 // Body + display typeface.
 // Design system calls for Helvetica Neue. We self-host Inter via next/font as a
@@ -25,17 +26,6 @@ export const metadata: Metadata = {
     template: "%s | AVM Healthcare",
   },
   description: SITE_DESCRIPTION,
-  keywords: [
-    "surgical instruments",
-    "AVM Healthcare",
-    "medical devices India",
-    "German collaboration",
-    "neurosurgical instruments",
-    "cardiovascular instruments",
-    "gynaecology instruments",
-    "orthopaedic instruments",
-    "surgical equipment manufacturer",
-  ],
   authors: [{ name: "AVM Healthcare Products Pvt. Ltd." }],
   openGraph: {
     title: "AVM Healthcare — Precision Surgical Instruments Since 1996",
@@ -82,6 +72,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col bg-white text-[#0A1628]">
+        <OrganizationSchema />
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />
