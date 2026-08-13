@@ -17,9 +17,9 @@ export const SITE_ID = `${BASE_URL}/#website`;
 // the single canonical registered address and the number used on the Google
 // Business Profile.
 // ---------------------------------------------------------------------------
-const STREET_ADDRESS = "REPLACE_ME";
-const POSTAL_CODE = "REPLACE_ME";
-const TELEPHONE = "REPLACE_ME"; // E.164, e.g. "+91-11-23255383"
+const STREET_ADDRESS = "17-19 A Block, Chatarpur Extension, Rajpur Road";
+const POSTAL_CODE = "110074";
+const TELEPHONE = "+919810345155";
 
 const organization = {
   "@type": "Organization",
@@ -35,7 +35,7 @@ const organization = {
   description:
     "New Delhi-based manufacturer of surgical instruments for neurosurgery, general surgery, cardiovascular, gynaecology and reconstructive surgery, supplying hospitals and institutions in India and internationally since 1996.",
   foundingDate: "1996",
-  email: "info@avmhealthcare.com",
+  email: "sales@avmhealthcare.com",
   telephone: TELEPHONE,
   address: {
     "@type": "PostalAddress",
@@ -49,7 +49,7 @@ const organization = {
     {
       "@type": "ContactPoint",
       contactType: "sales",
-      email: "info@avmhealthcare.com",
+      email: "sales@avmhealthcare.com",
       telephone: TELEPHONE,
       areaServed: "Worldwide",
       availableLanguage: ["en", "hi"],
