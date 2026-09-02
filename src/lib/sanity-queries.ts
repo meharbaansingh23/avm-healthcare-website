@@ -27,6 +27,14 @@ export type Faq = {
   order: number | null;
 };
 
+export type SiteSettings = {
+  address: string | null;
+  phone: string | null;
+  email: string | null;
+  certificationWording: string | null;
+  socialLinks: Array<{ platform: string; url: string }> | null;
+};
+
 /** All published blog posts, newest first — listing-page fields only. */
 export async function getAllBlogPosts(): Promise<BlogPostListItem[]> {
   return sanityClient.fetch(
@@ -64,6 +72,19 @@ export async function getAllFaqs(): Promise<Faq[]> {
       question,
       answer,
       order
+    }`,
+  );
+}
+
+/** The singleton siteSettings document, or null if it hasn't been created yet. */
+export async function getSiteSettings(): Promise<SiteSettings | null> {
+  return sanityClient.fetch(
+    `*[_type == "siteSettings"][0] {
+      address,
+      phone,
+      email,
+      certificationWording,
+      socialLinks
     }`,
   );
 }

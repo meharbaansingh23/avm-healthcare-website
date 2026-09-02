@@ -63,7 +63,7 @@ const missionCards = [
 const certs = [
   { name: "CE Certified", img: "/images/certifications/ce.png" },
   { name: "ISO Certified", img: "/images/certifications/iso.png" },
-  { name: "FDA Compliant", img: "/images/certifications/fda.png" },
+  { name: "CDSCO Registered", img: "/images/certifications/fda.png" },
   { name: "NSIC Registered", img: "/images/certifications/nsic.png" },
 ];
 
