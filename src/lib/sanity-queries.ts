@@ -1,3 +1,4 @@
+import type { PortableTextBlock } from "@portabletext/react";
 import { sanityClient } from "@/lib/sanity-client";
 
 export type SanityImage = {
@@ -15,7 +16,7 @@ export type BlogPostListItem = {
 };
 
 export type BlogPostFull = BlogPostListItem & {
-  body: unknown[];
+  body: PortableTextBlock[];
   seoTitle: string | null;
   seoDescription: string | null;
 };
