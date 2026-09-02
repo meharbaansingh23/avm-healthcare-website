@@ -2,8 +2,11 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import type { Faq } from "@/lib/sanity-queries";
 
-const FAQ_ITEMS: Array<{ q: string; a: React.ReactNode }> = [
+// Superseded by Sanity's faq documents (see src/lib/sanity-queries.ts). Left
+// in place, unused, in case of rollback — same approach as src/lib/blog.ts.
+export const LEGACY_FAQ_ITEMS: Array<{ q: string; a: React.ReactNode }> = [
   {
     q: "Do You Supply To Individual Doctors Or Only Institutions?",
     a: "We primarily supply to hospitals, surgical centres, government procurement agencies, and distributors. Individual practitioners may contact us to discuss their requirements directly.",
@@ -64,16 +67,16 @@ const FAQ_ITEMS: Array<{ q: string; a: React.ReactNode }> = [
 // Design decision: the section heading is centered (global rule), but the
 // question/answer text stays left-aligned for readability — centred accordion
 // rows with a toggle read awkwardly. Matches the Ramp/Resend FAQ treatment.
-export default function AboutFaq() {
+export default function AboutFaq({ faqs }: { faqs: Faq[] }) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
     <div className="flex flex-col gap-3">
-      {FAQ_ITEMS.map((item, i) => {
+      {faqs.map((item, i) => {
         const isOpen = openIndex === i;
         return (
           <div
-            key={item.q}
+            key={item.question}
             className={`rounded-xl border transition-colors duration-200 overflow-hidden ${
               isOpen
                 ? "border-[#DBEAFE] bg-white"
@@ -91,7 +94,7 @@ export default function AboutFaq() {
                   isOpen ? "text-blue-600" : "text-[#0A1628]"
                 }`}
               >
-                {item.q}
+                {item.question}
               </h3>
               <span
                 className={`shrink-0 transition-transform duration-300 ${
@@ -114,7 +117,7 @@ export default function AboutFaq() {
                   style={{ overflow: "hidden" }}
                 >
                   <p className="text-sm text-[#475569] leading-relaxed px-6 pb-5">
-                    {item.a}
+                    {item.answer}
                   </p>
                 </motion.div>
               )}

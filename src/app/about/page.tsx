@@ -5,6 +5,7 @@ import KenBurnsImage from "@/components/KenBurnsImage";
 import AnimatedCounter from "@/components/AnimatedCounter";
 import ImageCarousel, { type CarouselImage } from "@/components/ImageCarousel";
 import PillButton from "@/components/PillButton";
+import { getAllFaqs } from "@/lib/sanity-queries";
 
 // "Our Instruments" carousel — breadth of surgical disciplines AVM manufactures.
 // Dimensions are the natural source sizes so each card keeps its true ratio.
@@ -66,7 +67,9 @@ const certs = [
   { name: "NSIC Registered", img: "/images/certifications/nsic.png" },
 ];
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const faqs = await getAllFaqs();
+
   return (
     <>
       {/* ─── SECTION 1 — HERO (centered, the biggest type on the site) ─── */}
@@ -271,7 +274,7 @@ export default function AboutPage() {
             </p>
           </FadeInWhenVisible>
           <FadeInWhenVisible delay={0.1} className="mt-12 text-left">
-            <AboutFaq />
+            <AboutFaq faqs={faqs} />
           </FadeInWhenVisible>
         </div>
       </section>
