@@ -1,6 +1,11 @@
 import ContactForm from "@/components/ContactForm";
 import FadeInWhenVisible from "@/components/FadeInWhenVisible";
 import PillButton from "@/components/PillButton";
+import { getSiteSettings } from "@/lib/sanity-queries";
+
+// Fallback for when siteSettings.whatsappNumber hasn't been set in Sanity
+// yet, same pattern as the certificationWording fallback on the homepage.
+const DEFAULT_WHATSAPP_NUMBER = "919810345155";
 
 export const metadata = {
   title: "Contact Us",
@@ -31,7 +36,10 @@ const offices = [
   },
 ];
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  const settings = await getSiteSettings();
+  const whatsappNumber = settings?.whatsappNumber || DEFAULT_WHATSAPP_NUMBER;
+
   return (
     <section className="bg-white pt-20 pb-24 md:pt-24 px-6 md:px-8">
       <div className="max-w-6xl mx-auto">
@@ -101,6 +109,25 @@ export default function ContactPage() {
               className="text-sm text-blue-600 hover:text-blue-700"
             >
               sales@avmhealthcare.com
+            </a>
+          </div>
+          <div>
+            <p
+              className="text-xs uppercase text-[#475569] font-semibold mb-2"
+              style={{ letterSpacing: "0.15em" }}
+            >
+              WhatsApp
+            </p>
+            <a
+              href={`https://wa.me/${whatsappNumber}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-sm text-blue-600 hover:text-blue-700"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+                <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01C17.18 3.03 14.69 2 12.04 2zm0 18.15h-.01c-1.48 0-2.93-.4-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.15 8.15 0 0 1-1.25-4.38c0-4.51 3.67-8.18 8.19-8.18 2.19 0 4.24.85 5.79 2.41a8.13 8.13 0 0 1 2.4 5.78c0 4.51-3.68 8.23-8.14 8.23zm4.48-6.13c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.78.97-.14.17-.29.19-.53.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.39-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.42h-.48c-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.57.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.55.1.47-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.15-1.18-.06-.11-.23-.17-.48-.29z" />
+              </svg>
+              Message us
             </a>
           </div>
           <div>

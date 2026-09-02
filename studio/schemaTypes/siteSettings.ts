@@ -12,6 +12,13 @@ export const siteSettings = defineType({
   fields: [
     defineField({name: 'address', title: 'Address', type: 'string'}),
     defineField({name: 'phone', title: 'Phone', type: 'string'}),
+    defineField({
+      name: 'whatsappNumber',
+      title: 'WhatsApp Number',
+      type: 'string',
+      description:
+        'WhatsApp number including country code, digits only (e.g. 919810345155) — no spaces, no +, no leading 0.',
+    }),
     defineField({name: 'email', title: 'Email', type: 'string'}),
     defineField({
       name: 'certificationWording',

@@ -30,6 +30,7 @@ export type Faq = {
 export type SiteSettings = {
   address: string | null;
   phone: string | null;
+  whatsappNumber: string | null;
   email: string | null;
   certificationWording: string | null;
   socialLinks: Array<{ platform: string; url: string }> | null;
@@ -82,6 +83,7 @@ export async function getSiteSettings(): Promise<SiteSettings | null> {
     `*[_type == "siteSettings"][0] {
       address,
       phone,
+      whatsappNumber,
       email,
       certificationWording,
       socialLinks
