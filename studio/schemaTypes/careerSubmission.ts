@@ -11,6 +11,14 @@ export const careerSubmission = defineType({
     defineField({name: 'email', title: 'Email', type: 'string'}),
     defineField({name: 'phone', title: 'Phone', type: 'string'}),
     defineField({name: 'roleInterest', title: 'Role Interest', type: 'string'}),
+    defineField({name: 'city', title: 'City', type: 'string'}),
+    defineField({
+      name: 'coverLetter',
+      title: 'Cover Letter',
+      type: 'text',
+      rows: 6,
+      description: 'The applicant\'s introduction / cover letter text.',
+    }),
     defineField({
       name: 'cv',
       title: 'CV',
