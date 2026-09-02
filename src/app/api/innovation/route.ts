@@ -1,5 +1,6 @@
 import { Resend } from "resend";
 import { renderFormSubmissionEmail } from "@/emails/FormSubmissionEmail";
+import { sanityWriteClient } from "@/lib/sanity-write";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -65,6 +66,27 @@ export async function POST(request: Request) {
         { success: false, error: "Failed to send. Please try again." },
         { status: 500 }
       );
+    }
+
+    try {
+      // innovationProposal has no separate field for "nature of proposal", so
+      // it's folded into proposalDetails rather than dropped.
+      const proposalDetails = proposalType
+        ? `Nature of proposal: ${proposalType}\n\n${description}`
+        : description;
+
+      await sanityWriteClient.create({
+        _type: "innovationProposal",
+        name,
+        email,
+        phone: phone || "",
+        company: organisation || "",
+        proposalDetails,
+        submittedAt: new Date().toISOString(),
+        status: "new",
+      });
+    } catch (sanityError) {
+      console.error("Sanity write failed (innovation):", sanityError);
     }
 
     return Response.json({ success: true });

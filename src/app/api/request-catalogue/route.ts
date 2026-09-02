@@ -1,5 +1,6 @@
 import { Resend } from "resend";
 import { renderFormSubmissionEmail } from "@/emails/FormSubmissionEmail";
+import { sanityWriteClient } from "@/lib/sanity-write";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -69,6 +70,27 @@ export async function POST(request: Request) {
         { success: false, error: "Failed to send. Please try again." },
         { status: 500 }
       );
+    }
+
+    try {
+      // catalogueRequest has no "country" field, so it's folded into notes
+      // rather than dropped. "Specific requirements" maps to productsRequested
+      // since this form doesn't collect a separate discrete product list.
+      await sanityWriteClient.create({
+        _type: "catalogueRequest",
+        name,
+        email,
+        phone,
+        company: institution,
+        department: institutionType,
+        city: address || "",
+        productsRequested: requirements || "",
+        notes: country ? `Country: ${country}` : "",
+        submittedAt: new Date().toISOString(),
+        status: "new",
+      });
+    } catch (sanityError) {
+      console.error("Sanity write failed (request-catalogue):", sanityError);
     }
 
     return Response.json({ success: true });

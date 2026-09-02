@@ -1,5 +1,6 @@
 import { Resend } from "resend";
 import { renderFormSubmissionEmail } from "@/emails/FormSubmissionEmail";
+import { sanityWriteClient } from "@/lib/sanity-write";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -40,6 +41,7 @@ export async function POST(request: Request) {
     }
 
     const attachments: Array<{ filename: string; content: Buffer }> = [];
+    let cvBuffer: Buffer | undefined;
     if (cv && cv instanceof File && cv.size > 0) {
       if (cv.size > MAX_FILE_SIZE) {
         return Response.json(
@@ -48,9 +50,10 @@ export async function POST(request: Request) {
         );
       }
       const arrayBuffer = await cv.arrayBuffer();
+      cvBuffer = Buffer.from(arrayBuffer);
       attachments.push({
         filename: cv.name,
-        content: Buffer.from(arrayBuffer),
+        content: cvBuffer,
       });
     }
 
@@ -91,6 +94,32 @@ export async function POST(request: Request) {
         { success: false, error: "Failed to send. Please try again." },
         { status: 500 }
       );
+    }
+
+    try {
+      let cvAsset: { _type: "file"; asset: { _type: "reference"; _ref: string } } | undefined;
+      if (cvBuffer && cv instanceof File) {
+        const uploaded = await sanityWriteClient.assets.upload("file", cvBuffer, {
+          filename: cv.name,
+          contentType: cv.type || "application/octet-stream",
+        });
+        cvAsset = { _type: "file", asset: { _type: "reference", _ref: uploaded._id } };
+      }
+
+      await sanityWriteClient.create({
+        _type: "careerSubmission",
+        name,
+        email,
+        phone: phone || "",
+        roleInterest: areaOfInterest,
+        city: city || "",
+        coverLetter: introduction || "",
+        ...(cvAsset ? { cv: cvAsset } : {}),
+        submittedAt: new Date().toISOString(),
+        status: "new",
+      });
+    } catch (sanityError) {
+      console.error("Sanity write failed (careers):", sanityError);
     }
 
     return Response.json({ success: true });
