@@ -1,8 +1,32 @@
 "use client";
 
-import { useState } from "react";
+import { Fragment, useState, type ReactNode } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { Faq } from "@/lib/sanity-queries";
+
+// Sanity's faq.answer is plain text, so any email address in it arrives as
+// literal characters rather than a link. This catches plain addresses like
+// "info@avmhealthcare.com" — not a full rich-text parser, just enough to
+// restore the mailto links the old hardcoded FAQ had inline.
+const EMAIL_PATTERN = /[^\s@]+@[^\s@]+\.[^\s@]+/g;
+
+function linkifyEmails(text: string): ReactNode[] {
+  const parts = text.split(EMAIL_PATTERN);
+  const emails = text.match(EMAIL_PATTERN) ?? [];
+
+  return parts.flatMap((part, i) => [
+    <Fragment key={`text-${i}`}>{part}</Fragment>,
+    emails[i] ? (
+      <a
+        key={`link-${i}`}
+        href={`mailto:${emails[i]}`}
+        className="text-blue-600 hover:text-blue-700"
+      >
+        {emails[i]}
+      </a>
+    ) : null,
+  ]);
+}
 
 // Superseded by Sanity's faq documents (see src/lib/sanity-queries.ts). Left
 // in place, unused, in case of rollback — same approach as src/lib/blog.ts.
@@ -117,7 +141,7 @@ export default function AboutFaq({ faqs }: { faqs: Faq[] }) {
                   style={{ overflow: "hidden" }}
                 >
                   <p className="text-sm text-[#475569] leading-relaxed px-6 pb-5">
-                    {item.answer}
+                    {linkifyEmails(item.answer)}
                   </p>
                 </motion.div>
               )}
