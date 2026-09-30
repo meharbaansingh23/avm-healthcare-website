@@ -1,6 +1,7 @@
 import { Resend } from "resend";
 import { renderFormSubmissionEmail } from "@/emails/FormSubmissionEmail";
 import { sanityWriteClient } from "@/lib/sanity-write";
+import { checkSpam } from "@/lib/spam-guard";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -25,6 +26,13 @@ export async function POST(request: Request) {
     const areaOfInterest = String(formData.get("areaOfInterest") ?? "").trim();
     const introduction = String(formData.get("introduction") ?? "").trim();
     const cv = formData.get("cv");
+
+    // Bot filter — pretend success so bots don't learn they were blocked.
+    const spam = checkSpam(formData, { name, city });
+    if (spam.isSpam) {
+      console.warn(`Careers submission blocked (${spam.reason}):`, { name, email });
+      return Response.json({ success: true });
+    }
 
     // Server-side validation
     if (!name || !email || !areaOfInterest) {
