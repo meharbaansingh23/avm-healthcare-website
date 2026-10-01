@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useSpamGuard } from "./useSpamGuard";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -49,6 +50,7 @@ export default function CatalogueForm() {
   const [institutionType, setInstitutionType] = useState("");
   const [requirements, setRequirements] = useState("");
   const [status, setStatus] = useState<Status>("idle");
+  const { honeypotField, spamFields } = useSpamGuard("rc");
   const [errorMessage, setErrorMessage] = useState("");
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -68,6 +70,7 @@ export default function CatalogueForm() {
           institution,
           institutionType,
           requirements,
+          ...spamFields(),
         }),
       });
       const data = await res.json().catch(() => ({}));
@@ -95,6 +98,7 @@ export default function CatalogueForm() {
       className="flex flex-col gap-6"
       aria-busy={status === "submitting"}
     >
+      {honeypotField}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <div>
           <label htmlFor="rc-name" className="form-label">Name</label>

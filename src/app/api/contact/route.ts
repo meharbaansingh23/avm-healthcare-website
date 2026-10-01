@@ -1,12 +1,21 @@
 import { Resend } from "resend";
 import { renderFormSubmissionEmail } from "@/emails/FormSubmissionEmail";
 import { sanityWriteClient } from "@/lib/sanity-write";
+import { checkSpam } from "@/lib/spam-guard";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(request: Request) {
   try {
-    const { name, email, phone, organisation, message } = await request.json();
+    const body = await request.json();
+    const { name, email, phone, organisation, message } = body;
+
+    // Bot filter — pretend success so bots don't learn they were blocked.
+    const spam = checkSpam(body, { name: String(name ?? "") });
+    if (spam.isSpam) {
+      console.warn(`Contact submission blocked (${spam.reason}):`, { name, email });
+      return Response.json({ ok: true });
+    }
 
     const fields = [
       { label: "Name", value: String(name ?? "") },

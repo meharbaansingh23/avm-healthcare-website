@@ -1,6 +1,7 @@
 import { Resend } from "resend";
 import { renderFormSubmissionEmail } from "@/emails/FormSubmissionEmail";
 import { sanityWriteClient } from "@/lib/sanity-write";
+import { checkSpam } from "@/lib/spam-guard";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -23,6 +24,13 @@ export async function POST(request: Request) {
     const institution = String(body.institution ?? "").trim();
     const institutionType = String(body.institutionType ?? "").trim();
     const requirements = String(body.requirements ?? "").trim();
+
+    // Bot filter — pretend success so bots don't learn they were blocked.
+    const spam = checkSpam(body, { name, country });
+    if (spam.isSpam) {
+      console.warn(`Catalogue request submission blocked (${spam.reason}):`, { name, email });
+      return Response.json({ success: true });
+    }
 
     // Server-side validation
     if (!name || !email || !phone || !country || !institution || !institutionType) {

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useSpamGuard } from "./useSpamGuard";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -11,6 +12,7 @@ export default function ContactForm() {
   const [organisation, setOrganisation] = useState("");
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState<Status>("idle");
+  const { honeypotField, spamFields } = useSpamGuard("ct");
   const [errorMessage, setErrorMessage] = useState("");
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -21,7 +23,7 @@ export default function ContactForm() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, phone, organisation, message }),
+        body: JSON.stringify({ name, email, phone, organisation, message, ...spamFields() }),
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok || data.ok === false) {
@@ -45,6 +47,7 @@ export default function ContactForm() {
       className="flex flex-col gap-6"
       aria-busy={status === "submitting"}
     >
+      {honeypotField}
       <h2 className="display-heading text-[#0A1628] text-3xl md:text-4xl text-center mb-2">
         Send Us A Message
       </h2>

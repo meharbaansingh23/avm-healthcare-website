@@ -46,13 +46,16 @@ export function looksRandom(value: string): boolean {
 export type SpamCheck = { isSpam: false } | { isSpam: true; reason: string };
 
 export function checkSpam(
-  formData: FormData,
+  source: FormData | Record<string, unknown>,
   identityFields: Record<string, string>
 ): SpamCheck {
-  const honeypot = String(formData.get(HONEYPOT_FIELD) ?? "").trim();
+  const get = (key: string) =>
+    source instanceof FormData ? source.get(key) : source?.[key];
+
+  const honeypot = String(get(HONEYPOT_FIELD) ?? "").trim();
   if (honeypot) return { isSpam: true, reason: "honeypot" };
 
-  const startedAt = Number(formData.get(STARTED_AT_FIELD));
+  const startedAt = Number(get(STARTED_AT_FIELD));
   if (!Number.isFinite(startedAt) || startedAt <= 0) {
     return { isSpam: true, reason: "missing-timestamp" };
   }

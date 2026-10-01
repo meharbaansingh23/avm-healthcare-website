@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { HONEYPOT_FIELD, STARTED_AT_FIELD } from "@/lib/spam-guard";
+import { useRef, useState } from "react";
+import { useSpamGuard } from "./useSpamGuard";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -53,12 +53,7 @@ export default function CareersForm() {
   const fileRef = useRef<HTMLInputElement>(null);
   const [status, setStatus] = useState<Status>("idle");
   const [errorMessage, setErrorMessage] = useState("");
-  const [honeypot, setHoneypot] = useState("");
-  const startedAt = useRef(0);
-
-  useEffect(() => {
-    startedAt.current = Date.now();
-  }, []);
+  const { honeypotField, spamFields } = useSpamGuard("c");
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -83,8 +78,7 @@ export default function CareersForm() {
       fd.set("areaOfInterest", areaOfInterest);
       fd.set("introduction", introduction);
       if (file) fd.set("cv", file);
-      fd.set(HONEYPOT_FIELD, honeypot);
-      fd.set(STARTED_AT_FIELD, String(startedAt.current));
+      for (const [k, v] of Object.entries(spamFields())) fd.set(k, v);
 
       const res = await fetch("/api/careers", { method: "POST", body: fd });
       const data = await res.json().catch(() => ({}));
@@ -113,19 +107,7 @@ export default function CareersForm() {
       aria-busy={status === "submitting"}
       noValidate={false}
     >
-      {/* Honeypot: hidden from people and assistive tech; bots fill it in. */}
-      <div aria-hidden="true" className="absolute -left-[9999px] h-px w-px overflow-hidden">
-        <label htmlFor="c-company-website">Company website</label>
-        <input
-          id="c-company-website"
-          name={HONEYPOT_FIELD}
-          type="text"
-          tabIndex={-1}
-          autoComplete="off"
-          value={honeypot}
-          onChange={(e) => setHoneypot(e.target.value)}
-        />
-      </div>
+      {honeypotField}
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <div>
