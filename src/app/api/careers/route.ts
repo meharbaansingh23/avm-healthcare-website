@@ -15,7 +15,53 @@ const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5 MB
 
 const isValidEmail = (e: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
 
+// CORS — the Shopify storefront posts this form cross-origin. Only these
+// origins are echoed back; the wildcard (*) is never used.
+const ALLOWED_ORIGINS = new Set([
+  "https://1zkcvw-8f.myshopify.com",
+  "https://avmhealthcare.com",
+  "https://www.avmhealthcare.com",
+]);
+const SHOPIFY_PREVIEW_ORIGIN = /^https:\/\/([a-z0-9-]+\.)+shopifypreview\.com$/i;
+
+function allowedOrigin(request: Request): string | null {
+  const origin = request.headers.get("origin");
+  if (!origin) return null;
+  return ALLOWED_ORIGINS.has(origin) || SHOPIFY_PREVIEW_ORIGIN.test(origin)
+    ? origin
+    : null;
+}
+
+function withCors(request: Request, response: Response): Response {
+  const headers = new Headers(response.headers);
+  headers.append("Vary", "Origin");
+  const origin = allowedOrigin(request);
+  if (origin) headers.set("Access-Control-Allow-Origin", origin);
+  return new Response(response.body, {
+    status: response.status,
+    statusText: response.statusText,
+    headers,
+  });
+}
+
+export async function OPTIONS(request: Request) {
+  return withCors(
+    request,
+    new Response(null, {
+      status: 204,
+      headers: {
+        "Access-Control-Allow-Methods": "POST, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type",
+      },
+    })
+  );
+}
+
 export async function POST(request: Request) {
+  return withCors(request, await handlePost(request));
+}
+
+async function handlePost(request: Request): Promise<Response> {
   try {
     const formData = await request.formData();
 
