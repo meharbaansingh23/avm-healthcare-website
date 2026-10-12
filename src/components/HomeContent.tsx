@@ -273,7 +273,7 @@ export default function HomeContent({
             benefit of mankind.&rdquo;
           </motion.blockquote>
           <p
-            className="text-xs uppercase font-medium text-[#94A3B8] mt-8"
+            className="text-xs uppercase font-medium text-[#6C7787] mt-8"
             style={{ letterSpacing: "0.2em" }}
           >
             — Anil Chaba · Director
@@ -377,7 +377,7 @@ export default function HomeContent({
                     durationMs={2000}
                     className="font-bold text-5xl md:text-6xl text-[#0A1628] tracking-[-0.04em] tabular-nums"
                   />
-                  <div className="text-xs uppercase tracking-wider font-medium text-[#94A3B8] mt-2">
+                  <div className="text-xs uppercase tracking-wider font-medium text-[#606977] mt-2">
                     {stat.label}
                   </div>
                 </div>

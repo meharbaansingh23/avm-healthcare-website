@@ -163,10 +163,10 @@ export default async function Footer() {
         </div>
 
         <div className="border-t border-[#E2E8F0] mt-12 pt-8 flex flex-wrap items-center justify-between gap-4">
-          <p className="text-xs text-[#94A3B8]">
+          <p className="text-xs text-[#6C7787]">
             © 2026 AVM Healthcare Products Pvt. Ltd. · New Delhi, India
           </p>
-          <p className="text-xs text-[#94A3B8]">All rights reserved</p>
+          <p className="text-xs text-[#6C7787]">All rights reserved</p>
         </div>
       </div>
     </footer>

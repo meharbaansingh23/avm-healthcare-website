@@ -175,7 +175,7 @@ export default function HeroSlideshow() {
 
       {/* Dot navigation — bottom centre. Hovering pauses auto-rotation. */}
       <div
-        className="absolute inset-x-0 bottom-0 mb-12 flex justify-center gap-2 z-20"
+        className="absolute inset-x-0 bottom-0 mb-10 flex justify-center z-20"
         onFocus={() => setRestMounted(true)}
         onMouseEnter={() => {
           setRestMounted(true);
@@ -194,10 +194,16 @@ export default function HeroSlideshow() {
             aria-label={`Go to slide ${i + 1}`}
             aria-current={i === activeIndex}
             onClick={() => handleDotClick(i)}
-            className={`h-2 w-2 rounded-full transition-colors cursor-pointer ${
-              i === activeIndex ? "bg-white" : "bg-white/40 hover:bg-white/60"
-            }`}
-          />
+            // 24×24 hit area around the same 8px dot (WCAG target size).
+            className="group/dot flex h-6 w-6 items-center justify-center cursor-pointer"
+          >
+            <span
+              aria-hidden
+              className={`h-2 w-2 rounded-full transition-colors ${
+                i === activeIndex ? "bg-white" : "bg-white/40 group-hover/dot:bg-white/60"
+              }`}
+            />
+          </button>
         ))}
       </div>
     </div>
