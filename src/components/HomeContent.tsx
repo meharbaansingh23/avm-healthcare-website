@@ -11,6 +11,7 @@ import ImageCarousel, { type CarouselImage } from "@/components/ImageCarousel";
 import PillButton from "@/components/PillButton";
 import AnimatedCounter from "@/components/AnimatedCounter";
 import GroupOfCompanies from "@/components/GroupOfCompanies";
+import YouTubeFacade from "@/components/YouTubeFacade";
 import { blogPosts } from "@/lib/blog";
 
 // "Crafted With Precision" carousel — client product / scene photography.
@@ -338,15 +339,7 @@ export default function HomeContent({
 
         <FadeInWhenVisible delay={0.1} className="mt-14 max-w-5xl mx-auto">
           <div className="relative w-full aspect-video rounded-2xl shadow-2xl overflow-hidden">
-            <iframe
-              src="https://www.youtube.com/embed/_QNRNKJiNuA"
-              title="AVM Healthcare Products — Our Story"
-              width="100%"
-              height="100%"
-              className="absolute inset-0"
-              allowFullScreen
-              loading="lazy"
-            />
+            <YouTubeFacade videoId="_QNRNKJiNuA" title="AVM Healthcare Products — Our Story" />
           </div>
         </FadeInWhenVisible>
       </section>
