@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 
 const links = [
@@ -18,14 +19,18 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-[#E2E8F0]">
       <div className="max-w-[1536px] mx-auto px-6 md:px-8 lg:px-12 h-[68px] md:h-20 flex items-center justify-between">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <a href="/">
-          <img
+        <Link href="/">
+          {/* Above the fold: eager, but no fetchPriority so the hero image keeps priority. */}
+          <Image
             src="/images/logo-dark.png"
             alt="AVM Healthcare Products"
+            width={1015}
+            height={251}
+            loading="eager"
+            sizes="(min-width: 768px) 211px, 170px"
             className="h-[42px] md:h-[52px] w-auto block"
           />
-        </a>
+        </Link>
 
         <nav className="hidden md:flex items-center gap-8">
           {links.map((l) => (

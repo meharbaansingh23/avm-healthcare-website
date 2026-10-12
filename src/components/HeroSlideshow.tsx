@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
@@ -31,13 +31,58 @@ const slides = [
  * Auto-rotation uses a setInterval (6s) held in a ref, with explicit
  * start/stop helpers so a manual dot click can reset the timer and hovering the
  * dot navigation can pause it. The interval is cleared on unmount.
+ *
+ * Slides 2–3 aren't mounted on first load so they don't compete with slide 1
+ * (the LCP image) for bandwidth. They mount 1s after the window `load` event
+ * (which waits for slide 1, as it's in the initial HTML), or
+ * as soon as the dot navigation is hovered/focused, and auto-rotation only
+ * advances to a slide once its image has loaded, so the crossfade never
+ * reveals a half-loaded image.
  */
+
+const REST_MOUNT_DELAY_MS = 1000;
+
+const reducedMotionQuery = "(prefers-reduced-motion: reduce)";
+function subscribeReducedMotion(onChange: () => void) {
+  const mq = window.matchMedia(reducedMotionQuery);
+  mq.addEventListener("change", onChange);
+  return () => mq.removeEventListener("change", onChange);
+}
+const getReducedMotion = () => window.matchMedia(reducedMotionQuery).matches;
+const getReducedMotionServer = () => false;
+
 export default function HeroSlideshow() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [reducedMotion, setReducedMotion] = useState(false);
+  const reducedMotion = useSyncExternalStore(
+    subscribeReducedMotion,
+    getReducedMotion,
+    getReducedMotionServer
+  );
+  const [restMounted, setRestMounted] = useState(false);
 
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const isHoveringRef = useRef(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // Read straight from the <img> rather than next/image's onLoad, which waits
+  // on img.decode() and can stall indefinitely in a background tab.
+  const isSlideReady = (i: number) => {
+    const img = containerRef.current?.querySelector<HTMLImageElement>(`img[data-slide="${i}"]`);
+    return !!img && img.complete && img.naturalWidth > 0;
+  };
+
+  useEffect(() => {
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    const schedule = () => {
+      timer = setTimeout(() => setRestMounted(true), REST_MOUNT_DELAY_MS);
+    };
+    if (document.readyState === "complete") schedule();
+    else window.addEventListener("load", schedule, { once: true });
+    return () => {
+      window.removeEventListener("load", schedule);
+      clearTimeout(timer);
+    };
+  }, []);
 
   const stopRotation = useCallback(() => {
     if (intervalRef.current) {
@@ -51,18 +96,13 @@ export default function HeroSlideshow() {
     // Don't auto-rotate while paused on hover or when reduced motion is set.
     if (reducedMotion || isHoveringRef.current) return;
     intervalRef.current = setInterval(() => {
-      setActiveIndex((i) => (i + 1) % slides.length);
+      // Hold on the current slide until the next one's image has loaded.
+      setActiveIndex((i) => {
+        const next = (i + 1) % slides.length;
+        return isSlideReady(next) ? next : i;
+      });
     }, 6000);
   }, [reducedMotion, stopRotation]);
-
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setReducedMotion(mq.matches);
-    const handler = (e: MediaQueryListEvent) => setReducedMotion(e.matches);
-    mq.addEventListener("change", handler);
-    return () => mq.removeEventListener("change", handler);
-  }, []);
 
   // Start/refresh the auto-rotation; cleared on unmount or when startRotation
   // changes (e.g. reduced-motion preference flips).
@@ -73,12 +113,14 @@ export default function HeroSlideshow() {
 
   // Manual selection: jump to the slide and reset the rotation timer.
   const handleDotClick = (i: number) => {
+    setRestMounted(true);
     setActiveIndex(i);
     startRotation();
   };
 
   return (
     <div
+      ref={containerRef}
       className="absolute inset-0"
       role="region"
       aria-roledescription="carousel"
@@ -94,15 +136,21 @@ export default function HeroSlideshow() {
           transition={{ duration: reducedMotion ? 0 : 1.5, ease: "easeInOut" }}
           aria-hidden
         >
-          <Image
-            src={slide.src}
-            alt={slide.alt}
-            fill
-            preload={i === 0}
-            fetchPriority={i === 0 ? "high" : undefined}
-            sizes="100vw"
-            className="object-cover"
-          />
+          {(i === 0 || restMounted) && (
+            <Image
+              src={slide.src}
+              alt={slide.alt}
+              fill
+              preload={i === 0}
+              fetchPriority={i === 0 ? "high" : undefined}
+              // Slides 2–3 are already deferred by mounting late; once
+              // mounted, fetch them straight away so they're ready to fade in.
+              loading={i === 0 ? undefined : "eager"}
+              sizes="100vw"
+              className="object-cover"
+              data-slide={i}
+            />
+          )}
         </motion.div>
       ))}
 
@@ -128,7 +176,9 @@ export default function HeroSlideshow() {
       {/* Dot navigation — bottom centre. Hovering pauses auto-rotation. */}
       <div
         className="absolute inset-x-0 bottom-0 mb-12 flex justify-center gap-2 z-20"
+        onFocus={() => setRestMounted(true)}
         onMouseEnter={() => {
+          setRestMounted(true);
           isHoveringRef.current = true;
           stopRotation();
         }}

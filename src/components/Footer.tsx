@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { getSiteSettings } from "@/lib/sanity-queries";
 
@@ -71,14 +72,16 @@ export default async function Footer() {
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-12">
           <div>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <a href="/">
-              <img
+            <Link href="/">
+              <Image
                 src="/images/logo-dark.png"
                 alt="AVM Healthcare Products"
+                width={1015}
+                height={251}
+                sizes="130px"
                 style={{ height: '32px', width: 'auto', display: 'block' }}
               />
-            </a>
+            </Link>
 
             <div className="flex items-center gap-3 mt-6">
               {socialLinks.map((social) => (
