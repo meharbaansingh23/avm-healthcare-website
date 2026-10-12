@@ -122,7 +122,7 @@ export default function AboutFaq({ faqs }: { faqs: Faq[] }) {
               </h3>
               <span
                 className={`shrink-0 transition-transform duration-300 ${
-                  isOpen ? "rotate-45 text-blue-600" : "text-[#94A3B8]"
+                  isOpen ? "rotate-45 text-blue-600" : "text-muted"
                 }`}
                 aria-hidden
               >

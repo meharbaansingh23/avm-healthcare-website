@@ -76,7 +76,7 @@ export default async function AboutPage() {
       <section className="bg-white pt-20 pb-16 md:pt-24 md:pb-20 px-6 md:px-8">
         <FadeInWhenVisible className="text-center max-w-4xl mx-auto">
           <p
-            className="text-xs uppercase font-medium text-[#94A3B8]"
+            className="text-xs uppercase font-medium text-muted"
             style={{ letterSpacing: "0.2em" }}
           >
             Est. 1996 · New Delhi, India
@@ -120,7 +120,7 @@ export default async function AboutPage() {
                   durationMs={2000}
                   className="font-bold text-5xl md:text-6xl text-[#0A1628] tracking-[-0.04em] tabular-nums"
                 />
-                <div className="text-xs uppercase tracking-wider font-medium text-[#94A3B8] mt-2">
+                <div className="text-xs uppercase tracking-wider font-medium text-muted mt-2">
                   {s.label}
                 </div>
               </div>

@@ -112,7 +112,7 @@ export default async function BlogPostPage({
           <h1 className="display-heading text-[#0A1628] text-4xl md:text-6xl mt-4">
             {post.title}
           </h1>
-          <div className="flex items-center justify-center gap-3 text-sm text-[#94A3B8] mt-5">
+          <div className="flex items-center justify-center gap-3 text-sm text-muted mt-5">
             {publishedLabel && <span>{publishedLabel}</span>}
             {publishedLabel && <span aria-hidden>·</span>}
             <span>{readTime}</span>

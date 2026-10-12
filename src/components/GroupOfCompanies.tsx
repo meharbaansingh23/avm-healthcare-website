@@ -122,7 +122,7 @@ export default function GroupOfCompanies() {
                       </span>
                     )}
                   </div>
-                  <div className="text-xs text-[#6C7787] mt-1">{c.sub}</div>
+                  <div className="text-xs text-muted mt-1">{c.sub}</div>
                 </div>
               </>
             );

@@ -42,7 +42,7 @@ export default function RequestCataloguePage() {
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
             </div>
-            <p className="mt-3 text-center text-xs text-[#94A3B8]">
+            <p className="mt-3 text-center text-xs text-muted">
               AVM Healthcare Products · Full Surgical Instruments Catalogue
             </p>
           </FadeInWhenVisible>

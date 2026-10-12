@@ -7,6 +7,11 @@
     "Segoe UI", Roboto, Arial, sans-serif;
   --font-serif: "Helvetica Neue", var(--font-inter), system-ui, -apple-system,
     sans-serif;
+
+  /* Muted secondary text — the lightest shades of the old slate-400
+     (#94A3B8) that pass WCAG AA (4.5:1) for small text. */
+  --color-muted: #6c7787; /* on white / near-white (4.54:1 on #FFF) */
+  --color-muted-on-tint: #606977; /* on the light-blue gradient (4.55:1 on #DBEAFE) */
 }
 
 html {
@@ -180,7 +185,7 @@ body {
     @apply w-full border border-[#E2E8F0] rounded-lg px-4 py-3 text-sm text-[#0A1628] bg-white transition-colors;
   }
   .form-input::placeholder {
-    color: #94a3b8;
+    color: var(--color-muted);
   }
   .form-input:focus-visible {
     outline: 2px solid #2563eb;

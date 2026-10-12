@@ -47,7 +47,7 @@ export function renderFormSubmissionEmail({
 
       return `
         <tr>
-          <td class="avm-label" style="padding:16px 16px 16px 0; ${borderStyle} width:35%; vertical-align:top; text-transform:uppercase; font-size:11px; letter-spacing:1.5px; color:#94A3B8; font-weight:500; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">
+          <td class="avm-label" style="padding:16px 16px 16px 0; ${borderStyle} width:35%; vertical-align:top; text-transform:uppercase; font-size:11px; letter-spacing:1.5px; color:#6C7787; font-weight:500; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">
             ${escapeHtml(field.label)}
           </td>
           <td class="avm-value" style="padding:16px 0; ${borderStyle} vertical-align:top; color:#0A1628; font-size:15px; line-height:1.6; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">
@@ -103,7 +103,7 @@ export function renderFormSubmissionEmail({
                       <div style="font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-size:28px; color:#0A1628; text-align:center;">
                         ${escapeHtml(title)}
                       </div>
-                      <div style="margin-top:12px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size:11px; text-transform:uppercase; letter-spacing:2px; color:#94A3B8; text-align:center;">
+                      <div style="margin-top:12px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size:11px; text-transform:uppercase; letter-spacing:2px; color:#6C7787; text-align:center;">
                         Submitted via avmhealthcare.com
                       </div>
                     </td>
@@ -134,7 +134,7 @@ export function renderFormSubmissionEmail({
           <!-- FOOTER -->
           <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px; width:100%; margin-top:32px;">
             <tr>
-              <td align="center" style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size:12px; color:#94A3B8; text-align:center; line-height:1.8;">
+              <td align="center" style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size:12px; color:#606977; text-align:center; line-height:1.8;">
                 AVM Healthcare Products Pvt. Ltd. &middot; New Delhi, India<br />
                 &copy; 2026 AVM Healthcare. All rights reserved.
               </td>
