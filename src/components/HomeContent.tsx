@@ -36,6 +36,8 @@ const specialties = [
     desc: "Cranial, spinal and micro-neurosurgical instruments.",
     label: "Neurosurgical instruments",
     img: "/images/neurosurgical.webp",
+    width: 1785,
+    height: 923,
   },
   {
     slug: "general-surgery",
@@ -43,6 +45,8 @@ const specialties = [
     desc: "Core instruments for the operating theatre.",
     label: "General surgery tools",
     img: "/images/general-surgery.webp",
+    width: 1504,
+    height: 1003,
   },
   {
     slug: "cardiovascular",
@@ -50,6 +54,8 @@ const specialties = [
     desc: "Precision devices for cardiac and vascular work.",
     label: "Cardiovascular devices",
     img: "/images/cardiovascular.webp",
+    width: 1502,
+    height: 1004,
   },
   {
     slug: "gynaecology",
@@ -57,6 +63,8 @@ const specialties = [
     desc: "Specialised instruments for women's health.",
     label: "Gynaecology instruments",
     img: "/images/gynaecology.webp",
+    width: 1503,
+    height: 1005,
   },
   {
     slug: "plastic-oral-surgery",
@@ -64,6 +72,8 @@ const specialties = [
     desc: "Delicate tools for reconstructive and oral surgery.",
     label: "Plastic & oral instruments",
     img: "/images/plastic-oral.webp",
+    width: 1503,
+    height: 1004,
   },
   {
     slug: "containers-pads",
@@ -71,6 +81,8 @@ const specialties = [
     desc: "Sterile storage and procedural support items.",
     label: "Containers & pads",
     img: "/images/containers-pads.webp",
+    width: 1503,
+    height: 1004,
   },
 ];
 
@@ -156,10 +168,12 @@ function SpecialtyCard({ s }: { s: (typeof specialties)[number] }) {
   return (
     <div className="group/card h-full w-[300px] sm:w-[340px] flex flex-col bg-white border border-[#E2E8F0] rounded-2xl overflow-hidden transition-all duration-200 hover:border-blue-200 hover:shadow-xl">
       <div className="relative aspect-[3/2] overflow-hidden bg-[#FAFAF9]">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
+        <Image
           src={s.img}
           alt={s.label}
+          width={s.width}
+          height={s.height}
+          sizes="(min-width: 640px) 340px, 300px"
           className="w-full h-full object-contain transition-transform duration-500 group-hover/card:scale-105"
         />
       </div>
@@ -214,42 +228,24 @@ export default function HomeContent({
 
         <div className="relative z-10 w-full max-w-[1536px] mx-auto px-6 md:px-8 lg:px-12 py-24">
           <div className="max-w-[640px] text-left">
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
+            <p
               className="text-xs uppercase font-medium text-[#DBEAFE]"
               style={{ letterSpacing: "0.2em" }}
             >
               Surgical Instruments · Made in India · Since 1996
-            </motion.p>
+            </p>
 
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
-              className="text-white text-5xl md:text-7xl font-bold tracking-tighter leading-[1.05] mt-6"
-            >
+            <h1 className="text-white text-5xl md:text-7xl font-bold tracking-tighter leading-[1.05] mt-6">
               Precision Instruments For Modern Surgical Care
-            </motion.h1>
+            </h1>
 
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
-              className="text-white/90 text-lg leading-relaxed mt-7"
-            >
+            <p className="text-white/90 text-lg leading-relaxed mt-7">
               AVM Healthcare Products supplies advanced Surgical instruments to
               premier hospitals across India — from Neurosurgery to
               Cardiovascular care.
-            </motion.p>
+            </p>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
-              className="mt-9"
-            >
+            <div className="mt-9">
               <Link
                 href="/request-catalogue"
                 className="inline-flex items-center gap-2 bg-white text-[#0A1628] px-8 py-4 rounded-lg text-sm font-semibold transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl"
@@ -257,7 +253,7 @@ export default function HomeContent({
                 Request catalogue
                 <ArrowRight />
               </Link>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -416,10 +412,12 @@ export default function HomeContent({
             {certs.map((c, i) => (
               <FadeInWhenVisible key={c.name} delay={i * 0.1} className="h-full">
                 <div className="group h-full border border-[#E2E8F0] rounded-xl p-8 bg-white flex flex-col items-center justify-center gap-4 text-center transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:border-blue-200">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
+                  <Image
                     src={c.img}
                     alt={c.name}
+                    width={800}
+                    height={800}
+                    sizes="60px"
                     className="h-[60px] w-auto object-contain transition-transform duration-200 group-hover:scale-105"
                   />
                   <div className="text-sm font-semibold text-[#0A1628]">{c.name}</div>

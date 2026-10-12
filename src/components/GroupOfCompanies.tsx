@@ -1,3 +1,4 @@
+import Image from "next/image";
 import FadeInWhenVisible from "@/components/FadeInWhenVisible";
 
 type Company = {
@@ -5,7 +6,7 @@ type Company = {
   sub: string;
   logo:
     | { type: "text"; value: string }
-    | { type: "img"; src: string; alt: string };
+    | { type: "img"; src: string; alt: string; width: number; height: number };
   href?: string;
 };
 
@@ -16,6 +17,8 @@ const COMPANIES: Company[] = [
     logo: {
       type: "img",
       src: "/images/logo-dark.png",
+      width: 1015,
+      height: 251,
       alt: "AVM Healthcare Products",
     },
   },
@@ -26,6 +29,8 @@ const COMPANIES: Company[] = [
     logo: {
       type: "img",
       src: "/images/companies/AVM-Surgicare.png",
+      width: 2483,
+      height: 1211,
       alt: "AVM Surgicare",
     },
   },
@@ -35,6 +40,8 @@ const COMPANIES: Company[] = [
     logo: {
       type: "img",
       src: "/images/companies/ANI.png",
+      width: 964,
+      height: 436,
       alt: "ANI Instruments",
     },
     href: "https://www.animedtec.com/",
@@ -45,6 +52,8 @@ const COMPANIES: Company[] = [
     logo: {
       type: "img",
       src: "/images/companies/aceweise.jpeg",
+      width: 1280,
+      height: 332,
       alt: "AceWeise",
     },
   },
@@ -81,10 +90,13 @@ export default function GroupOfCompanies() {
                     </span>
                   ) : (
                     <>
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
+                      <Image
                         src={c.logo.src}
                         alt={c.logo.alt}
+                        width={c.logo.width}
+                        height={c.logo.height}
+                        // Max 140px box; ANI is visually scaled 1.6×.
+                        sizes={c.name === "ANI Instruments" ? "224px" : "140px"}
                         className={
                           c.name === "ANI Instruments"
                             ? "scale-[1.6] transition-transform duration-200 group-hover:scale-[1.68]"

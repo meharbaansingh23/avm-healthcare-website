@@ -57,7 +57,7 @@ export default function ImageCarousel({
             alt={img.alt}
             width={img.width ?? 1500}
             height={img.height ?? 1000}
-            sizes="(max-width: 768px) 70vw, 40vw"
+            sizes={`(max-width: 767px) ${Math.ceil(cardHeightMobile * ratioFor(img))}px, ${Math.ceil(cardHeightDesktop * ratioFor(img))}px`}
             className="h-full w-full object-cover"
             onLoad={(e) => {
               if (img.width && img.height) return;
